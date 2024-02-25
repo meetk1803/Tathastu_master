@@ -174,9 +174,9 @@
                     android:text="the day"
                     android:textColor="@color/status_color"
                     android:textStyle="italic"
-                    app:autoSizeMaxTextSize="15sp"
-                    app:autoSizeMinTextSize="8sp"
-                    app:autoSizeTextType="uniform"
+                        app:autoSizeMaxTextSize="15sp"
+                        app:autoSizeMinTextSize="8sp"
+                        app:autoSizeTextType="uniform"
                     tools:ignore="TextSizeCheck,TextContrastCheck" />
 
                 <View

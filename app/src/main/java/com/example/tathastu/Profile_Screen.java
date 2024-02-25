@@ -4,24 +4,33 @@ import static com.example.tathastu.R.style.CustomDatePickerStyle;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Profile_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class Profile_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,ConnectivityReceiver.ConnectivityReceiverListener {
     //ALL
     private TextInputEditText txt_Profile_Fname, txt_Profile_Lname, txt_Profile_email, txt_Profile_mno, txt_Profile_dob;
+
+    // INTERNET
+    private ConnectivityReceiver connectivityReceiver;
+
     //PROFILE IMAGE
     int SELECT_PICTURE = 200;
     ShapeableImageView img_profile_photo;
@@ -40,6 +49,13 @@ public class Profile_Screen extends AppCompatActivity implements DatePickerDialo
 
         initializeViews();
         setOnClickListeners();
+
+        // Initialize the ConnectivityReceiver
+        connectivityReceiver = new ConnectivityReceiver();
+        ConnectivityReceiver.connectivityReceiverListener = this;
+
+        // Register the receiver to listen for connectivity changes
+        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
     private void initializeViews() {
@@ -159,5 +175,42 @@ public class Profile_Screen extends AppCompatActivity implements DatePickerDialo
         Calendar newDate = Calendar.getInstance();
         newDate.set(year, monthOfYear, dayOfMonth);
         txt_Profile_dob.setText(dateFormatter.format(newDate.getTime()));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Unregister the receiver to avoid memory leaks
+        unregisterReceiver(connectivityReceiver);
+    }
+
+    //SNACKBAR
+    private void showSnackbar(View view, String message) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+
+        // Inflate custom layout
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View customView = inflater.inflate(R.layout.custom_snackbar_layout, null);
+
+        // Set text
+        TextView textView = customView.findViewById(android.R.id.text1);
+        textView.setText(message);
+
+        // Add custom view to Snackbar
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
+        snackbarLayout.removeAllViews(); // Remove all default views
+        snackbarLayout.setPadding(1, 1, 1, 1);
+        snackbarLayout.addView(customView, 0);
+
+        snackbar.show();
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+        }
     }
 }

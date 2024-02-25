@@ -79,7 +79,7 @@
                             tools:ignore="TextSizeCheck" />
 
                         <com.google.android.material.textfield.TextInputLayout
-
+                            android:id="@+id/txtlayout_login_mno"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_30sdp"
@@ -105,6 +105,31 @@
                                 android:textStyle="bold"/>
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_login_pwd"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:hint="Enter Password"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_login_pwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:inputType="textPassword"
+                                android:maxLength="8"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                             android:id="@+id/BTN_login"
                             android:layout_width="@dimen/_240sdp"
@@ -119,71 +144,7 @@
                             app:shapeAppearanceOverlay="@style/RoundedSquare"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_40sdp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
 
-                            <View
-                                android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/toolbar_BG" />
-
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/kanit_regular"
-                                android:text=" OR "
-                                android:textColor="@color/toolbar_BG" />
-
-                            <View
-                                android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/toolbar_BG" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_60sdp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_20sdp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                android:id="@+id/BTN_login_google"
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:backgroundTint="@color/white"
-                                android:src="@drawable/ic_google"
-                                app:elevation="@dimen/_3sdp"
-                                app:fabCustomSize="@dimen/_40sdp"
-                                app:tint="@null"
-                                app:tintMode="src_atop"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                android:id="@+id/BTN_login_fb"
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/ic_facebook"
-                                app:backgroundTint="@color/white"
-                                app:elevation="@dimen/_3sdp"
-                                app:fabCustomSize="@dimen/_40sdp"
-                                app:tint="@null"
-                                app:tintMode="src_atop"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -213,13 +174,24 @@
                                 android:gravity="center"
                                 android:padding="@dimen/_1sdp"
                                 android:text="Signin"
+                                app:strokeWidth="@dimen/_1sdp"
+                                app:strokeColor="@color/status_color"
                                 android:textColor="@color/toolbar_BG"
                                 android:textSize="@dimen/_10sdp"
                                 app:shapeAppearanceOverlay="@style/RoundedSquare"
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
                         </LinearLayout>
 
-
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_50sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Copyright © 2024 Threes Infotech. \nAll rights reserved."
+                            android:textSize="@dimen/_8sdp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 

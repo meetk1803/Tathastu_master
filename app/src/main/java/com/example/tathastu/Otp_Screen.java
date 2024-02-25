@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -26,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Otp_Screen extends AppCompatActivity {
 
+    MaterialTextView txt_otp_mno;
     ExtendedFloatingActionButton BTN_otp;
     private MaterialTextView tvOtpTime;
     private CountDownTimer countDownTimer;
@@ -44,30 +49,33 @@ public class Otp_Screen extends AppCompatActivity {
         setContentView(R.layout.activity_otp_screen);
 
         tvOtpTime = findViewById(R.id.tv_OTPtime);
-        BTN_otp=findViewById(R.id.BTN_otp);
+        BTN_otp = findViewById(R.id.BTN_otp);
         mAuth = FirebaseAuth.getInstance();
-
+        txt_otp_mno=findViewById(R.id.txt_otp_mno);
         edtotp = findViewById(R.id.txt_OTP);
 
         phonenumber = getIntent().getStringExtra("mobile").toString();
+        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
+        txt_otp_mno.setText("+91 XXXXXX"+last_four_digits);
 
         Toast.makeText(this, phonenumber, Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, last_four_digits, Toast.LENGTH_SHORT).show();
         BTN_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String enteredotp = edtotp.getText().toString();
-                
+
                 if (enteredotp.isEmpty()) {
-
-                    Toast.makeText(Otp_Screen.this, "Blank Field can not be Processed", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    
+                    showSnackbar(findViewById(android.R.id.content),"Please enter an OTP...");
+                } else if (enteredotp.length()<6) {
+                    showSnackbar(findViewById(android.R.id.content),"Please enter 6 digits long OTP...");
+                }
+               /* else if (enteredotp == authenticated otp(VARIABLE)) {
+                    showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
+                }*/ else {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
                     signInWithPhoneAuthCredential(credential);
-
                 }
             }
         });
@@ -76,7 +84,7 @@ public class Otp_Screen extends AppCompatActivity {
 
         initiateotp();
     }
-
+//---------------------------------------------------------------------------------------------------
     private void initiateotp() {
 
         PhoneAuthOptions options =
@@ -120,13 +128,13 @@ public class Otp_Screen extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Intent i=new Intent(Otp_Screen.this,DashBoard_Screen.class);
+                            Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
                             startActivity(i);
 
                         } else {
 
                             Toast.makeText(Otp_Screen.this, "Sign In Code Error", Toast.LENGTH_SHORT).show();
-                            
+
                         }
                     }
                 });
@@ -165,5 +173,27 @@ public class Otp_Screen extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+    }
+
+    //SNACKBAR
+    private void showSnackbar(View view, String message) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+
+        // Inflate custom layout
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View customView = inflater.inflate(R.layout.custom_snackbar_layout, null);
+
+        // Set text
+        TextView textView = customView.findViewById(android.R.id.text1);
+        textView.setText(message);
+
+        // Add custom view to Snackbar
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
+        snackbarLayout.removeAllViews(); // Remove all default views
+        snackbarLayout.setPadding(1, 1, 1, 1);
+        snackbarLayout.addView(customView, 0);
+
+        snackbar.show();
     }
 }

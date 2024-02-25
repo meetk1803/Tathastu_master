@@ -4,15 +4,21 @@ package com.example.tathastu;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,11 +33,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Helpline_numbers_Screen extends AppCompatActivity {
+public class Helpline_numbers_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     private RecyclerView recyclerView;
     private UserAdapter_Helpline_Numbers helplineAdapter;
     private List<UserModel_Helpline_Numbers> helplineList;
+    private ConnectivityReceiver connectivityReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,13 @@ public class Helpline_numbers_Screen extends AppCompatActivity {
 
         // Fetch helpline numbers from the API
         new FetchHelplineNumbersTask().execute("https://meetk1803.github.io/tathastu_quotes_api/tathastu_helpline_numbers.json");
+
+        // Initialize the ConnectivityReceiver
+        connectivityReceiver = new ConnectivityReceiver();
+        ConnectivityReceiver.connectivityReceiverListener = this;
+
+        // Register the receiver to listen for connectivity changes
+        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
     }
 
 
@@ -163,5 +177,41 @@ public class Helpline_numbers_Screen extends AppCompatActivity {
                 Toast.makeText(Helpline_numbers_Screen.this, text, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Unregister the receiver to avoid memory leaks
+        unregisterReceiver(connectivityReceiver);
+    }
+
+    //SNACKBAR
+    private void showSnackbar(View view, String message) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+
+        // Inflate custom layout
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View customView = inflater.inflate(R.layout.custom_snackbar_layout, null);
+
+        // Set text
+        TextView textView = customView.findViewById(android.R.id.text1);
+        textView.setText(message);
+
+        // Add custom view to Snackbar
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
+        snackbarLayout.removeAllViews(); // Remove all default views
+        snackbarLayout.setPadding(1, 1, 1, 1);
+        snackbarLayout.addView(customView, 0);
+
+        snackbar.show();
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+        }
     }
 }

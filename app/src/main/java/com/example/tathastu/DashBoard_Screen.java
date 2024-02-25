@@ -3,12 +3,14 @@ package com.example.tathastu;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,6 +26,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,8 +41,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashBoard_Screen extends AppCompatActivity {
-    ImageButton BTN_dash_food,BTN_dash_blood,BTN_dash_cloth,BTN_dash_edu,BTN_dash_aboutus,BTN_dash_contactus,BTN_dash_history,BTN_dash_helpline;
+public class DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+    ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_cloth, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
     TextView seeall;
     RecyclerView recycle_Dash_event;
     CardView card_dash_event;
@@ -51,19 +54,22 @@ public class DashBoard_Screen extends AppCompatActivity {
     private int repeatCount = 0;
     private Handler quoteHandler = new Handler(Looper.getMainLooper());
     private final int QUOTE_UPDATE_INTERVAL = 20 * 1000; // 1 minute in milliseconds
+
+    private ConnectivityReceiver connectivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board_screen);
 
-        BTN_dash_food=findViewById(R.id.BTN_dash_food);
-        BTN_dash_blood=findViewById(R.id.BTN_dash_blood);
-        BTN_dash_cloth=findViewById(R.id.BTN_dash_cloth);
-        BTN_dash_edu=findViewById(R.id.BTN_dash_edu);
-        BTN_dash_aboutus=findViewById(R.id.BTN_dash_aboutus);
-        BTN_dash_contactus=findViewById(R.id.BTN_dash_contactus);
-        BTN_dash_history=findViewById(R.id.BTN_dash_history);
-        BTN_dash_helpline=findViewById(R.id.BTN_dash_helpline);
+        BTN_dash_food = findViewById(R.id.BTN_dash_food);
+        BTN_dash_blood = findViewById(R.id.BTN_dash_blood);
+        BTN_dash_cloth = findViewById(R.id.BTN_dash_cloth);
+        BTN_dash_edu = findViewById(R.id.BTN_dash_edu);
+        BTN_dash_aboutus = findViewById(R.id.BTN_dash_aboutus);
+        BTN_dash_contactus = findViewById(R.id.BTN_dash_contactus);
+        BTN_dash_history = findViewById(R.id.BTN_dash_history);
+        BTN_dash_helpline = findViewById(R.id.BTN_dash_helpline);
 
         ExtendedFloatingActionButton BTN_dash_logout = findViewById(R.id.BTN_dash_logout);
         ImageButton BTN_dash_food = findViewById(R.id.BTN_dash_food);
@@ -74,12 +80,18 @@ public class DashBoard_Screen extends AppCompatActivity {
         dash_quote.setText("");
 
 
+// Initialize the ConnectivityReceiver
+        connectivityReceiver = new ConnectivityReceiver();
+        ConnectivityReceiver.connectivityReceiverListener = this;
+
+        // Register the receiver to listen for connectivity changes
+        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         //FOR CONTACT US>>>
         BTN_dash_contactus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(DashBoard_Screen.this,Contact_us_Screen.class);
+                Intent i = new Intent(DashBoard_Screen.this, Contact_us_Screen.class);
                 startActivity(i);
             }
         });
@@ -88,7 +100,7 @@ public class DashBoard_Screen extends AppCompatActivity {
         BTN_dash_aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(DashBoard_Screen.this,About_us_Screen.class);
+                Intent i = new Intent(DashBoard_Screen.this, About_us_Screen.class);
                 startActivity(i);
             }
         });
@@ -97,7 +109,7 @@ public class DashBoard_Screen extends AppCompatActivity {
         BTN_dash_helpline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(DashBoard_Screen.this,Helpline_numbers_Screen.class);
+                Intent i = new Intent(DashBoard_Screen.this, Helpline_numbers_Screen.class);
                 startActivity(i);
             }
         });
@@ -203,8 +215,6 @@ public class DashBoard_Screen extends AppCompatActivity {
             }
         }, QUOTE_UPDATE_INTERVAL);
     }
-
-
 
 
     private class FetchQuoteTask extends AsyncTask<Integer, Void, String> {
@@ -383,8 +393,45 @@ public class DashBoard_Screen extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(DashBoard_Screen.this, text, Toast.LENGTH_SHORT).show();
+                showSnackbar(findViewById(android.R.id.content),text);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Unregister the receiver to avoid memory leaks
+        unregisterReceiver(connectivityReceiver);
+    }
+
+    //SNACKBAR
+    private void showSnackbar(View view, String message) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+
+        // Inflate custom layout
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View customView = inflater.inflate(R.layout.custom_snackbar_layout, null);
+
+        // Set text
+        TextView textView = customView.findViewById(android.R.id.text1);
+        textView.setText(message);
+
+        // Add custom view to Snackbar
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
+        snackbarLayout.removeAllViews(); // Remove all default views
+        snackbarLayout.setPadding(1, 1, 1, 1);
+        snackbarLayout.addView(customView, 0);
+
+        snackbar.show();
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+        }
     }
 }

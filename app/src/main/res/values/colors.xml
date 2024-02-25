@@ -3,11 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_font">#FF272727</color>
-    <color name="status_color">#2E80DF</color>
+    <color name="status_color">#2E80DF</color>♦
     <color name="toolbar_BG">#2E80DF</color>
     <color name="toolbar_BG_D">#1170de</color>
     <color name="btn">#FF8400</color>
-    <color name="err_color">#F44336</color>
+    <color name="err_color">#DB2317</color>
 
     <array name="active">
         <item>@color/toolbar_BG</item>
@@ -20,4 +20,5 @@
         <item>@color/white</item>
         <item>@color/white</item>
     </array>
+
 </resources>

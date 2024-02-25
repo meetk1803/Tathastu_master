@@ -22,26 +22,26 @@
             android:exported="true" />
         <activity
             android:name=".About_us_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Contact_us_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Event_Notifications_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Profile_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".DashBoard_Screen"
             android:exported="true"
             android:label="@string/title_activity_dash_board_screen" />
         <activity
             android:name=".Otp_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
-            android:name=".Sigin_Screen"
-            android:exported="false" />
+            android:name=".Signin_Screen"
+            android:exported="true" />
         <activity
             android:name=".Intro_Starting_Screen"
             android:exported="false" /> <!-- <activity -->

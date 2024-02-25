@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/toolbar_BG"
     android:orientation="vertical"
-    tools:context=".Sigin_Screen">
+    tools:context=".Signin_Screen">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/_60sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:text="Sign in"
+            android:text="Signin"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sdp" />
 
@@ -79,11 +79,11 @@
                             tools:ignore="TextSizeCheck" />
 
                         <com.google.android.material.textfield.TextInputLayout
-
+                            android:id="@+id/txtlayout_Signin_fname"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_20sdp"
-                            android:hint="Enter Name"
+                            android:hint="Enter First Name"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
@@ -93,7 +93,7 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Siginname"
+                                android:id="@+id/txt_Signin_Fname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -102,11 +102,11 @@
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-
+                            android:id="@+id/txtlayout_Signin_lname"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:hint="Enter Email"
+                            android:hint="Enter Last Name"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
@@ -116,7 +116,7 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Siginemail"
+                                android:id="@+id/txt_Signin_Lname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -125,32 +125,7 @@
                                 android:textSize="@dimen/_13sdp"/>
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
-
-                            android:layout_width="@dimen/_250sdp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_2sdp"
-                            android:hint="Enter Mobile No."
-                            app:boxStrokeColor="@color/toolbar_BG"
-                            app:boxStrokeErrorColor="@color/err_color"
-                            app:cursorColor="@color/black"
-                            app:prefixText="+91"
-                            app:cursorErrorColor="@color/err_color"
-                            app:hintTextColor="@color/toolbar_BG"
-                            app:prefixTextColor="@color/black"
-                            tools:ignore="HardcodedText">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Siginmobileno"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
-                                android:maxLength="10"
-                                android:inputType="phone"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
-                        </com.google.android.material.textfield.TextInputLayout>
-                        <com.google.android.material.textfield.TextInputLayout
-
+                            android:id="@+id/txtlayout_Signin_dob"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
@@ -166,7 +141,7 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Sigindob"
+                                android:id="@+id/txt_Signindob"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -174,28 +149,129 @@
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp"/>
                         </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_Signin_email"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Email"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_Signinemail"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_Signin_mno"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Mobile No."
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:prefixText="+91"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_Signinmno"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:maxLength="10"
+                                android:inputType="phone"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_Signin_pwd"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Password"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_Signinpwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:maxLength="8"
+                                android:inputType="textPassword"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_Signin_cpwd"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Confirm Password"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_Signincpwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:maxLength="8"
+                                android:inputType="textPassword"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
 
                         <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_10sdp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
                             <com.google.android.material.checkbox.MaterialCheckBox
                                 android:id="@+id/chk_signintc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/kanit_regular"
+                                android:fontFamily="@font/inter_regular"
                                 android:gravity="center"
                                 android:text="I accept the "
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                app:buttonTint="@color/status_color"
+                                android:textSize="@dimen/_11sdp"
+                                app:buttonTint="@color/checkbox_color_selector"
                                 tools:ignore="HardcodedText,TextSizeCheck" />
 
-                            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/BTN_signin_TC"
                                 android:layout_width="wrap_content"
                                 android:layout_height="@dimen/_25sdp"
@@ -203,7 +279,8 @@
                                 android:backgroundTint="@color/white"
                                 android:gravity="center"
                                 android:padding="@dimen/_1sdp"
-                                android:text="Terms &amp; Conditions"
+                                android:linksClickable="true"
+                                android:text="@string/terms_amp_conditions"
                                 android:textColor="@color/toolbar_BG"
                                 android:textSize="@dimen/_12sdp"
                                 app:shapeAppearanceOverlay="@style/RoundedSquare"
@@ -218,7 +295,7 @@
                             android:layout_marginTop="@dimen/_30sdp"
                             android:backgroundTint="@color/toolbar_BG"
                             android:gravity="center"
-                            android:text="Sign In"
+                            android:text="Signin"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_17sdp"
                             app:shapeAppearanceOverlay="@style/RoundedSquare"
@@ -226,69 +303,7 @@
 
 
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_30sdp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-                            <View
-                                android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/toolbar_BG" />
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/kanit_regular"
-                                android:text=" OR "
-                                android:textColor="@color/toolbar_BG" />
 
-                            <View
-                                android:layout_width="@dimen/_100sdp"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/toolbar_BG" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_60sdp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_20sdp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                android:id="@+id/BTN_signin_google"
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:backgroundTint="@color/white"
-                                android:src="@drawable/ic_google"
-                                app:elevation="@dimen/_3sdp"
-                                app:fabCustomSize="@dimen/_40sdp"
-                                app:tint="@null"
-                                app:tintMode="src_atop"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                android:id="@+id/BTN_signin_fb"
-                                android:layout_width="@dimen/_40sdp"
-                                android:layout_height="@dimen/_40sdp"
-                                android:layout_gravity="center"
-                                android:layout_marginHorizontal="@dimen/_10sdp"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/ic_facebook"
-                                app:backgroundTint="@color/white"
-                                app:elevation="@dimen/_3sdp"
-                                app:fabCustomSize="@dimen/_40sdp"
-                                app:tint="@null"
-                                app:tintMode="src_atop"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-
-                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -317,6 +332,8 @@
                                 android:backgroundTint="@color/white"
                                 android:gravity="center"
                                 android:padding="@dimen/_1sdp"
+                                app:strokeColor="@color/status_color"
+                                app:strokeWidth="@dimen/_1sdp"
                                 android:text="Login"
                                 android:textColor="@color/toolbar_BG"
                                 android:textSize="@dimen/_10sdp"
@@ -324,7 +341,15 @@
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
                         </LinearLayout>
 
-
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text="Copyright © 2024 Threes Infotech. \nAll rights reserved."
+                            android:textSize="@dimen/_8sdp"
+                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 

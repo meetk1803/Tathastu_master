@@ -60,12 +60,12 @@
                             android:layout_gravity="top|center"
                             android:fontFamily="@font/kanit_regular"
                             android:gravity="center"
-                            android:lineSpacingExtra="@dimen/_5sdp"
                             android:text="We sent an OTP on your registered mobile number"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_15sdp" />
 
                         <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/txt_otp_mno"
                             android:layout_width="@dimen/_270sdp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top|center"
