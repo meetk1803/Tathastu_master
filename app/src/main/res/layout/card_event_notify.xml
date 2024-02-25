@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_5sdp"
+        app:cardMaxElevation="@dimen/_8sdp"
+        app:cardPreventCornerOverlap="false">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_Event_bg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:background="@drawable/dash_banner_1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_Event_ngo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:elevation="@dimen/_3sdp"
+                android:outlineSpotShadowColor="@color/white"
+                android:padding="@dimen/_8sdp"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                app:srcCompat="@drawable/donate_food"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_Event_ngo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="SURACHANA EDUCATION AND CHARITABLE TRUST"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                app:autoSizeMaxTextSize="@dimen/_13sdp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeTextType="uniform"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_Event_ngo_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="for doantion the blood and food.also there is facility for volunteering.are you interested??please join us"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                app:autoSizeMaxTextSize="@dimen/_13sdp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeTextType="uniform"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_Event_ngo_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="Surachana Education And Charitable Trust, B-2, City Light Apartment, Parle Point, Surat 395 007, Gujarat, India"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                app:autoSizeMaxTextSize="@dimen/_13sdp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeTextType="uniform"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_Event_ngo_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/kanit_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="12/12/2024"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/_16sdp"
+                app:autoSizeMaxTextSize="@dimen/_16sdp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeTextType="uniform"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
