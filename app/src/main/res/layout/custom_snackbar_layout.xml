@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/status_color"
+    android:background="#FFF6F6"
     android:outlineSpotShadowColor="@color/black"
     android:elevation="@dimen/_10sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,18 +16,18 @@
             android:id="@android:id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_marginHorizontal="@dimen/_7sdp"
             android:drawablePadding="@dimen/_10sdp"
-            android:layout_margin="@dimen/_7sdp"
+            android:layout_marginVertical="@dimen/_8sdp"
             android:drawableStart="@drawable/baseline_info_24"
-            android:drawableTint="@color/white"
-            android:textColor="@color/white"
+            android:drawableTint="#CA0303"
+            android:textColor="#DF0D0D"
             android:textSize="@dimen/_13sdp" />
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_3sdp"
             android:layout_gravity="bottom"
-            android:background="@color/err_color"
+            android:background="#DF0D0D"
             />
 
 
