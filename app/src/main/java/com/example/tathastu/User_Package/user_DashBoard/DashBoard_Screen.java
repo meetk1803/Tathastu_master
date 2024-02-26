@@ -1,4 +1,4 @@
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_DashBoard;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,15 +16,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.example.tathastu.User_Package.user_Event.Event_Notifications_Screen;
+import com.example.tathastu.User_Package.user_Entry.Login_Screen;
+import com.example.tathastu.User_Package.user_Event.UserModel_Event_Notify;
+import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
+import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
+import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

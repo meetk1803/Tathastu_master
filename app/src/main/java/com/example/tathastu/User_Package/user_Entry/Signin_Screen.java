@@ -1,8 +1,11 @@
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_Entry;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
 import com.google.android.material.snackbar.Snackbar;
 
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
@@ -31,7 +34,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class Signin_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,ConnectivityReceiver.ConnectivityReceiverListener {
+public class Signin_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, ConnectivityReceiver.ConnectivityReceiverListener {
 
     private ConnectivityReceiver connectivityReceiver;
     public TextInputEditText dob;

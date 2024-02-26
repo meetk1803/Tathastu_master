@@ -1,4 +1,4 @@
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_Global_Class;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

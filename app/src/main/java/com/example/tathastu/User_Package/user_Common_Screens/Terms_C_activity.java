@@ -1,4 +1,4 @@
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_Common_Screens;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.example.tathastu.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

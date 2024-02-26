@@ -1,10 +1,13 @@
-package com.example.tathastu;
+package com.example.tathastu.Common_Screens;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tathastu.Common_Screens.Intro.Intro_Starting_Screen;
+import com.example.tathastu.R;
 
 public class Splash_Screen extends AppCompatActivity {
 
@@ -16,7 +19,7 @@ public class Splash_Screen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash_Screen.this,Intro_Starting_Screen.class);
+                Intent intent = new Intent(Splash_Screen.this, Intro_Starting_Screen.class);
 
                     startActivity(intent);
 //                SharedPreferences sharedPreferences = getSharedPreferences(Login_activity.PREFS_NAME,0);

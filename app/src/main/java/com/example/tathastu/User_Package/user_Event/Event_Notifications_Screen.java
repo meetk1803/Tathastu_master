@@ -1,6 +1,6 @@
 // Event_Notifications_Screen.java
 
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_Event;
 
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -13,12 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event_Notifications_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class Event_Notifications_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

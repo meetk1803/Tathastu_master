@@ -1,7 +1,5 @@
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_Common_Screens;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,43 +10,39 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textview.MaterialTextView;
 
-public class Contact_us_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class About_us_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+
     private ConnectivityReceiver connectivityReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_us_screen);
+        setContentView(R.layout.activity_about_us_screen);
 
-        FloatingActionButton BTN_contact_insta = findViewById(R.id.BTN_contact_insta);
-        FloatingActionButton BTN_contact_fb = findViewById(R.id.BTN_contact_fb);
-        FloatingActionButton BTN_contact_twitter = findViewById(R.id.BTN_contact_twitter);
+        ExtendedFloatingActionButton BTN_about_tc = findViewById(R.id.BTN_about_tc);
+        FloatingActionButton BTN_about_insta = findViewById(R.id.BTN_about_insta);
+        FloatingActionButton BTN_about_fb = findViewById(R.id.BTN_about_fb);
+        FloatingActionButton BTN_about_twitter = findViewById(R.id.BTN_about_twitter);
 
-        MaterialTextView txt_contact_mno = findViewById(R.id.txt_contact_mno);
-        MaterialTextView txt_contact_email = findViewById(R.id.txt_contact_email);
-        MaterialTextView txt_contact_address = findViewById(R.id.txt_contact_address);
-
-        setCopyToClipboardListener(txt_contact_mno, "+910123456789");
-        setCopyToClipboardListener(txt_contact_email, "tathastu052threesofficial@gmail.com");
-        setCopyToClipboardListener(txt_contact_address, "123 ABC Street, City Light Area, Surat 395007, Gujarat, India.");
-
-// Initialize the ConnectivityReceiver
+        // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
+
+        // Set the listener before registering the receiver
         ConnectivityReceiver.connectivityReceiverListener = this;
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        //FOR FOLLOW US ON
-        BTN_contact_insta.setOnClickListener(new View.OnClickListener() {
+        BTN_about_insta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isConnected()) {
@@ -61,7 +55,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
             }
         });
 
-        BTN_contact_fb.setOnClickListener(new View.OnClickListener() {
+        BTN_about_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isConnected()) {
@@ -74,32 +68,24 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
             }
         });
 
-        BTN_contact_twitter.setOnClickListener(new View.OnClickListener() {
+        BTN_about_twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(isConnected()){
-                    String twitterLink = "https://twitter.com/tathastu_g052?t=MrAtvaTuvcF1hbSMDqd5_A&s=09\n";
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink));
-                    startActivity(i);}
+                String twitterLink = "https://twitter.com/tathastu_g052?t=MrAtvaTuvcF1hbSMDqd5_A&s=09\n";
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink));
+                startActivity(i);}
                 else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
             }
         });
 
-    }
-
-    private void setCopyToClipboardListener(MaterialTextView textView, final String text) {
-        textView.setOnClickListener(new View.OnClickListener() {
+        BTN_about_tc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Copy the text to the clipboard
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("Contact Info", text);
-                if (clipboard != null) {
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(Contact_us_Screen.this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
-                }
+                Intent i = new Intent(About_us_Screen.this, Terms_C_activity.class);
+                startActivity(i);
             }
         });
     }
@@ -111,6 +97,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         // Unregister the receiver to avoid memory leaks
         unregisterReceiver(connectivityReceiver);
     }
+
     // Helper method to check if the device is connected to the internet
     private boolean isConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -120,7 +107,8 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         }
         return false;
     }
-    //SNACKBAR
+
+    // Helper method to show Snackbar
     private void showSnackbar(View view, String message) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();

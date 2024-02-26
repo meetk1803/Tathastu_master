@@ -1,4 +1,4 @@
-package com.example.tathastu;
+package com.example.tathastu.Common_Screens.Intro;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -24,7 +26,7 @@ public class Intro_Starting_Screen extends AppCompatActivity {
     public LinearLayout lineardot;
     public FloatingActionButton btnnext;
     public ExtendedFloatingActionButton btnget,btnskip;
-    public intropref intropref;
+    public com.example.tathastu.Common_Screens.Intro.intropref intropref;
     public int[] layouts;
     public TextView[] dots;
     public Myviewpageradapter myviewpageradapter;

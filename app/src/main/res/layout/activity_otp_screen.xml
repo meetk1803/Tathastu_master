@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/toolbar_BG"
     android:orientation="vertical"
-    tools:context=".Otp_Screen">
+    tools:context=".User_Package.user_Entry.Otp_Screen">
 
     <FrameLayout
         android:layout_width="match_parent"

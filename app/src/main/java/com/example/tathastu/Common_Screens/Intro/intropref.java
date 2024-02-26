@@ -1,4 +1,4 @@
-package com.example.tathastu;
+package com.example.tathastu.Common_Screens.Intro;
 
 import android.content.Context;
 import android.content.SharedPreferences;

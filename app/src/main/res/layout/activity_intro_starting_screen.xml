@@ -7,7 +7,7 @@
     android:background="@color/toolbar_BG"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Intro_Starting_Screen">
+    tools:context=".Common_Screens.Intro.Intro_Starting_Screen">
 
     <FrameLayout
         android:layout_width="match_parent"

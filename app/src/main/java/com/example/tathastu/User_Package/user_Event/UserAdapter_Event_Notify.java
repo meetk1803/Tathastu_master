@@ -1,4 +1,4 @@
-package com.example.tathastu;
+package com.example.tathastu.User_Package.user_Event;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tathastu.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;

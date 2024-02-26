@@ -18,32 +18,32 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
-            android:name=".Helpline_numbers_Screen"
+            android:name=".User_Package.user_HelpLine.Helpline_numbers_Screen"
             android:exported="true" />
         <activity
-            android:name=".About_us_Screen"
+            android:name=".User_Package.user_Common_Screens.About_us_Screen"
             android:exported="true" />
         <activity
-            android:name=".Contact_us_Screen"
+            android:name=".User_Package.user_Common_Screens.Contact_us_Screen"
             android:exported="true" />
         <activity
-            android:name=".Event_Notifications_Screen"
+            android:name=".User_Package.user_Event.Event_Notifications_Screen"
             android:exported="true" />
         <activity
-            android:name=".Profile_Screen"
+            android:name=".User_Package.user_DashBoard.Profile_Screen"
             android:exported="true" />
         <activity
-            android:name=".DashBoard_Screen"
+            android:name=".User_Package.user_DashBoard.DashBoard_Screen"
             android:exported="true"
             android:label="@string/title_activity_dash_board_screen" />
         <activity
-            android:name=".Otp_Screen"
+            android:name=".User_Package.user_Entry.Otp_Screen"
             android:exported="true" />
         <activity
-            android:name=".Signin_Screen"
+            android:name=".User_Package.user_Entry.Signin_Screen"
             android:exported="true" />
         <activity
-            android:name=".Intro_Starting_Screen"
+            android:name=".Common_Screens.Intro.Intro_Starting_Screen"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".Intro_Third_Screen" -->
         <!-- android:exported="true" /> -->
@@ -54,15 +54,15 @@
         <!-- android:name=".Intro_First_Screen" -->
         <!-- android:exported="true" /> -->
         <activity
-            android:name=".Login_Screen"
+            android:name=".User_Package.user_Entry.Login_Screen"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Terms_C_activity"
+            android:name=".User_Package.user_Common_Screens.Terms_C_activity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Splash_Screen"
+            android:name=".Common_Screens.Splash_Screen"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
