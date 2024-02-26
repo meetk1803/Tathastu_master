@@ -51,6 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_50sdp"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -101,6 +102,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_lname"
                             android:layout_width="@dimen/_250sdp"
@@ -122,20 +124,21 @@
                                 android:fontFamily="sans-serif"
                                 android:inputType="textEmailAddress"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
+                                android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_dob"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Bithdate"
-                            app:helperText="*click to open date picker or (e.g. dd/mm/yyyy)"
-                            app:helperTextTextColor="@color/black"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
+                            app:helperText="*click to open date picker or (e.g. dd/mm/yyyy)"
+                            app:helperTextTextColor="@color/black"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
@@ -147,8 +150,9 @@
                                 android:fontFamily="sans-serif"
                                 android:inputType="text|date"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
+                                android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_email"
                             android:layout_width="@dimen/_250sdp"
@@ -170,8 +174,9 @@
                                 android:fontFamily="sans-serif"
                                 android:inputType="textEmailAddress"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
+                                android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_mno"
                             android:layout_width="@dimen/_250sdp"
@@ -181,9 +186,9 @@
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
-                            app:prefixText="+91"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
+                            app:prefixText="+91"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
 
@@ -192,12 +197,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:maxLength="10"
                                 android:inputType="phone"
+                                android:maxLength="10"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
+                                android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
-
 
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -219,11 +223,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:maxLength="8"
                                 android:inputType="textPassword"
+                                android:maxLength="8"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
+                                android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
+
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_cpwd"
                             android:layout_width="@dimen/_250sdp"
@@ -243,10 +248,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:maxLength="8"
                                 android:inputType="textPassword"
+                                android:maxLength="8"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp"/>
+                                android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -278,8 +283,8 @@
                                 android:layout_gravity="center"
                                 android:backgroundTint="@color/white"
                                 android:gravity="center"
-                                android:padding="@dimen/_1sdp"
                                 android:linksClickable="true"
+                                android:padding="@dimen/_1sdp"
                                 android:text="@string/terms_amp_conditions"
                                 android:textColor="@color/toolbar_BG"
                                 android:textSize="@dimen/_12sdp"
@@ -287,6 +292,7 @@
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
 
                         </LinearLayout>
+
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                             android:id="@+id/BTN_signin"
                             android:layout_width="@dimen/_240sdp"
@@ -302,16 +308,14 @@
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
 
-
-
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_marginTop="@dimen/_20sdp"
+                            android:gravity="center"
                             android:orientation="horizontal">
+
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -324,35 +328,32 @@
                                 android:textSize="@dimen/_12sdp"
                                 tools:ignore="TextSizeCheck" />
 
-                            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/BTN_signin_login"
-                                android:layout_width="@dimen/_60sdp"
-                                android:layout_height="@dimen/_25sdp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:backgroundTint="@color/white"
                                 android:gravity="center"
-                                android:padding="@dimen/_1sdp"
-                                app:strokeColor="@color/status_color"
-                                app:strokeWidth="@dimen/_1sdp"
-                                android:text="Login"
+                                android:text="@string/login_in_SIGNIN"
                                 android:textColor="@color/toolbar_BG"
-                                android:textSize="@dimen/_10sdp"
-                                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                                android:textColorLink="@color/toolbar_BG"
+                                android:textSize="@dimen/_15sdp"
+                                android:textStyle="bold"
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
                         </LinearLayout>
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            android:gravity="center"
-                            android:text="Copyright © 2024 Threes Infotech. \nAll rights reserved."
-                            android:textSize="@dimen/_8sdp"
-                            tools:ignore="TextSizeCheck" />
 
                     </LinearLayout>
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="Copyright © 2024 Threes Infotech. \nAll rights reserved."
+                        android:textSize="@dimen/_8sdp"
+                        tools:ignore="TextSizeCheck" />
                 </FrameLayout>
             </LinearLayout>
         </ScrollView>

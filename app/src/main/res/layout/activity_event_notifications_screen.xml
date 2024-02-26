@@ -59,10 +59,10 @@
                             android:id="@+id/recycle_Event_Usermodel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingTop="@dimen/_8sdp"
+                            android:paddingBottom="@dimen/_20sdp"
+                            android:clipToPadding="false"
                             />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_30sdp"/>
 
                     </LinearLayout>
 

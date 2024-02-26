@@ -18,6 +18,12 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".User_Package.user_Quotes.AllQuotes_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Common_Screens.Selection_Screen"
+            android:exported="true" />
+        <activity
             android:name=".User_Package.user_HelpLine.Helpline_numbers_Screen"
             android:exported="true" />
         <activity

@@ -18,9 +18,12 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 
 public class Login_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
-    public ExtendedFloatingActionButton BTN_login, BTN_login_sigin;
+    public ExtendedFloatingActionButton BTN_login ;
+
+    public MaterialTextView BTN_login_sigin;
     public TextInputEditText edtmno,edtpwd;
     TextInputLayout txtlayout_login_mno;
     private ConnectivityReceiver connectivityReceiver;
@@ -43,40 +46,42 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        if (!isInternetAvailable()) {
-            showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
-            return;
-        }
+
         BTN_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mob = edtmno.getText().toString();
                 String pwd=edtpwd.getText().toString();
-                if (mob.isEmpty()) {
-                    // Set an error message
-                    showSnackbar(findViewById(android.R.id.content), "Please enter mobile number...");
-                }else if (mob.length() < 10) {
-                    showSnackbar(findViewById(android.R.id.content), "Please enter a valid mobile number...");
-                }else if (pwd.isEmpty()) {
-                    // Set an error message
-                    showSnackbar(findViewById(android.R.id.content), "Please enter password...");
-                }
-                else if (pwd.length() < 8) {
-                    showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
-                } else if (!isValidPassword(pwd)) {
-                    showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
-                }
+                if (!isInternetAvailable()) {
+                    showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
+                    return;
+                }else {
+                    if (mob.isEmpty()) {
+                        // Set an error message
+                        showSnackbar(findViewById(android.R.id.content), "Please enter mobile number...");
+                    }else if (mob.length() < 10) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter a valid mobile number...");
+                    }else if (pwd.isEmpty()) {
+                        // Set an error message
+                        showSnackbar(findViewById(android.R.id.content), "Please enter password...");
+                    }
+                    else if (pwd.length() < 8) {
+                        showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
+                    } else if (!isValidPassword(pwd)) {
+                        showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
+                    }
 
-                //WHEN DATABASE FETCH THE PASSWORD AND CHECK EITHER EQUAL OR NOT
+                    //WHEN DATABASE FETCH THE PASSWORD AND CHECK EITHER EQUAL OR NOT
 //                else if (!pwd.equals(cpwd)) {
 //                    showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match");
 //                }
-                else {
-                    // Clear the error message
-                    Intent i = new Intent(Login_Screen.this, Otp_Screen.class);
-                    Toast.makeText(Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    i.putExtra("mobile", "+91" + mob);
-                    startActivity(i);
+                    else {
+                        // Clear the error message
+                        Intent i = new Intent(Login_Screen.this, Otp_Screen.class);
+                        Toast.makeText(Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        i.putExtra("mobile", "+91" + mob);
+                        startActivity(i);
+                    }
                 }
             }
         });
@@ -85,8 +90,13 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
         BTN_login_sigin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Login_Screen.this, Signin_Screen.class);
-                startActivity(i);
+                if (!isInternetAvailable()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
+                } else {
+                    Intent i = new Intent(Login_Screen.this, Signin_Screen.class);
+                    startActivity(i);
+                }
             }
         });
     }

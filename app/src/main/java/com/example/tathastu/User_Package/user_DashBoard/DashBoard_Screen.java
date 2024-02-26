@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -21,9 +22,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Event.UserAdapter_Event_Notify;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_Event.Event_Notifications_Screen;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
@@ -31,8 +34,10 @@ import com.example.tathastu.User_Package.user_Event.UserModel_Event_Notify;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
 import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
+import com.example.tathastu.User_Package.user_Quotes.AllQuotes_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,8 +54,7 @@ import java.util.List;
 
 public class DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_cloth, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
-    TextView seeall;
-    RecyclerView recycle_Dash_event;
+    MaterialTextView txt_dash_seeall,txt_dash_seeallquotes;
     CardView card_dash_event;
     private AppCompatTextView dash_quote;
     private int currentQuoteId = 1; // Initial quote ID
@@ -63,10 +67,29 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 
     private ConnectivityReceiver connectivityReceiver;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board_screen);
+
+        //FOR EVENT RECYCLER VIEW
+        // Assuming you have a RecyclerView with the id "recycle_Event_Usermodel" in your layout
+        RecyclerView recycle_Event_Usermodel = findViewById(R.id.recycle_Event_Usermodel);
+
+// Create a LinearLayoutManager with horizontal orientation for the RecyclerView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recycle_Event_Usermodel.setLayoutManager(layoutManager);
+
+// Create a list of UserModel_Event_Notify objects (replace these with your actual data)
+        List<UserModel_Event_Notify> eventList = generateDummyData();
+
+// Create an instance of UserAdapter_Event_Notify and set it to the RecyclerView
+        UserAdapter_Event_Notify adapter = new UserAdapter_Event_Notify(eventList);
+        recycle_Event_Usermodel.setAdapter(adapter);
+
+
 
         BTN_dash_food = findViewById(R.id.BTN_dash_food);
         BTN_dash_blood = findViewById(R.id.BTN_dash_blood);
@@ -79,7 +102,8 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 
         ExtendedFloatingActionButton BTN_dash_logout = findViewById(R.id.BTN_dash_logout);
         ImageButton BTN_dash_food = findViewById(R.id.BTN_dash_food);
-        seeall = findViewById(R.id.txt_dash_seeall);
+        txt_dash_seeall = findViewById(R.id.txt_dash_seeall);
+        txt_dash_seeallquotes = findViewById(R.id.txt_dash_seeallquotes);
         card_dash_event = findViewById(R.id.card_dash_event);
 
         dash_quote = findViewById(R.id.dash_quote);
@@ -147,7 +171,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         });
 
         //SEE ALL NOTIFICATIONS
-        seeall.setOnClickListener(new View.OnClickListener() {
+        txt_dash_seeall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(DashBoard_Screen.this, Event_Notifications_Screen.class);
@@ -155,6 +179,19 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 
             }
         });
+
+
+        //SEE ALL QUOTES
+        txt_dash_seeallquotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard_Screen.this, AllQuotes_Screen.class);
+                startActivity(i);
+
+            }
+        });
+
+
         // LOGOUT BUTTON
         BTN_dash_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,13 +212,15 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
     }
 //-------------------------------------------------------------------------------------------------------------------------
 
+
+
     //SEE ALL FOR ADS OR EVENT BANNERS ON SCREEN
     private List<UserModel_Event_Notify> generateDummyData() {
         // Replace this method with your actual data retrieval logic
         List<UserModel_Event_Notify> dummyData = new ArrayList<>();
 
         // Add dummy data with alternating banner images
-        for (int i = 0; i < 10; i++) { // Change 5 to the number of items you want
+        for (int i = 0; i < 5; i++) { // Change 5 to the number of items you want
             int ngoImageResId = (i % 2 == 0) ? R.drawable.donate_food : R.drawable.donate_blood; // Change this to the correct image resource for NGO
             String ngoName = "SURACHANA EDUCATION AND CHARITABLE TRUST";
             String ngoDescription = "For donation of blood and food. Also, there is a facility for volunteering. Are you interested? Please join us.";

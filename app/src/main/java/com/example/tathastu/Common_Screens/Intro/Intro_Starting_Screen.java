@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -181,7 +182,7 @@ public class Intro_Starting_Screen extends AppCompatActivity {
 
     private void launchHomeScreen() {
         intropref.setIsFirstTimeLaunch(false);
-        Intent i = new Intent(Intro_Starting_Screen.this, Login_Screen.class);
+        Intent i = new Intent(Intro_Starting_Screen.this, Selection_Screen.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         finish();

@@ -75,7 +75,7 @@
                     android:text="Upcoming events :"
                     android:textColor="@color/gray_font" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txt_dash_seeall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,102 +90,102 @@
                     tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
             </LinearLayout>
 
-            <HorizontalScrollView
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_Event_Usermodel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:ignore="SpeakableTextPresentCheck">
+                android:layout_gravity="center_vertical"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp" />
 
+
+
+            <!--FOR QUOTES-->
+            <androidx.cardview.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:cardCornerRadius="@dimen/_17sdp"
+                app:cardBackgroundColor="@color/status_color"
+                app:cardElevation="@dimen/_5sdp"
+                app:cardMaxElevation="@dimen/_8sdp"
+                app:cardPreventCornerOverlap="false">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp"
+                    android:background="@drawable/banner_glass_morphism_new"
+                    app:shapeAppearanceOverlay="@style/RoundedSquare"
+                    tools:ignore="SpeakableTextPresentCheck" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/txt_dash_seeallquotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="@string/see_all_quote"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp"
+                    tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_130sdp"
-                    android:gravity="center"
-                    tools:ignore="ScrollViewSize">
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="top|center"
+                    android:gravity="left"
+                    android:paddingVertical="@dimen/_5sdp"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:orientation="vertical">
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="@dimen/_300sdp"
-                        android:layout_height="@dimen/_110sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:elevation="@dimen/_5sdp"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare"
-                        app:srcCompat="@drawable/banner_1" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:fontFamily="@font/kanit_medium"
+                        android:text="Quotes :"
+                        android:textSize="@dimen/_25sdp"
+                        android:textColor="#E6FFFFFF" />
+                    <View
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_2sdp"
+                        android:background="#CCFFFFFF"
+                        />
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="@dimen/_300sdp"
-                        android:layout_height="@dimen/_110sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:elevation="@dimen/_5sdp"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare"
-                        app:srcCompat="@drawable/banner_2" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/dash_quote"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:paddingLeft="@dimen/_5sdp"
+                        android:layout_marginVertical="@dimen/_2sdp"
+                        android:fontFamily="@font/grandstander_medium"
+                        android:gravity="start"
+                        android:maxLines="3"
+                        android:drawableEnd="@drawable/round_format_quote_24_end"
+                        android:drawableTint="@color/white"
+                        android:text="the day"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        android:textSize="@dimen/_14sdp"
+                        app:autoSizeMaxTextSize="@dimen/_14sdp"
+                        app:autoSizeMinTextSize="@dimen/_10sdp"
+                        app:autoSizeTextType="uniform"
+                        tools:ignore="TextSizeCheck,TextContrastCheck" />
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="@dimen/_300sdp"
-                        android:layout_height="@dimen/_110sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:elevation="@dimen/_5sdp"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare"
-                        app:srcCompat="@drawable/banner_3" />
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="@dimen/_300sdp"
-                        android:layout_height="@dimen/_110sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/_5sdp"
-                        android:elevation="@dimen/_5sdp"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare"
-                        app:srcCompat="@drawable/banner_4" />
                 </LinearLayout>
 
 
-            </HorizontalScrollView>
-<!--FOR QUOTES-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@color/status_color"
-                android:orientation="vertical">
+            </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/kanit_medium"
-                    android:text=":: Today's Quote ::"
-                    android:textColor="@color/white" />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/dash_quote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="@dimen/_6sdp"
-                    android:background="@color/white"
-                    android:fontFamily="@font/grandstander_medium"
-                    android:gravity="center"
-                    android:maxLines="3"
-                    android:drawableStart="@drawable/round_format_quote_24_start"
-                    android:drawableEnd="@drawable/round_format_quote_24_end"
-                    app:drawableTint="@color/status_color"
-                    android:padding="@dimen/_2sdp"
-                    android:text="the day"
-                    android:textColor="@color/status_color"
-                    android:textStyle="italic"
-                        app:autoSizeMaxTextSize="15sp"
-                        app:autoSizeMinTextSize="8sp"
-                        app:autoSizeTextType="uniform"
-                    tools:ignore="TextSizeCheck,TextContrastCheck" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_4sdp"
-                    android:background="@color/status_color" />
-
-
-            </LinearLayout>
 <!--FOR (DONATION FOR)-->
             <LinearLayout
                 android:layout_width="match_parent"

@@ -8,6 +8,7 @@
     <color name="toolbar_BG_D">#1170de</color>
     <color name="btn">#FF8400</color>
     <color name="err_color">#DB2317</color>
+    <color name="quote_color">#E8013D55</color>
 
     <array name="active">
         <item>@color/toolbar_BG</item>

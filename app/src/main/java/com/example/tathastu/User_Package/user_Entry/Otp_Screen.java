@@ -1,7 +1,11 @@
 package com.example.tathastu.User_Package.user_Entry;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -15,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -29,7 +34,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class Otp_Screen extends AppCompatActivity {
+public class Otp_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
 
     MaterialTextView txt_otp_mno;
     ExtendedFloatingActionButton BTN_otp;
@@ -42,6 +47,7 @@ public class Otp_Screen extends AppCompatActivity {
     FirebaseAuth mAuth;
     String otpid;
     public EditText edtotp;
+    private ConnectivityReceiver connectivityReceiver;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -61,22 +67,36 @@ public class Otp_Screen extends AppCompatActivity {
 
         Toast.makeText(this, phonenumber, Toast.LENGTH_SHORT).show();
         Toast.makeText(this, last_four_digits, Toast.LENGTH_SHORT).show();
+
+
+        // Initialize the ConnectivityReceiver
+        connectivityReceiver = new ConnectivityReceiver();
+        ConnectivityReceiver.connectivityReceiverListener = this;
+
+        // Register the receiver to listen for connectivity changes
+        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
         BTN_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String enteredotp = edtotp.getText().toString();
-
-                if (enteredotp.isEmpty()) {
-                    showSnackbar(findViewById(android.R.id.content),"Please enter an OTP...");
-                } else if (enteredotp.length()<6) {
-                    showSnackbar(findViewById(android.R.id.content),"Please enter 6 digits long OTP...");
-                }
+                if (!isInternetAvailable()) {
+                    showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
+                    return;
+                }else {
+                    if (enteredotp.isEmpty()) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter an OTP...");
+                    } else if (enteredotp.length() < 6) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter 6 digits long OTP...");
+                    }
                /* else if (enteredotp == authenticated otp(VARIABLE)) {
                     showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
-                }*/ else {
-                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
-                    signInWithPhoneAuthCredential(credential);
+                }*/
+                    else {
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
+                        signInWithPhoneAuthCredential(credential);
+                    }
                 }
             }
         });
@@ -174,7 +194,20 @@ public class Otp_Screen extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+        // Unregister the receiver to avoid memory leaks
+        unregisterReceiver(connectivityReceiver);
     }
+
+    // Helper method to check if the internet connection is available
+    private boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
+    }
+
 
     //SNACKBAR
     private void showSnackbar(View view, String message) {
@@ -192,9 +225,16 @@ public class Otp_Screen extends AppCompatActivity {
         // Add custom view to Snackbar
         Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
         snackbarLayout.removeAllViews(); // Remove all default views
-        snackbarLayout.setPadding(1, 1, 1, 1);
+        snackbarLayout.setPadding(1,1,1,1);
         snackbarLayout.addView(customView, 0);
 
         snackbar.show();
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+        }
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/toolbar_BG"
     android:orientation="vertical"
-    tools:context=".User_Package.user_HelpLine.Helpline_numbers_Screen">
+    tools:context=".User_Package.user_Quotes.AllQuotes_Screen">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:text="HelpLine Numbers"
+            android:text="QUOTES"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             tools:ignore="TouchTargetSizeCheck" />
@@ -55,25 +55,8 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycle_helpline_numbers"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingTop="@dimen/_8sdp"
-                            android:paddingBottom="@dimen/_20sdp"
-                            android:clipToPadding="false"
-                            />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/_5sdp"
-                            android:gravity="center"
-                            android:text="All Helpline Numbers are verified by \nThe Surat Municipal Corporation (SMC)"
-                            android:textColor="@color/status_color"
-                            android:textSize="@dimen/_10sdp"
-                            tools:ignore="TextSizeCheck" />
+
                     </LinearLayout>
 
                 </FrameLayout>

@@ -3,6 +3,7 @@ package com.example.tathastu.User_Package.user_Entry;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
@@ -11,9 +12,11 @@ import com.google.android.material.snackbar.Snackbar;
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,9 +42,9 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
     private ConnectivityReceiver connectivityReceiver;
     public TextInputEditText dob;
     private SimpleDateFormat dateFormatter;
-    public ExtendedFloatingActionButton BTN_signin_login, BTN_sigin;
-    public TextView BTN_signin_TC;
-    public TextInputEditText edtfname, edtlname, edtemail, edtmob,edtpwd,edtcpwd;
+    public ExtendedFloatingActionButton  BTN_sigin;
+    public TextView BTN_signin_login,BTN_signin_TC;
+    public TextInputEditText edtfname, edtlname, edtemail, edtmob, edtpwd, edtcpwd;
     public TextInputLayout txtlayout_Signin_fname, txtlayout_Signin_lname, txtlayout_Signin_email, txtlayout_Signin_mno, txtlayout_Signin_dob;
     public CheckBox ckbox;
     public int minYear;
@@ -82,8 +85,13 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         BTN_signin_TC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Signin_Screen.this, Terms_C_activity.class);
-                startActivity(i);
+                if (!isInternetAvailable()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
+                } else {
+                    Intent i = new Intent(Signin_Screen.this, Terms_C_activity.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -99,35 +107,43 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                 String dob1 = dob.getText().toString();
                 String pwd = edtpwd.getText().toString();
                 String cpwd = edtcpwd.getText().toString();
-
-                if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || mob.isEmpty() || dob1.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
-                    showSnackbar(findViewById(android.R.id.content), "Please enter required details...");
-                } else if (mob.length() < 10) {
-                    showSnackbar(findViewById(android.R.id.content), "Please enter a valid mobile number...");
-                } else if (!isValidEmail(email)) {
-                    showSnackbar(findViewById(android.R.id.content), "Please enter a valid email address (Gmail, Yahoo, or Outlook)...");
-                } else if (pwd.length() < 8 || cpwd.length() < 8) {
-                    showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
-                } else if (!isValidPassword(pwd)) {
-                    showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
-                } else if (!pwd.equals(cpwd)) {
-                    showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match...");
-                } else if (ckbox.isChecked()) {
-                    verification(fname, lname, email, mob, dob1);
+                if (!isInternetAvailable()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
                 } else {
-                    showSnackbar(findViewById(android.R.id.content), "Please accept the Terms & Conditions...");
+                    if (fname.isEmpty() || lname.isEmpty() || email.isEmpty() || mob.isEmpty() || dob1.isEmpty() || pwd.isEmpty() || cpwd.isEmpty()) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter required details...");
+                    } else if (mob.length() < 10) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter a valid mobile number...");
+                    } else if (!isValidEmail(email)) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter a valid email address (Gmail, Yahoo, or Outlook)...");
+                    } else if (pwd.length() < 8 || cpwd.length() < 8) {
+                        showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
+                    } else if (!isValidPassword(pwd)) {
+                        showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
+                    } else if (!pwd.equals(cpwd)) {
+                        showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match...");
+                    } else if (ckbox.isChecked()) {
+                        verification(fname, lname, email, mob, dob1);
+                    } else {
+                        showSnackbar(findViewById(android.R.id.content), "Please accept the Terms & Conditions...");
+                    }
                 }
             }
         });
-
 
 
         //Signin_Login
         BTN_signin_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Signin_Screen.this, Login_Screen.class);
-                startActivity(i);
+                if (!isInternetAvailable()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
+                } else {
+                    Intent i = new Intent(Signin_Screen.this, Login_Screen.class);
+                    startActivity(i);
+                }
             }
         });
 
@@ -248,6 +264,15 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                 });
     }
 
+    // Helper method to check if the internet connection is available
+    private boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
+    }
 
     @Override
     protected void onDestroy() {
