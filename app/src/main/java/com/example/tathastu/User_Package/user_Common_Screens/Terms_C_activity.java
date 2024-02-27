@@ -13,6 +13,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
+import com.example.tathastu.User_Package.user_Entry.Login_Screen;
+import com.example.tathastu.User_Package.user_Entry.Otp_Screen;
+import com.example.tathastu.User_Package.user_Entry.Signin_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +40,29 @@ public class Terms_C_activity extends AppCompatActivity implements ConnectivityR
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the back button based on the source
+                String source = getIntent().getStringExtra("source");
+                if ("signin".equals(source)) {
+                    // If source is login, go back to LoginActivity
+                    Intent intent = new Intent(Terms_C_activity.this, Signin_Screen.class);
+                    startActivity(intent);
+                } else if ("About_us".equals(source)) {
+                    // If source is signin, go back to SignInActivity
+                    Intent intent = new Intent(Terms_C_activity.this, About_us_Screen.class);
+                    startActivity(intent);
+                } else {
+                    // Default behavior (handle appropriately)
+                    onBackPressed();
+                }
+            }
+        });
+
 
         //FOR FOLLOW US ON
         BTN_tc_insta.setOnClickListener(new View.OnClickListener() {

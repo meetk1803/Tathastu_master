@@ -4,6 +4,7 @@ package com.example.tathastu.User_Package.user_HelpLine;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,7 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
+import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -63,6 +67,16 @@ public class Helpline_numbers_Screen extends AppCompatActivity implements Connec
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(Helpline_numbers_Screen.this, DashBoard_Screen.class);
+                startActivity(i);
+            }
+        });
     }
 
 

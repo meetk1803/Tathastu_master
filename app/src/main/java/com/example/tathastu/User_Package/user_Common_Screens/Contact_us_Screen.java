@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -41,6 +42,17 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         setCopyToClipboardListener(txt_contact_mno, "+910123456789");
         setCopyToClipboardListener(txt_contact_email, "tathastu052threesofficial@gmail.com");
         setCopyToClipboardListener(txt_contact_address, "123 ABC Street, City Light Area, Surat 395007, Gujarat, India.");
+
+
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(Contact_us_Screen.this, DashBoard_Screen.class);
+                startActivity(i);
+            }
+        });
 
 // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();

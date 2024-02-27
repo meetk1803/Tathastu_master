@@ -79,6 +79,7 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                         // Clear the error message
                         Intent i = new Intent(Login_Screen.this, Otp_Screen.class);
                         Toast.makeText(Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        i.putExtra("source", "login");
                         i.putExtra("mobile", "+91" + mob);
                         startActivity(i);
                     }

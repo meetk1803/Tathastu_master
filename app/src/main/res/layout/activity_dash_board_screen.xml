@@ -84,7 +84,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="see all"
+                    android:text="@string/see_all_quote"
                     android:textColor="@color/status_color"
                     android:textSize="@dimen/_13sdp"
                     tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
@@ -677,7 +677,18 @@
                             android:textSize="@dimen/_15sdp" />
                     </androidx.cardview.widget.CardView>
 
+
                 </LinearLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:text="Copyright © 2024 Threes Infotech. \nAll rights reserved."
+                    android:textSize="@dimen/_8sdp"
+                    tools:ignore="TextSizeCheck" />
 
             </LinearLayout>
         </LinearLayout>

@@ -9,19 +9,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 
 public class About_us_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     private ConnectivityReceiver connectivityReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,16 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
         FloatingActionButton BTN_about_insta = findViewById(R.id.BTN_about_insta);
         FloatingActionButton BTN_about_fb = findViewById(R.id.BTN_about_fb);
         FloatingActionButton BTN_about_twitter = findViewById(R.id.BTN_about_twitter);
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(About_us_Screen.this, DashBoard_Screen.class);
+                startActivity(i);
+            }
+        });
+
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -41,6 +55,8 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+
 
         BTN_about_insta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,10 +97,12 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
             }
         });
 
+        //T&C
         BTN_about_tc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(About_us_Screen.this, Terms_C_activity.class);
+                i.putExtra("source","About_us");
                 startActivity(i);
             }
         });

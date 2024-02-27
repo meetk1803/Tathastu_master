@@ -18,11 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.FirebaseException;
@@ -60,6 +62,28 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         mAuth = FirebaseAuth.getInstance();
         txt_otp_mno=findViewById(R.id.txt_otp_mno);
         edtotp = findViewById(R.id.txt_OTP);
+
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the back button based on the source
+                String source = getIntent().getStringExtra("source");
+                if ("login".equals(source)) {
+                    // If source is login, go back to LoginActivity
+                    Intent intent = new Intent(Otp_Screen.this, Login_Screen.class);
+                    startActivity(intent);
+                } else if ("signin".equals(source)) {
+                    // If source is signin, go back to SignInActivity
+                    Intent intent = new Intent(Otp_Screen.this, Signin_Screen.class);
+                    startActivity(intent);
+                } else {
+                    // Default behavior (handle appropriately)
+                    onBackPressed();
+                }
+            }
+        });
 
         phonenumber = getIntent().getStringExtra("mobile").toString();
         String last_four_digits=phonenumber.substring(phonenumber.length()-4);

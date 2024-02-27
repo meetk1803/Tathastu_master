@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
+import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
@@ -74,6 +77,16 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         txtlayout_Signin_mno = findViewById(R.id.txtlayout_Signin_mno);
         txtlayout_Signin_dob = findViewById(R.id.txtlayout_Signin_dob);
 
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(Signin_Screen.this, Login_Screen.class);
+                startActivity(i);
+            }
+        });
+
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
         ConnectivityReceiver.connectivityReceiverListener = this;
@@ -90,6 +103,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                     return;
                 } else {
                     Intent i = new Intent(Signin_Screen.this, Terms_C_activity.class);
+                    i.putExtra("source","signin");
                     startActivity(i);
                 }
             }
@@ -252,6 +266,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                     public void onSuccess(Void unused) {
                         showSnackbar(findViewById(android.R.id.content), "Data Inserted Successfully.\nSuccessfully Registered.");
                         Intent i = new Intent(Signin_Screen.this, Otp_Screen.class);
+                        i.putExtra("source", "signin");
                         i.putExtra("mobile", "+91" + mob);
                         startActivity(i);
                     }
