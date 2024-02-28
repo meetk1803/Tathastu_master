@@ -198,8 +198,8 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                 Signin_Screen.this,
                 year, month, dayOfMonth
         );
-        minYear = 1990;
-        maxYear = Calendar.getInstance().get(Calendar.YEAR) - 21;
+        minYear = 1950;
+        maxYear = Calendar.getInstance().get(Calendar.YEAR) - 18;
 
         DatePicker datePicker = datePickerDialog.getDatePicker();
         if (datePicker != null) {
