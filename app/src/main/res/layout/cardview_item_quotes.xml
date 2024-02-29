@@ -43,9 +43,10 @@
                     android:maxLines="5"
                     android:padding="@dimen/_7sdp"
                     app:autoSizeTextType="uniform"
+                    android:lineHeight="@dimen/_30sdp"
                     android:autoSizeMaxTextSize="@dimen/_28sdp"
                     android:autoSizeMinTextSize="@dimen/_26sdp"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/kanit_regular"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:autoSizeTextType="uniform"/>

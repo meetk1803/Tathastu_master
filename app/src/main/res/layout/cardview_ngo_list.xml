@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_helpline_name"
+            android:id="@+id/txt_NGO_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -34,7 +34,7 @@
             app:drawableTint="@color/status_color"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:maxLines="2"
-            android:text="Substance Abuse and Mental Health Administration (SAMHSA) Helpline"
+            android:text="Substance Abuse and Mental Health Administration (SAMHSA) NGO"
             android:textColor="@color/status_color"
             android:textStyle="bold"
             android:textSize="@dimen/_15sdp"
@@ -43,10 +43,12 @@
             app:autoSizeTextType="uniform"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_helpline_mno"
+            android:id="@+id/txt_NGO_mno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:autoLink="phone"
+            android:textColorLink="@color/Link"
             app:drawableTint="@color/gray_font"
             android:drawableStart="@drawable/round_phone_24"
             android:drawablePadding="@dimen/_10sdp"
@@ -55,8 +57,6 @@
             android:gravity="start"
             android:maxLines="2"
             android:text="1-800-662-4357"
-            android:autoLink="phone"
-            android:textColorLink="@color/Link"
             android:textColor="@color/gray_font"
             android:textStyle="bold"
             android:textSize="@dimen/_13sdp"
@@ -65,7 +65,7 @@
             app:autoSizeTextType="uniform"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_helpline_category"
+            android:id="@+id/txt_NGO_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/round_category_24"
@@ -85,18 +85,20 @@
             app:autoSizeTextType="uniform"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
-        <ImageButton
-            android:id="@+id/btn_copy"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_NGO_seeall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:background="@color/white"
-            android:contentDescription="Copy to Clipboard"
-            android:src="@drawable/baseline_content_copy_24"
-            tools:ignore="TouchTargetSizeCheck"
-            app:tint="@color/status_color" />
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/inter_semibold"
+            android:text="@string/see_details"
+            android:textColor="@color/status_color"
+            android:textSize="@dimen/_10sdp"
+            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
     </LinearLayout>
 

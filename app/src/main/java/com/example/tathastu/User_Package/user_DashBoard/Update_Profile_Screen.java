@@ -1,5 +1,8 @@
 package com.example.tathastu.User_Package.user_DashBoard;
 
+import static com.example.tathastu.R.style.CustomDatePickerStyle;
+
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -7,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +23,13 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class Profile_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+public class Update_Profile_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, ConnectivityReceiver.ConnectivityReceiverListener {
     //ALL
-    TextInputEditText txt_Profile_Fname, txt_Profile_email, txt_Profile_mno, txt_Profile_dob;
+    private TextInputEditText txt_Profile_Fname, txt_Profile_Lname, txt_Profile_email, txt_Profile_mno, txt_Profile_dob;
 
     // INTERNET
     private ConnectivityReceiver connectivityReceiver;
@@ -32,19 +40,26 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
     Uri selectedImageUri;
 
     //EDIT PROFILE
-    ExtendedFloatingActionButton BTN_Profile_edit;
+    private ExtendedFloatingActionButton BTN_Profile_update;
+    //DATE OF BIRTH
+    private int minYear, maxYear;
+    private SimpleDateFormat dateFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_screen);
+        setContentView(R.layout.activity_update_profile_screen);
 
+        dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         img_profile_photo = findViewById(R.id.img_profile_photo);
         txt_Profile_Fname = findViewById(R.id.txt_Profile_Fname);
+        txt_Profile_Lname = findViewById(R.id.txt_Profile_Lname);
         txt_Profile_email = findViewById(R.id.txt_Profile_email);
         txt_Profile_mno = findViewById(R.id.txt_Profile_mno);
         txt_Profile_dob = findViewById(R.id.txt_Profile_dob);
-        BTN_Profile_edit = findViewById(R.id.BTN_Profile_edit);
+        BTN_Profile_update = findViewById(R.id.BTN_Profile_update);
+
+        setOnClickListeners();
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -58,21 +73,38 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Profile_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
-            }
-        });
-
-
-        BTN_Profile_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(Profile_Screen.this, Update_Profile_Screen.class);
+                Intent i =new Intent(Update_Profile_Screen.this, Profile_Screen.class);
                 startActivity(i);
             }
         });
     }
 
+    private void setOnClickListeners() {
+        txt_Profile_dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+
+
+        findViewById(R.id.txt_profile_change).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageChooser();
+            }
+        });
+    }
+
+
+
+    public void imageChooser() {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -87,8 +119,47 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         }
     }
 
+    private void showDatePicker() {
+        Calendar newCalendar = Calendar.getInstance();
+        int year = newCalendar.get(Calendar.YEAR);
+        int month = newCalendar.get(Calendar.MONTH);
+        int dayOfMonth = newCalendar.get(Calendar.DAY_OF_MONTH);
 
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                Update_Profile_Screen.this,
+                CustomDatePickerStyle,
+                Update_Profile_Screen.this,
+                year, month, dayOfMonth
+        );
+        minYear = 1950;
+        maxYear = Calendar.getInstance().get(Calendar.YEAR) - 18;
 
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        if (datePicker != null) {
+            datePicker.setMinDate(getMinDate());
+            datePicker.setMaxDate(getMaxDate());
+        }
+        datePickerDialog.show();
+    }
+
+    public long getMinDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(minYear, 0, 1);
+        return calendar.getTimeInMillis();
+    }
+
+    public long getMaxDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(maxYear, 11, 31);
+        return calendar.getTimeInMillis();
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
+        Calendar newDate = Calendar.getInstance();
+        newDate.set(year, monthOfYear, dayOfMonth);
+        txt_Profile_dob.setText(dateFormatter.format(newDate.getTime()));
+    }
 
     @Override
     protected void onDestroy() {

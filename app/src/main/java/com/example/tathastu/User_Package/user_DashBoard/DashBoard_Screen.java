@@ -1,4 +1,5 @@
 package com.example.tathastu.User_Package.user_DashBoard;
+import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,7 +23,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
@@ -34,6 +34,7 @@ import com.example.tathastu.User_Package.user_Event.UserModel_Event_Notify;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
 import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
+import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
 import com.example.tathastu.User_Package.user_Quotes.AllQuotes_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -55,7 +56,7 @@ import java.util.List;
 public class DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_cloth, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
     MaterialTextView txt_dash_seeall,txt_dash_seeallquotes;
-    CardView card_dash_event;
+    CardView card_dash_directContact,card_dash_event;
     private AppCompatTextView dash_quote;
     private int currentQuoteId = 1; // Initial quote ID
     private boolean isToastDisplayed = false; // Variable to track whether the toast has been displayed
@@ -104,6 +105,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         ImageButton BTN_dash_food = findViewById(R.id.BTN_dash_food);
         txt_dash_seeall = findViewById(R.id.txt_dash_seeall);
         txt_dash_seeallquotes = findViewById(R.id.txt_dash_seeallquotes);
+        card_dash_directContact = findViewById(R.id.card_dash_directcontact);
         card_dash_event = findViewById(R.id.card_dash_event);
 
         dash_quote = findViewById(R.id.dash_quote);
@@ -160,6 +162,16 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 //            Uri selectedImageUri = Uri.parse(selectedImageUriString);
 //            profile_icon.setImageURI(selectedImageUri);
 //        }
+
+        //CARDVIEW ----- DIRECT CONTACT TO NGO
+        card_dash_directContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard_Screen.this, direct_contact_to_NGO.class);
+                startActivity(i);
+            }
+        });
+
 
         //CARDVIEW ----- EVENT NOTIFICATIONS
         card_dash_event.setOnClickListener(new View.OnClickListener() {

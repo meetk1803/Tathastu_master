@@ -81,5 +81,7 @@ We will not share your personal information with third parties without your cons
     <string name="signin_in_LOGIN"><b><u>Signin</u></b></string>
     <string name="login_in_SIGNIN"><b><u>Login</u></b></string>
     <string name="see_all_quote"><b><u>see all</u></b></string>
+    <string name="copyright">Copyright © 2024 Threes Infotech. \nAll rights reserved.</string>
+    <string name="see_details"><b><u>more details</u></b></string>
 
 </resources>

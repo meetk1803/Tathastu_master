@@ -329,7 +329,7 @@
                             android:layout_gravity="bottom|center"
                             android:layout_marginBottom="@dimen/_5sdp"
                             android:gravity="center"
-                            android:text="Copyright © 2024 Threes Infotech. \nAll rights reserved."
+                            android:text="@string/copyright"
                             android:textSize="@dimen/_8sdp"
                             tools:ignore="TextSizeCheck" />
                     </LinearLayout>

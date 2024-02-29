@@ -161,7 +161,19 @@
                     tools:ignore="SpeakableTextPresentCheck" />
 
 
+
             </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/copyright"
+                android:textSize="@dimen/_8sdp"
+                tools:ignore="TextSizeCheck" />
+
         </LinearLayout>
 
     </ScrollView>

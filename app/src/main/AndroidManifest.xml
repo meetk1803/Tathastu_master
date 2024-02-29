@@ -18,6 +18,15 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".User_Package.user_NGO_list.item_NGO_Detail"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_DashBoard.Update_Profile_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_NGO_list.direct_contact_to_NGO"
+            android:exported="true" />
+        <activity
             android:name=".User_Package.user_Quotes.AllQuotes_Screen"
             android:exported="true" />
         <activity

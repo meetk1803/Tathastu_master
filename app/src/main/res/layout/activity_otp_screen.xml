@@ -129,7 +129,7 @@
                                     android:layout_height="wrap_content"
                                     android:focusable="true"
                                     android:fontFamily="@font/inter_semibold"
-                                    android:inputType="textAutoComplete"
+                                    android:inputType="number"
                                     android:maxLength="6"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_15sdp"
@@ -188,6 +188,16 @@
 
 
                     </LinearLayout>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/copyright"
+                        android:textSize="@dimen/_8sdp"
+                        tools:ignore="TextSizeCheck" />
 
                 </FrameLayout>
             </LinearLayout>

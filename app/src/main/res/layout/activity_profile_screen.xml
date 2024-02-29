@@ -22,7 +22,7 @@
                 android:gravity="center"
                 android:text="Profile"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_25sdp"
+                android:textSize="@dimen/_20sdp"
                 tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />
 
 
@@ -55,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_10sdp">
+                    android:layout_marginTop="@dimen/_5sdp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
@@ -82,22 +82,6 @@
                             app:strokeColor="@color/toolbar_BG_D"
                             app:strokeWidth="2dp" />
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/txt_profile_change"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="top|center"
-                            android:clickable="true"
-                            android:drawableStart="@drawable/round_edit_24"
-                            android:drawableTint="@color/status_color"
-                            android:focusable="true"
-                            android:fontFamily="@font/inter_semibold"
-                            android:gravity="center"
-                            android:lineSpacingExtra="@dimen/_5sdp"
-                            android:text="Change Profile Photo"
-                            android:textColor="@color/status_color"
-                            android:textSize="@dimen/_10sdp"
-                            tools:ignore="TextSizeCheck,TouchTargetSizeCheck" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="@dimen/_270sdp"
@@ -117,7 +101,7 @@
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:hint="First Name"
+                            android:hint="Full Name"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
@@ -134,37 +118,11 @@
                                 android:enabled="false"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textAutoComplete"
-                                android:text="Meet"
+                                android:text="Meet Kakadiya"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-
-                            android:layout_width="@dimen/_250sdp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_2sdp"
-                            android:hint="Last Name"
-                            app:boxStrokeColor="@color/toolbar_BG"
-                            app:boxStrokeErrorColor="@color/err_color"
-                            app:cursorColor="@color/black"
-                            app:cursorErrorColor="@color/err_color"
-                            app:hintTextColor="@color/toolbar_BG"
-                            app:prefixTextColor="@color/black"
-                            tools:ignore="HardcodedText">
-
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Profile_Lname"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:enabled="false"
-                                android:fontFamily="sans-serif"
-                                android:inputType="textAutoComplete"
-                                android:text="kakadiya"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_13sdp" />
-                        </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
 
@@ -230,8 +188,6 @@
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
-                            app:helperText="*click to open date picker or (e.g. dd/mm/yyyy)"
-                            app:helperTextTextColor="@color/black"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">

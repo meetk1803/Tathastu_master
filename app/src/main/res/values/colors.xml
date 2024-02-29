@@ -12,6 +12,7 @@
     <color name="first">#4C647E</color>
     <color name="second">#9F5763</color>
     <color name="third">#9C6854</color>
+    <color name="Link">#0000EE</color>
 
     <array name="active">
         <item>@color/toolbar_BG</item>
