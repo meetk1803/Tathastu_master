@@ -1,0 +1,104 @@
+package com.example.tathastu.User_Package.user_NGO_list;
+
+public class NGOData {
+    private String ngoName;
+    private String ngoAddress;
+    private String ngoCategory;
+    private String ngoMno;
+    private String ngoWebsite;
+    private String ngoEmail;
+    private String ngoInstagram;
+    private String ngoLinkedIn;
+    private String ngoFacebook;
+    private String ngoTwitter;
+    private String ngoYoutube;
+
+
+    public String getNgoName() {
+        return ngoName;
+    }
+
+    public void setNgoName(String ngoName) {
+        this.ngoName = ngoName;
+    }
+
+    public String getNgoAddress() {
+        return ngoAddress;
+    }
+
+    public void setNgoAddress(String ngoAddress) {
+        this.ngoAddress = ngoAddress;
+    }
+
+    public String getNgoCategory() {
+        return ngoCategory;
+    }
+
+    public void setNgoCategory(String ngoCategory) {
+        this.ngoCategory = ngoCategory;
+    }
+
+    public String getNgoMno() {
+        return ngoMno;
+    }
+
+    public void setNgoMno(String ngoMno) {
+        this.ngoMno = ngoMno;
+    }
+
+    public String getNgoWebsite() {
+        return ngoWebsite;
+    }
+
+    public void setNgoWebsite(String ngoWebsite) {
+        this.ngoWebsite = ngoWebsite;
+    }
+
+    public String getNgoEmail() {
+        return ngoEmail;
+    }
+
+    public void setNgoEmail(String ngoEmail) {
+        this.ngoEmail = ngoEmail;
+    }
+
+    public String getNgoInstagram() {
+        return ngoInstagram;
+    }
+
+    public void setNgoInstagram(String ngoInstagram) {
+        this.ngoInstagram = ngoInstagram;
+    }
+
+    public String getNgoLinkedIn() {
+        return ngoLinkedIn;
+    }
+
+    public void setNgoLinkedIn(String ngoLinkedIn) {
+        this.ngoLinkedIn = ngoLinkedIn;
+    }
+
+    public String getNgoFacebook() {
+        return ngoFacebook;
+    }
+
+    public void setNgoFacebook(String ngoFacebook) {
+        this.ngoFacebook = ngoFacebook;
+    }
+
+    public String getNgoTwitter() {
+        return ngoTwitter;
+    }
+
+    public void setNgoTwitter(String ngoTwitter) {
+        this.ngoTwitter = ngoTwitter;
+    }
+
+    public String getNgoYoutube() {
+        return ngoYoutube;
+    }
+
+    public void setNgoYoutube(String ngoYoutube) {
+        this.ngoYoutube = ngoYoutube;
+    }
+}
