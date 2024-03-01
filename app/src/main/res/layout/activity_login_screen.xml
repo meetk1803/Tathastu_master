@@ -32,6 +32,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/login_parentlayout"
                 android:orientation="vertical">
 
                 <FrameLayout
@@ -48,6 +49,7 @@
                         app:shapeAppearanceOverlay="@style/TopRoundedCorner" />
 
                     <LinearLayout
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
@@ -112,6 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_5sdp"
                             android:hint="Enter Password"
+                            app:endIconMode="password_toggle"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"

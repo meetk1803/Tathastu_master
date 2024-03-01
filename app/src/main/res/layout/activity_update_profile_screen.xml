@@ -36,6 +36,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/update_parentLayout"
                 android:orientation="vertical">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -72,7 +73,7 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/img_profile_photo"
+                            android:id="@+id/img_updatep_photo"
                             android:layout_width="@dimen/_90sdp"
                             android:layout_height="@dimen/_90sdp"
                             android:layout_gravity="center"
@@ -83,7 +84,7 @@
                             app:strokeWidth="2dp" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/txt_profile_change"
+                            android:id="@+id/txt_updatep_change"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="top|center"
@@ -128,7 +129,7 @@
 
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Profile_Fname"
+                                android:id="@+id/txt_updatep_Fname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -154,7 +155,7 @@
 
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Profile_Lname"
+                                android:id="@+id/txt_updatep_Lname"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -179,7 +180,7 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Profile_email"
+                                android:id="@+id/txt_updatep_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -205,7 +206,7 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Profile_mno"
+                                android:id="@+id/txt_updatep_mno"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
@@ -233,19 +234,70 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Profile_dob"
+                                android:id="@+id/txt_updatep_dob"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:inputType="text|date"
+                                android:inputType="date"
                                 android:text="12/12/2004"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_updatep_pwd"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Password"
+                            app:endIconMode="password_toggle"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_updatep_pwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:inputType="textPassword"
+                                android:maxLength="8"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_updatep_cpwd"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Confirm Password"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:endIconMode="password_toggle"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_updatep_cpwd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:inputType="textPassword"
+                                android:maxLength="8"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
 
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                            android:id="@+id/BTN_Profile_update"
+                            android:id="@+id/BTN_updatep_update"
                             android:layout_width="@dimen/_240sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center"

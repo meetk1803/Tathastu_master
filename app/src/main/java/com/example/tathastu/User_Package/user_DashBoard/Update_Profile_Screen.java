@@ -3,14 +3,18 @@ package com.example.tathastu.User_Package.user_DashBoard;
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +33,13 @@ import java.util.Locale;
 
 public class Update_Profile_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, ConnectivityReceiver.ConnectivityReceiverListener {
     //ALL
-    private TextInputEditText txt_Profile_Fname, txt_Profile_Lname, txt_Profile_email, txt_Profile_mno, txt_Profile_dob;
+    private TextInputEditText txt_Profile_Fname, txt_Profile_Lname, txt_Profile_email, txt_Profile_mno, txt_Profile_dob,txt_Profile_pwd,txt_Profile_cpwd;
 
     // INTERNET
     private ConnectivityReceiver connectivityReceiver;
+
+    private LinearLayout update_parentLayout;
+
 
     //PROFILE IMAGE
     int SELECT_PICTURE = 200;
@@ -51,13 +58,36 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         setContentView(R.layout.activity_update_profile_screen);
 
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-        img_profile_photo = findViewById(R.id.img_profile_photo);
-        txt_Profile_Fname = findViewById(R.id.txt_Profile_Fname);
-        txt_Profile_Lname = findViewById(R.id.txt_Profile_Lname);
-        txt_Profile_email = findViewById(R.id.txt_Profile_email);
-        txt_Profile_mno = findViewById(R.id.txt_Profile_mno);
-        txt_Profile_dob = findViewById(R.id.txt_Profile_dob);
-        BTN_Profile_update = findViewById(R.id.BTN_Profile_update);
+        img_profile_photo = findViewById(R.id.img_updatep_photo);
+        txt_Profile_Fname = findViewById(R.id.txt_updatep_Fname);
+        txt_Profile_Lname = findViewById(R.id.txt_updatep_Lname);
+        txt_Profile_email = findViewById(R.id.txt_updatep_email);
+        txt_Profile_mno = findViewById(R.id.txt_updatep_mno);
+        txt_Profile_dob = findViewById(R.id.txt_updatep_dob);
+        txt_Profile_pwd=findViewById(R.id.txt_updatep_pwd);
+        txt_Profile_cpwd=findViewById(R.id.txt_updatep_cpwd);
+        BTN_Profile_update = findViewById(R.id.BTN_updatep_update);
+
+        update_parentLayout = findViewById(R.id.update_parentLayout);
+
+        // Set up touch listener for the parent layout
+        update_parentLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Clear focus from EditText when touched outside
+                img_profile_photo.clearFocus();
+                txt_Profile_Fname.clearFocus();
+                txt_Profile_Lname.clearFocus();
+                txt_Profile_email.clearFocus();
+                txt_Profile_mno.clearFocus();
+                txt_Profile_dob.clearFocus();
+                txt_Profile_pwd.clearFocus();
+                txt_Profile_cpwd.clearFocus();
+
+                hideSoftKeyboard(update_parentLayout);
+                return false;
+            }
+        });
 
         setOnClickListeners();
 
@@ -83,12 +113,14 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         txt_Profile_dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideSoftKeyboard(txt_Profile_dob);
                 showDatePicker();
+
             }
         });
 
 
-        findViewById(R.id.txt_profile_change).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.txt_updatep_change).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imageChooser();
@@ -96,7 +128,13 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         });
     }
 
+//-------------------------------------------------------------------------------------------------------------
 
+    //HIDE THE KEYBOARD
+    private void hideSoftKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     public void imageChooser() {
         Intent i = new Intent();

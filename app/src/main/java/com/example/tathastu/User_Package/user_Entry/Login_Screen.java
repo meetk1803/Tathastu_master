@@ -8,7 +8,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +25,8 @@ import com.google.android.material.textview.MaterialTextView;
 
 public class Login_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     public ExtendedFloatingActionButton BTN_login ;
+
+    private LinearLayout login_parentLayout;
 
     public MaterialTextView BTN_login_sigin;
     public TextInputEditText edtmno,edtpwd;
@@ -38,6 +43,21 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
         edtmno = findViewById(R.id.txt_Loginmno);
         edtpwd=findViewById(R.id.txt_login_pwd);
         txtlayout_login_mno = findViewById(R.id.txtlayout_login_mno);
+        login_parentLayout=findViewById(R.id.login_parentlayout);
+
+        // Set up touch listener for the parent layout
+        login_parentLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Clear focus from EditText when touched outside
+                edtmno.clearFocus();
+                edtpwd.clearFocus();
+
+
+                hideSoftKeyboard(login_parentLayout);
+                return false;
+            }
+        });
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -104,6 +124,12 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
 
     //--------------------------------------------------------------------------------------------
 
+
+    //HIDE THE KEYBOARD
+    private void hideSoftKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     // Helper method to check if the internet connection is available
     private boolean isInternetAvailable() {

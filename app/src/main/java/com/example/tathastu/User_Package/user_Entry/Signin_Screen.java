@@ -22,9 +22,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -45,6 +48,8 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
     private ConnectivityReceiver connectivityReceiver;
     public TextInputEditText dob;
     private SimpleDateFormat dateFormatter;
+
+    private LinearLayout signin_LinearLayout;
     public ExtendedFloatingActionButton  BTN_sigin;
     public TextView BTN_signin_login,BTN_signin_TC;
     public TextInputEditText edtfname, edtlname, edtemail, edtmob, edtpwd, edtcpwd;
@@ -69,6 +74,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         edtmob = findViewById(R.id.txt_Signinmno);
         edtpwd = findViewById(R.id.txt_Signinpwd);
         edtcpwd = findViewById(R.id.txt_Signincpwd);
+        signin_LinearLayout=findViewById(R.id.signin_parentlayout);
 
         ckbox = findViewById(R.id.chk_signintc);
         txtlayout_Signin_fname = findViewById(R.id.txtlayout_Signin_fname);
@@ -76,6 +82,25 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         txtlayout_Signin_email = findViewById(R.id.txtlayout_Signin_email);
         txtlayout_Signin_mno = findViewById(R.id.txtlayout_Signin_mno);
         txtlayout_Signin_dob = findViewById(R.id.txtlayout_Signin_dob);
+
+        // Set up touch listener for the parent layout
+        signin_LinearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Clear focus from EditText when touched outside
+                edtfname.clearFocus();
+                edtlname.clearFocus();
+                edtemail.clearFocus();
+                edtmob.clearFocus();
+                edtpwd.clearFocus();
+                edtcpwd.clearFocus();
+                dob.clearFocus();
+
+
+                hideSoftKeyboard(signin_LinearLayout);
+                return false;
+            }
+        });
 
         FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
         //BACK
@@ -165,11 +190,19 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideSoftKeyboard(dob);
                 showDatePicker();
+
             }
         });
     }
 //----------------------------------------------------------------------------
+
+    //HIDE THE KEYBOARD
+    private void hideSoftKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     // Helper method to validate Gmail, Yahoo, and Outlook addresses
     private boolean isValidEmail(String email) {
