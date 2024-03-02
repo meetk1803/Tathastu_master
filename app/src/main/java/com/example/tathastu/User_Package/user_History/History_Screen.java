@@ -20,30 +20,35 @@ import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class History_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
+
+    MaterialTextView txt_history_transaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_screen);
 
         // Assuming you have a RecyclerView with the id "userdata" in your layout
-        RecyclerView recycle_history_Usermodel = findViewById(R.id.recycle_history_Usermodel);
+        RecyclerView recycle_history_transaction_Usermodel = findViewById(R.id.recycle_history_transaction_Usermodel);
+        RecyclerView recycle_history_food_Usermodel = findViewById(R.id.recycle_history_food_Usermodel);
+        RecyclerView recycle_history_blood_Usermodel = findViewById(R.id.recycle_history_Blood_Usermodel);
 
         // Create a LinearLayoutManager for the RecyclerView
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recycle_history_Usermodel.setLayoutManager(layoutManager);
+        recycle_history_transaction_Usermodel.setLayoutManager(layoutManager);
 
         // Create a list of UserModel_Event_Notify objects (replace these with your actual data)
         List<UserModel_History_payment> paymentList = generateDummyData();
 
         // Create an instance of UserAdapter_Event_Notify and set it to the RecyclerView
         UserAdapter_History_payment adapter = new UserAdapter_History_payment(paymentList);
-        recycle_history_Usermodel.setAdapter(adapter);
+        recycle_history_transaction_Usermodel.setAdapter(adapter);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -53,6 +58,9 @@ public class History_Screen extends AppCompatActivity implements ConnectivityRec
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        txt_history_transaction=findViewById(R.id.txt_history_transaction);
+
+
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +70,30 @@ public class History_Screen extends AppCompatActivity implements ConnectivityRec
             }
         });
 
+        //TRANSACTION HISTORY
+        txt_history_transaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleRecyclerViewVisibility(recycle_history_transaction_Usermodel);
+            }
+        });
+
 
     }
+//--------------------------------------------------------------------------------------------------
 
+    // Function to toggle visibility of RecyclerView
+    private void toggleRecyclerViewVisibility(RecyclerView recyclerView) {
+        if (recyclerView.getVisibility() == View.VISIBLE) {
+            recyclerView.setVisibility(View.GONE);
+            txt_history_transaction.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_down_24, 0);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            txt_history_transaction.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_up_24, 0);
+        }
+    }
+
+    //dummy data
     private List<UserModel_History_payment> generateDummyData() {
         // Replace this method with your actual data retrieval logic
         List<UserModel_History_payment> dummyData = new ArrayList<>();
