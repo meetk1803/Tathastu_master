@@ -3,12 +3,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_HelpLine.UserAdapter_Helpline_Numbers;
 
 import java.util.List;
 
@@ -16,19 +19,19 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
 
     private Context context;
     private List<NGOData> dataList;
-    private ItemClickListener itemClickListener;
+    private int expandedPosition = -1;
 
-    public NGODataAdapter(Context context, List<NGOData> dataList, ItemClickListener itemClickListener) {
+    public NGODataAdapter(List<NGOData> dataList,Context context) {
         this.context = context;
         this.dataList = dataList;
-        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_ngo_list, parent, false);
-        return new ViewHolder(view);
+    public NGODataAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.cardview_ngo_list, parent, false);
+        return new NGODataAdapter.ViewHolder(view);
     }
 
     @Override
@@ -36,18 +39,52 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         NGOData ngoData = dataList.get(position);
 
         holder.txtNgoName.setText(ngoData.getNgoName());
-        holder.txtMobile.setText(ngoData.getNgoMno());
+        holder.txtNGOaddress.setText(ngoData.getNgoAddress());
         holder.txtCategory.setText(ngoData.getNgoCategory());
-
-        holder.txtSeeAll.setOnClickListener(new View.OnClickListener() {
+        holder.txtMobile.setText(ngoData.getNgoMno());
+        holder.txtNGOwebsite.setText(ngoData.getNgoWebsite());
+        holder.txtNGOemail.setText(ngoData.getNgoEmail());
+        holder.txtNGOinstagram.setText(ngoData.getNgoInstagram());
+        holder.txtNGOlinkedin.setText(ngoData.getNgoLinkedIn());
+        holder.txtNGOfacebook.setText(ngoData.getNgoFacebook());
+        holder.txtNGOtwitter.setText(ngoData.getNgoTwitter());
+        holder.txtNGOyoutube.setText(ngoData.getNgoYoutube());
+        // Set a click listener for the helpline name to handle expansion
+        holder.txtNgoName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (itemClickListener != null) {
-                    itemClickListener.onItemClick(ngoData);
-                }
+                handleExpansion(holder, holder.getAdapterPosition());
             }
         });
+
+        // Handle expansion logic
+        if (holder.getAdapterPosition() == expandedPosition) {
+            // Show expanded details
+            holder.layout_NGO.setVisibility(View.VISIBLE);
+            // Set the up arrow drawable
+            holder.txtNgoName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_up_24, 0);
+        } else {
+            // Hide expanded details
+            holder.layout_NGO.setVisibility(View.GONE);
+            // Set the down arrow drawable
+            holder.txtNgoName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_down_24, 0);
+        }
     }
+
+    private void handleExpansion(NGODataAdapter.ViewHolder holder, int position) {
+        if (expandedPosition == position) {
+            // Collapse the expanded item
+            expandedPosition = -1;
+            notifyItemChanged(position);
+        } else {
+            // Expand the clicked item
+            int oldExpandedPosition = expandedPosition;
+            expandedPosition = position;
+            notifyItemChanged(oldExpandedPosition);
+            notifyItemChanged(position);
+        }
+    }
+
 
     @Override
     public int getItemCount() {
@@ -55,18 +92,26 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNgoName, txtMobile, txtCategory, txtSeeAll;
-
+        TextView txtNgoName,txtNGOaddress ,txtCategory,txtMobile, txtNGOwebsite,txtNGOemail,txtNGOinstagram,txtNGOlinkedin,txtNGOfacebook,txtNGOtwitter,txtNGOyoutube;
+        LinearLayout layout_NGO; // Add this line
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNgoName = itemView.findViewById(R.id.txt_NGO_name);
-            txtMobile = itemView.findViewById(R.id.txt_NGO_mno);
+            txtNGOaddress = itemView.findViewById(R.id.txt_NGO_address);
             txtCategory = itemView.findViewById(R.id.txt_NGO_category);
-            txtSeeAll = itemView.findViewById(R.id.txt_NGO_seeall);
+            txtMobile = itemView.findViewById(R.id.txt_NGO_mno);
+            txtNGOwebsite = itemView.findViewById(R.id.txt_NGO_website);
+            txtNGOemail = itemView.findViewById(R.id.txt_NGO_email);
+            txtNGOinstagram = itemView.findViewById(R.id.txt_NGO_instagram);
+            txtNGOlinkedin = itemView.findViewById(R.id.txt_NGO_linkedin);
+            txtNGOfacebook = itemView.findViewById(R.id.txt_NGO_facebook);
+            txtNGOtwitter = itemView.findViewById(R.id.txt_NGO_twitter);
+            txtNGOyoutube=itemView.findViewById(R.id.txt_NGO_youtube);
+            layout_NGO=itemView.findViewById(R.id.layout_NGO);
         }
     }
-    public interface ItemClickListener {
-        void onItemClick(NGOData ngoData);
+    private static void showToast(Context context, final String text) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }
 
 }

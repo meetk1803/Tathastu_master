@@ -13,6 +13,21 @@ public class NGOData {
     private String ngoTwitter;
     private String ngoYoutube;
 
+    private boolean expanded;
+
+    public NGOData(String ngoName, String ngoAddress, String ngoCategory, String ngoMno, String ngoWebsite, String ngoEmail, String ngoInstagram, String ngoLinkedIn, String ngoFacebook, String ngoTwitter, String ngoYoutube) {
+        this.ngoName = ngoName;
+        this.ngoAddress = ngoAddress;
+        this.ngoCategory = ngoCategory;
+        this.ngoMno = ngoMno;
+        this.ngoWebsite = ngoWebsite;
+        this.ngoEmail = ngoEmail;
+        this.ngoInstagram = ngoInstagram;
+        this.ngoLinkedIn = ngoLinkedIn;
+        this.ngoFacebook = ngoFacebook;
+        this.ngoTwitter = ngoTwitter;
+        this.ngoYoutube = ngoYoutube;
+    }
 
     public String getNgoName() {
         return ngoName;

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ public class UserAdapter_Helpline_Numbers extends RecyclerView.Adapter<UserAdapt
 
     private List<UserModel_Helpline_Numbers> helplineList;
     private Context context;
+    private int expandedPosition = -1;
 
     public UserAdapter_Helpline_Numbers(List<UserModel_Helpline_Numbers> helplineList, Context context) {
         this.helplineList = helplineList;
@@ -45,13 +47,48 @@ public class UserAdapter_Helpline_Numbers extends RecyclerView.Adapter<UserAdapt
         holder.txt_helpline_category.setText(helpline.getCategory());
 
         // Set a click listener for the copy button
-        holder.btn_copy.setOnClickListener(new View.OnClickListener() {
+//        holder.btn_copy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Handle copy to clipboard action
+//                copyToClipboard(context, helpline.getNumber());
+//            }
+//        });
+
+        // Set a click listener for the helpline name to handle expansion
+        holder.txt_helpline_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle copy to clipboard action
-                copyToClipboard(context, helpline.getNumber());
+                handleExpansion(holder, holder.getAdapterPosition());
             }
         });
+
+        // Handle expansion logic
+        if (holder.getAdapterPosition() == expandedPosition) {
+            // Show expanded details
+            holder.layout_helpline.setVisibility(View.VISIBLE);
+            // Set the up arrow drawable
+            holder.txt_helpline_name.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_up_24, 0);
+        } else {
+            // Hide expanded details
+            holder.layout_helpline.setVisibility(View.GONE);
+            // Set the down arrow drawable
+            holder.txt_helpline_name.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_down_24, 0);
+        }
+    }
+
+    private void handleExpansion(HelplineViewHolder holder, int position) {
+        if (expandedPosition == position) {
+            // Collapse the expanded item
+            expandedPosition = -1;
+            notifyItemChanged(position);
+        } else {
+            // Expand the clicked item
+            int oldExpandedPosition = expandedPosition;
+            expandedPosition = position;
+            notifyItemChanged(oldExpandedPosition);
+            notifyItemChanged(position);
+        }
     }
 
     @Override
@@ -62,7 +99,8 @@ public class UserAdapter_Helpline_Numbers extends RecyclerView.Adapter<UserAdapt
     public static class HelplineViewHolder extends RecyclerView.ViewHolder {
         // Declare your CardView elements here
         AppCompatTextView txt_helpline_name, txt_helpline_mno, txt_helpline_category;
-        ImageButton btn_copy; // Add this line
+//        ImageButton btn_copy;
+        LinearLayout layout_helpline; // Add this line
 
         public HelplineViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,10 +109,10 @@ public class UserAdapter_Helpline_Numbers extends RecyclerView.Adapter<UserAdapt
             txt_helpline_name = itemView.findViewById(R.id.txt_helpline_name);
             txt_helpline_mno = itemView.findViewById(R.id.txt_helpline_mno);
             txt_helpline_category = itemView.findViewById(R.id.txt_helpline_category);
-            btn_copy = itemView.findViewById(R.id.btn_copy); // Add this line
+//            btn_copy = itemView.findViewById(R.id.btn_copy);
+            layout_helpline = itemView.findViewById(R.id.layout_helpline); // Add this line
         }
     }
-
     private static void copyToClipboard(Context context, String phoneNumber) {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Phone Number", phoneNumber);

@@ -2,6 +2,7 @@ package com.example.tathastu.User_Package.user_DashBoard;
 
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
@@ -103,8 +105,8 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Update_Profile_Screen.this, Profile_Screen.class);
-                startActivity(i);
+                showExitDialog();
+
             }
         });
     }
@@ -128,7 +130,52 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         });
     }
 
+
 //-------------------------------------------------------------------------------------------------------------
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
+
+    }
+
+
+    // showExitDialog
+    private void showExitDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.exit_dialog_update, null);
+        builder.setView(dialogView);
+
+        ExtendedFloatingActionButton btnExitYes = dialogView.findViewById(R.id.BTN_exit_yes);
+        ExtendedFloatingActionButton btnExitNo = dialogView.findViewById(R.id.BTN_exit_no);
+
+
+        final AlertDialog dialog = builder.create();
+
+        btnExitYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle 'Yes' button click
+                Intent i =new Intent(Update_Profile_Screen.this, Profile_Screen.class);
+                startActivity(i);
+                finish();
+                dialog.dismiss();
+            }
+        });
+
+        btnExitNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle 'No' button click
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setCancelable(false); // Prevent dismiss on outside touch
+        dialog.show();
+    }
+
 
     //HIDE THE KEYBOARD
     private void hideSoftKeyboard(View view) {

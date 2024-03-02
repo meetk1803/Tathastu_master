@@ -123,6 +123,8 @@
                                 app:boxStrokeColor="@color/toolbar_BG"
                                 app:boxStrokeErrorColor="@color/err_color"
                                 app:cursorColor="@color/black"
+                                app:counterEnabled="true"
+                                app:counterMaxLength="6"
                                 app:cursorErrorColor="@color/err_color"
                                 app:hintEnabled="true"
                                 app:hintTextColor="@color/status_color"

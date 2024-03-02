@@ -98,6 +98,7 @@
                             android:layout_height="@dimen/_90sdp"
                             android:layout_gravity="center"
                             android:padding="3dp"
+                            android:scaleType="centerCrop"
                             app:shapeAppearanceOverlay="@style/Circular"
                             app:srcCompat="@drawable/profile_img_icon_foreground"
                             app:strokeColor="@color/toolbar_BG_D"

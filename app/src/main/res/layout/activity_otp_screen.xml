@@ -125,6 +125,8 @@
                                 app:cursorColor="@color/black"
                                 app:cursorErrorColor="@color/err_color"
                                 app:hintEnabled="true"
+                                app:counterEnabled="true"
+                                app:counterMaxLength="6"
                                 app:hintTextColor="@color/status_color"
                                 tools:ignore="HardcodedText">
 

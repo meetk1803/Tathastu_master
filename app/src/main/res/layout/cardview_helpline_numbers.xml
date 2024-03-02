@@ -34,6 +34,8 @@
             app:drawableTint="@color/status_color"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:maxLines="2"
+            android:drawableEnd="@drawable/round_keyboard_arrow_down_24"
+            android:drawableTint="@color/gray_font"
             android:text="Substance Abuse and Mental Health Administration (SAMHSA) Helpline"
             android:textColor="@color/status_color"
             android:textStyle="bold"
@@ -42,61 +44,70 @@
             app:autoSizeMinTextSize="8sp"
             app:autoSizeTextType="uniform"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_helpline_mno"
+        <LinearLayout
+            android:id="@+id/layout_helpline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:drawableTint="@color/gray_font"
-            android:drawableStart="@drawable/round_phone_24"
-            android:drawablePadding="@dimen/_10sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="start"
-            android:maxLines="2"
-            android:text="1-800-662-4357"
-            android:autoLink="phone"
-            android:textColorLink="@color/Link"
-            android:textColor="@color/gray_font"
-            android:textStyle="bold"
-            android:textSize="@dimen/_13sdp"
-            app:autoSizeMaxTextSize="@dimen/_13sdp"
-            app:autoSizeMinTextSize="8sp"
-            app:autoSizeTextType="uniform"
-            tools:ignore="TextSizeCheck,TextContrastCheck" />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txt_helpline_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/round_category_24"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="start"
-            android:maxLines="2"
-            android:drawablePadding="@dimen/_10sdp"
-            app:drawableTint="@color/gray_font"
-            android:text="Depression or Mental health"
-            android:textColor="@color/gray_font"
-            android:textStyle="bold"
-            android:textSize="@dimen/_13sdp"
-            app:autoSizeMaxTextSize="@dimen/_13sdp"
-            app:autoSizeMinTextSize="8sp"
-            app:autoSizeTextType="uniform"
-            tools:ignore="TextSizeCheck,TextContrastCheck" />
+            android:orientation="vertical"
+            android:visibility="gone">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_helpline_mno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                app:drawableTint="@color/gray_font"
+                android:drawableStart="@drawable/round_phone_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="1-800-662-4357"
+                android:autoLink="phone"
+                android:textColorLink="@color/Link"
+                android:textColor="@color/gray_font"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                app:autoSizeMaxTextSize="@dimen/_13sdp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeTextType="uniform"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txt_helpline_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/round_category_24"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start"
+                android:maxLines="2"
+                android:drawablePadding="@dimen/_10sdp"
+                app:drawableTint="@color/gray_font"
+                android:text="Depression or Mental health"
+                android:textColor="@color/gray_font"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                app:autoSizeMaxTextSize="@dimen/_13sdp"
+                app:autoSizeMinTextSize="8sp"
+                app:autoSizeTextType="uniform"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
 
-        <ImageButton
-            android:id="@+id/btn_copy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:background="@color/white"
-            android:contentDescription="Copy to Clipboard"
-            android:src="@drawable/baseline_content_copy_24"
-            tools:ignore="TouchTargetSizeCheck"
-            app:tint="@color/status_color" />
+        </LinearLayout>
+
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_copy"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginEnd="@dimen/_8sdp"-->
+<!--            android:layout_marginBottom="@dimen/_8sdp"-->
+<!--            android:background="@color/white"-->
+<!--            android:contentDescription="Copy to Clipboard"-->
+<!--            android:src="@drawable/baseline_content_copy_24"-->
+<!--            app:tint="@color/status_color"-->
+<!--            tools:ignore="TouchTargetSizeCheck" />-->
 
     </LinearLayout>
 

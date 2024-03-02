@@ -78,16 +78,16 @@ public class Helpline_numbers_Screen extends AppCompatActivity implements Connec
         });
     }
 
+//--------------------------------------------------------------------
 
-
-    private void copyToClipboard(String phoneNumber) {
-        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText("Phone Number", phoneNumber);
-        if (clipboard != null) {
-            clipboard.setPrimaryClip(clip);
-            showToast("Phone number copied to clipboard");
-        }
-    }
+//    private void copyToClipboard(String phoneNumber) {
+//        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+//        ClipData clip = ClipData.newPlainText("Phone Number", phoneNumber);
+//        if (clipboard != null) {
+//            clipboard.setPrimaryClip(clip);
+//            showToast("Phone number copied to clipboard");
+//        }
+//    }
     private class FetchHelplineNumbersTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {

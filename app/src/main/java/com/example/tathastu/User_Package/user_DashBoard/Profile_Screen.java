@@ -73,6 +73,15 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         });
     }
 
+//------------------------------------------------------------------
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i =new Intent(this, DashBoard_Screen.class);
+        startActivity(i);
+        finish();
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

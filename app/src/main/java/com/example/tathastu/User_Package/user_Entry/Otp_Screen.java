@@ -57,7 +57,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_screen);
 
-        tvOtpTime = findViewById(R.id.tv_OTPtime);
+//        tvOtpTime = findViewById(R.id.tv_OTPtime);
         BTN_otp = findViewById(R.id.BTN_otp);
         mAuth = FirebaseAuth.getInstance();
         txt_otp_mno=findViewById(R.id.txt_otp_mno);

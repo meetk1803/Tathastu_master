@@ -32,7 +32,7 @@
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/BTN_intro_skip"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="@dimen/_52sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/_10sdp"
