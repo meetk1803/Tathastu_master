@@ -12,7 +12,11 @@
     <color name="first">#4C647E</color>
     <color name="second">#9F5763</color>
     <color name="third">#9C6854</color>
+    <color name="first_bg">#9ACAFD</color>
+    <color name="second_bg">#FF8B9F</color>
+    <color name="third_bg">#FBA989</color>
     <color name="Link">#0000EE</color>
+    <color name="textField_Color">#E5F1FF</color>
 
     <array name="active">
         <item>@color/toolbar_BG</item>

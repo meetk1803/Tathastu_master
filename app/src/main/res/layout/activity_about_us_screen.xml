@@ -320,7 +320,7 @@
 
                             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                                 android:id="@+id/BTN_about_tc"
-                                android:layout_width="match_parent"
+                                android:layout_width="@dimen/_250sdp"
                                 android:layout_height="@dimen/_30sdp"
                                 android:layout_gravity="center"
                                 android:layout_marginHorizontal="@dimen/_5sdp"
@@ -331,7 +331,7 @@
                                 android:text="Terms &amp; Conditions"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_15sdp"
-                                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                                app:shapeAppearanceOverlay="@style/Circular"
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
                         </LinearLayout>
 

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -124,6 +125,14 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
 
     //--------------------------------------------------------------------------------------------
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i=new Intent(Login_Screen.this, Selection_Screen.class);
+        startActivity(i);
+        finish();
+    }
 
     //HIDE THE KEYBOARD
     private void hideSoftKeyboard(View view) {

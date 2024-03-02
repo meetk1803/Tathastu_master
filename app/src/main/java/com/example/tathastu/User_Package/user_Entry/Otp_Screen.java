@@ -130,6 +130,26 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         initiateotp();
     }
 //---------------------------------------------------------------------------------------------------
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        String source = getIntent().getStringExtra("source");
+        if ("login".equals(source)) {
+            // If source is login, go back to LoginActivity
+            Intent intent = new Intent(Otp_Screen.this, Login_Screen.class);
+            startActivity(intent);
+        } else if ("signin".equals(source)) {
+            // If source is signin, go back to SignInActivity
+            Intent intent = new Intent(Otp_Screen.this, Signin_Screen.class);
+            startActivity(intent);
+        } else {
+            // Default behavior (handle appropriately)
+            onBackPressed();
+        }
+    }
+
     private void initiateotp() {
 
         PhoneAuthOptions options =

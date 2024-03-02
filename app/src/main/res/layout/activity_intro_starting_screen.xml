@@ -56,7 +56,7 @@
             android:tint="@color/toolbar_BG"
             app:fabCustomSize="@dimen/_45sdp"
             app:maxImageSize="@dimen/_30sdp"
-            app:shapeAppearanceOverlay="@style/Circular"
+            app:shapeAppearanceOverlay="@style/RoundedSquare_BTN"
             app:tint="@color/toolbar_BG"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -76,7 +76,7 @@
             app:iconSize="@dimen/_25sdp"
             app:iconGravity="end"
             app:iconTint="@color/toolbar_BG"
-            app:shapeAppearanceOverlay="@style/Circular"
+            app:shapeAppearanceOverlay="@style/RoundedSquare_BTN"
             app:tint="@color/toolbar_BG"
             tools:ignore="SpeakableTextPresentCheck" />
     </FrameLayout>

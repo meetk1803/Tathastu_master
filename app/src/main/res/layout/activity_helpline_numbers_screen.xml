@@ -25,12 +25,6 @@
 
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            tools:ignore="SpeakableTextPresentCheck">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,34 +60,65 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="center"
                         android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="@dimen/_20sdp"
+                            android:text="There are some helpline numbers for your help,you can call on that number by clicking on the number : "
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/status_color"/>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycle_helpline_numbers"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingTop="@dimen/_8sdp"
-                            android:paddingBottom="@dimen/_20sdp"
+                            android:paddingBottom="@dimen/_30sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
                             android:clipToPadding="false"
                             />
 
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="bottom|center">
+
+                        <View
+                            android:layout_gravity="bottom|center"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/status_color"/>
+
                         <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="@dimen/_5sdp"
+                            android:layout_gravity="bottom|center"
+                            android:background="@color/white"
                             android:gravity="center"
                             android:text="All Helpline Numbers are verified by \nThe Surat Municipal Corporation (SMC)"
                             android:textColor="@color/status_color"
                             android:textSize="@dimen/_10sdp"
-                            tools:ignore="TextSizeCheck" />
-                    </LinearLayout>
+                            tools:ignore="TextSizeCheck,TextContrastCheck" />
 
+                    </LinearLayout>
                 </FrameLayout>
             </LinearLayout>
-        </ScrollView>
     </FrameLayout>
 
 </LinearLayout>

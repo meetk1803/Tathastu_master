@@ -1,7 +1,10 @@
 package com.example.tathastu.User_Package.user_DashBoard;
+import com.example.tathastu.User_Package.user_History.History_Screen;
 import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
 
 import android.annotation.SuppressLint;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -64,7 +67,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
     private static final int MAX_REPEAT_COUNT = 500;
     private int repeatCount = 0;
     private Handler quoteHandler = new Handler(Looper.getMainLooper());
-    private final int QUOTE_UPDATE_INTERVAL = 20 * 1000; // 1 minute in milliseconds
+    private final int QUOTE_UPDATE_INTERVAL = 8 * 1000; // 20 seconds in milliseconds
 
     private ConnectivityReceiver connectivityReceiver;
 
@@ -124,6 +127,15 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(DashBoard_Screen.this, Contact_us_Screen.class);
+                startActivity(i);
+            }
+        });
+
+        //FOR HISTORY
+        BTN_dash_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard_Screen.this, History_Screen.class);
                 startActivity(i);
             }
         });

@@ -30,9 +30,9 @@
 
 
             <LinearLayout
+                android:id="@+id/login_parentlayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/login_parentlayout"
                 android:orientation="vertical">
 
                 <FrameLayout
@@ -87,13 +87,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_30sdp"
                             android:hint="Enter Mobile Number"
+                            android:textColorHint="@color/status_color"
+                            app:boxBackgroundColor="@color/textField_Color"
+                            app:boxBackgroundMode="filled"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
-                            app:hintTextColor="@color/toolbar_BG"
-                            app:prefixText="+91"
-                            app:prefixTextColor="@color/black"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/status_color"
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -105,21 +107,26 @@
                                 android:maxLength="10"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_14sdp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_login_pwd"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_7sdp"
                             android:hint="Enter Password"
-                            app:endIconMode="password_toggle"
+                            android:textColorHint="@color/status_color"
+                            app:boxBackgroundColor="@color/textField_Color"
+                            app:boxBackgroundMode="filled"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
-                            app:hintTextColor="@color/toolbar_BG"
+                            app:endIconMode="password_toggle"
+                            app:endIconTint="@color/status_color"
+                            app:hintEnabled="true"
+                            app:hintTextColor="@color/status_color"
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -131,12 +138,12 @@
                                 android:maxLength="8"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_14sdp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                             android:id="@+id/BTN_login"
-                            android:layout_width="@dimen/_240sdp"
+                            android:layout_width="@dimen/_150sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_50sdp"
@@ -145,18 +152,18 @@
                             android:text="Login"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_17sdp"
-                            app:shapeAppearanceOverlay="@style/RoundedSquare"
+                            app:shapeAppearanceOverlay="@style/Circular"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
 
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_50sdp"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_marginTop="@dimen/_25sdp"
+                            android:gravity="center"
                             android:orientation="horizontal">
+
                             <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -177,15 +184,15 @@
                                 android:gravity="center"
                                 android:text="@string/signin_in_LOGIN"
                                 android:textColor="@color/toolbar_BG"
+                                android:textColorLink="@color/toolbar_BG"
                                 android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"
-                                android:textColorLink="@color/toolbar_BG"
                                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TextSizeCheck" />
                         </LinearLayout>
 
 
-
                     </LinearLayout>
+
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

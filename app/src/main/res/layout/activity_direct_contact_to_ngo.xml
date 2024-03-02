@@ -25,12 +25,6 @@
 
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            tools:ignore="SpeakableTextPresentCheck">
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,24 +60,65 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="center"
                         android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="@dimen/_20sdp"
+                            android:text="There are some NGOs' Details for your help,you can call on that number by clicking on the number and also more details about the NGO where you can see the details of NGO : "
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/status_color"/>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycle_ngo_detail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingTop="@dimen/_8sdp"
-                            android:paddingBottom="@dimen/_20sdp"
+                            android:paddingBottom="@dimen/_30sdp"
                             android:clipToPadding="false"
                             />
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="bottom|center">
 
+                        <View
+                            android:layout_gravity="bottom|center"
+                            android:gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/status_color"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:paddingVertical="@dimen/_2sdp"
+                            android:background="@color/white"
+                            android:gravity="center"
+                            android:text="All NGOs are available in the SURAT city"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+                    </LinearLayout>
                 </FrameLayout>
             </LinearLayout>
-        </ScrollView>
     </FrameLayout>
 
 </LinearLayout>

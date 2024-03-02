@@ -63,7 +63,8 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
         // Helper method to get the image resource based on position
         private int getImageResource(int position) {
-            int[] imageResources = {R.drawable.banner_allquote_bg_1, R.drawable.banner_allquote_bg_2, R.drawable.banner_allquote_bg_3};
+
+            int[] imageResources = {R.drawable.banner_allquote_bg_1, R.drawable.banner_allquote_bg_3, R.drawable.banner_allquote_bg_2};
             return imageResources[position % imageResources.length];
         }
 

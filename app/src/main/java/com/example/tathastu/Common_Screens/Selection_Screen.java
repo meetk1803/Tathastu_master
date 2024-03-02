@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
@@ -73,7 +74,7 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
                     showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
                     return;
                 }else {
-                    Intent i = new Intent(Selection_Screen.this, Login_Screen.class);
+                    Intent i = new Intent(Selection_Screen.this, NGO_Login_Screen.class);
                     startActivity(i);
                 }
             }

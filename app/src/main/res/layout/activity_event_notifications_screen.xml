@@ -26,13 +26,6 @@
 
 
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            tools:ignore="SpeakableTextPresentCheck">
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -67,9 +60,26 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="center"
                         android:orientation="vertical">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="@dimen/_20sdp"
+                            android:text="Here you can see the upcoming events' details related to donation camps : "
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/status_color"/>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycle_Event_Usermodel"
@@ -84,7 +94,6 @@
 
                 </FrameLayout>
             </LinearLayout>
-        </ScrollView>
     </FrameLayout>
 
 </LinearLayout>

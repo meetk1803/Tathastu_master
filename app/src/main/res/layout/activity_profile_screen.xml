@@ -66,10 +66,29 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
+                        android:layout_gravity="center"
                         android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|center"
+                            android:gravity="center"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="@dimen/_20sdp"
+                            android:text="Here is your personal details which are given by you."
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_35sdp"
+                            android:background="@color/status_color"/>
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/img_profile_photo"
@@ -106,6 +125,8 @@
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
+                            android:textColorHint="@color/status_color"
+                            android:focusable="true"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
@@ -133,6 +154,7 @@
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
+                            android:textColorHint="@color/status_color"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
@@ -162,6 +184,7 @@
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixText="+91"
+                            android:textColorHint="@color/status_color"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
 
@@ -189,6 +212,7 @@
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
+                            android:textColorHint="@color/status_color"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
 
@@ -207,9 +231,11 @@
 
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                             android:id="@+id/BTN_Profile_edit"
-                            android:layout_width="@dimen/_240sdp"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_width="@dimen/_160sdp"
+                            android:layout_height="@dimen/_35sdp"
                             android:layout_gravity="center"
+                            android:drawableLeft="@drawable/round_edit_note_24"
+                            android:drawableTint="@color/white"
                             android:layout_marginTop="@dimen/_30sdp"
                             android:layout_marginBottom="@dimen/_30sdp"
                             android:backgroundTint="@color/toolbar_BG"
@@ -217,7 +243,7 @@
                             android:text="Edit Details"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_15sdp"
-                            app:shapeAppearanceOverlay="@style/RoundedSquare"
+                            app:shapeAppearanceOverlay="@style/Circular"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     </LinearLayout>

@@ -198,6 +198,14 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
     }
 //----------------------------------------------------------------------------
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i=new Intent(Signin_Screen.this,Login_Screen.class);
+        startActivity(i);
+        finish();
+    }
+
     //HIDE THE KEYBOARD
     private void hideSoftKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

@@ -68,9 +68,29 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="center"
                         android:orientation="vertical">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:gravity="center"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="@dimen/_20sdp"
+                            android:text="You can update your personal details."
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginHorizontal="@dimen/_30sdp"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:background="@color/status_color"/>
+
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/img_updatep_photo"
@@ -227,7 +247,6 @@
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
-                            app:helperText="*click to open date picker or (e.g. dd/mm/yyyy)"
                             app:helperTextTextColor="@color/black"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
@@ -238,7 +257,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:inputType="date"
+                                android:inputType="none"
+                                android:focusableInTouchMode="true"
+                                android:cursorVisible="false"
+                                android:focusable="false"
                                 android:text="12/12/2004"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
@@ -253,6 +275,7 @@
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
+                            app:endIconTint="@color/status_color"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
@@ -279,6 +302,7 @@
                             app:endIconMode="password_toggle"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
+                            app:endIconTint="@color/status_color"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
                             app:prefixTextColor="@color/black"
@@ -298,8 +322,8 @@
 
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                             android:id="@+id/BTN_updatep_update"
-                            android:layout_width="@dimen/_240sdp"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_width="@dimen/_140sdp"
+                            android:layout_height="@dimen/_35sdp"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_30sdp"
                             android:layout_marginBottom="@dimen/_30sdp"
@@ -308,7 +332,7 @@
                             android:text="Update"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_15sdp"
-                            app:shapeAppearanceOverlay="@style/RoundedSquare"
+                            app:shapeAppearanceOverlay="@style/Circular"
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     </LinearLayout>
