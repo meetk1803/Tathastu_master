@@ -65,8 +65,9 @@ public class History_Screen extends AppCompatActivity implements ConnectivityRec
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(History_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(History_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 

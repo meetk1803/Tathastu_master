@@ -58,8 +58,7 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Profile_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+                finish();
             }
         });
 
@@ -78,8 +77,6 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i =new Intent(this, DashBoard_Screen.class);
-        startActivity(i);
         finish();
     }
 

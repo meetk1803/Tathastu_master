@@ -1,5 +1,8 @@
 package com.example.tathastu.User_Package.user_NGO_list;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,8 +95,9 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNgoName,txtNGOaddress ,txtCategory,txtMobile, txtNGOwebsite,txtNGOemail,txtNGOinstagram,txtNGOlinkedin,txtNGOfacebook,txtNGOtwitter,txtNGOyoutube;
+        TextView txtNgoName, txtNGOaddress, txtCategory, txtMobile, txtNGOwebsite, txtNGOemail, txtNGOinstagram, txtNGOlinkedin, txtNGOfacebook, txtNGOtwitter, txtNGOyoutube;
         LinearLayout layout_NGO; // Add this line
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtNgoName = itemView.findViewById(R.id.txt_NGO_name);
@@ -106,12 +110,38 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
             txtNGOlinkedin = itemView.findViewById(R.id.txt_NGO_linkedin);
             txtNGOfacebook = itemView.findViewById(R.id.txt_NGO_facebook);
             txtNGOtwitter = itemView.findViewById(R.id.txt_NGO_twitter);
-            txtNGOyoutube=itemView.findViewById(R.id.txt_NGO_youtube);
-            layout_NGO=itemView.findViewById(R.id.layout_NGO);
+            txtNGOyoutube = itemView.findViewById(R.id.txt_NGO_youtube);
+            layout_NGO = itemView.findViewById(R.id.layout_NGO);
+            Linkify.addLinks(txtNGOaddress, Linkify.MAP_ADDRESSES);
+
+            // Set OnClickListener for the address TextView
+            txtNGOaddress.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Handle redirection to map or location here
+                    redirectToMap(txtNGOaddress.getText().toString());
+                }
+            });
+        }
+
+        private void redirectToMap(String address) {
+            // Implement your logic to open the map or location using the address
+            // You can use Intent to open a map application or a web link
+            // For example, using Google Maps
+            Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(address));
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            if (mapIntent.resolveActivity(itemView.getContext().getPackageManager()) != null) {
+                itemView.getContext().startActivity(mapIntent);
+            } else {
+                showToast(itemView.getContext(), "Google Maps app not installed.");
+            }
+        }
+
+        private void showToast(Context context, final String text) {
+            Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
         }
     }
-    private static void showToast(Context context, final String text) {
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
-    }
+
 
 }

@@ -50,15 +50,18 @@ public class Terms_C_activity extends AppCompatActivity implements ConnectivityR
                 String source = getIntent().getStringExtra("source");
                 if ("signin".equals(source)) {
                     // If source is login, go back to LoginActivity
-                    Intent intent = new Intent(Terms_C_activity.this, Signin_Screen.class);
-                    startActivity(intent);
-                } else if ("About_us".equals(source)) {
+//                    Intent intent = new Intent(Terms_C_activity.this, Signin_Screen.class);
+//                    startActivity(intent);
+                    finish();
+                } else if ("about".equals(source)) {
                     // If source is signin, go back to SignInActivity
-                    Intent intent = new Intent(Terms_C_activity.this, About_us_Screen.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(Terms_C_activity.this, About_us_Screen.class);
+//                    startActivity(intent);
+                    finish();
                 } else {
                     // Default behavior (handle appropriately)
                     onBackPressed();
+                    finish();
                 }
             }
         });

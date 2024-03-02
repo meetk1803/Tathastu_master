@@ -107,8 +107,9 @@ public class NGO_Signin_Screen extends AppCompatActivity implements DatePickerDi
         BTN_back_ngo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(NGO_Signin_Screen.this, NGO_Login_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(NGO_Signin_Screen.this, NGO_Login_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 
@@ -201,8 +202,8 @@ public class NGO_Signin_Screen extends AppCompatActivity implements DatePickerDi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i=new Intent(NGO_Signin_Screen.this,NGO_Login_Screen.class);
-        startActivity(i);
+//        Intent i=new Intent(Signin_Screen.this,Login_Screen.class);
+//        startActivity(i);
         finish();
     }
 

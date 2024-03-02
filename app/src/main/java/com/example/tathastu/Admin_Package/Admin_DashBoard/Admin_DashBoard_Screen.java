@@ -1,16 +1,173 @@
 package com.example.tathastu.Admin_Package.Admin_DashBoard;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.example.tathastu.Admin_Package.Admin_Entry.Admin_Login_Screen;
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
+import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
+import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
+import com.example.tathastu.User_Package.user_DashBoard.Profile_Screen;
+import com.example.tathastu.User_Package.user_Entry.Login_Screen;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.snackbar.Snackbar;
 
-public class Admin_DashBoard_Screen extends AppCompatActivity {
+public class Admin_DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
+    ImageButton admin_BTN_dash_aboutus, admin_BTN_dash_contactus;
+    CardView  admin_card_dash_userData,admin_card_dash_compaignData;
+
+    ExtendedFloatingActionButton admin_BTN_dash_logout;
+
+    ShapeableImageView admin_profile_icon;
+
+    private ConnectivityReceiver connectivityReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dash_board_screen);
+
+        admin_BTN_dash_aboutus=findViewById(R.id.admin_BTN_dash_aboutus);
+        admin_BTN_dash_contactus=findViewById(R.id.admin_BTN_dash_contactus);
+        admin_card_dash_userData=findViewById(R.id.admin_card_dash_userData);
+        admin_card_dash_compaignData=findViewById(R.id.admin_card_dash_compaignData);
+        admin_BTN_dash_logout=findViewById(R.id.admin_BTN_dash_logout);
+        admin_profile_icon=findViewById(R.id.admin_profile_icon);
+
+        // Initialize the ConnectivityReceiver
+        connectivityReceiver = new ConnectivityReceiver();
+        ConnectivityReceiver.connectivityReceiverListener = this;
+
+        // Register the receiver to listen for connectivity changes
+        registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        // LOGOUT BUTTON
+        admin_BTN_dash_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent logout = new Intent(Admin_DashBoard_Screen.this, Admin_Login_Screen.class);
+                startActivity(logout);
+            }
+        });
+
+
+        //FOR CONTACT US>>>
+        admin_BTN_dash_contactus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Admin_DashBoard_Screen.this, Contact_us_Screen.class);
+                startActivity(i);
+            }
+        });
+
+        //FOR ABOUT US >>>>
+        admin_BTN_dash_aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Admin_DashBoard_Screen.this, About_us_Screen.class);
+                startActivity(i);
+            }
+        });
+
+    }
+
+    // ON BACK PRESSED
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        showExitDialog();
+    }
+
+    // Show exit confirmation dialog
+    private void showExitDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.exit_dialog, null);
+        builder.setView(dialogView);
+
+        ExtendedFloatingActionButton btnExitYes = dialogView.findViewById(R.id.BTN_exit_yes);
+        ExtendedFloatingActionButton btnExitNo = dialogView.findViewById(R.id.BTN_exit_no);
+
+
+        final AlertDialog dialog = builder.create();
+
+        btnExitYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle 'Yes' button click
+                finishAffinity(); // Finish this activity and all activities immediately below it
+                System.exit(0); // Exit the app entirely
+                dialog.dismiss();
+            }
+        });
+
+        btnExitNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle 'No' button click
+                dialog.dismiss();
+            }
+        });
+
+        dialog.setCancelable(false); // Prevent dismiss on outside touch
+        dialog.show();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        // Unregister the receiver to avoid memory leaks
+        unregisterReceiver(connectivityReceiver);
+    }
+
+    //SNACKBAR
+    private void showSnackbar(View view, String message) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
+        View snackbarView = snackbar.getView();
+
+        // Inflate custom layout
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View customView = inflater.inflate(R.layout.custom_snackbar_layout, null);
+
+        // Set text
+        TextView textView = customView.findViewById(android.R.id.text1);
+        textView.setText(message);
+
+        // Add custom view to Snackbar
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
+        snackbarLayout.removeAllViews(); // Remove all default views
+        snackbarLayout.setPadding(1, 1, 1, 1);
+        snackbarLayout.addView(customView, 0);
+
+        snackbar.show();
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        if (!isConnected) {
+            showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+        }
+    }
+
+    //PROFILE METHOD
+    public void onProfileClick(View view) {
+        // Handle click on the profile icon
+
+        Intent intent = new Intent(this, Admin_Profile_Screen.class);
+        startActivity(intent);
     }
 }

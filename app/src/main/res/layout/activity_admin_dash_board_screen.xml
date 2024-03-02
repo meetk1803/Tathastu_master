@@ -1,9 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".Admin_Package.Admin_DashBoard.Admin_DashBoard_Screen">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_home"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/status_color"
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Left side logout icon -->
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/admin_BTN_dash_logout"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:backgroundTint="@color/white"
+            android:text="Logout"
+            android:textColor="@color/toolbar_BG"
+            android:textSize="@dimen/_10sdp"
+            app:elevation="@dimen/_1sdp"
+            app:shapeAppearanceOverlay="@style/Circular"
+            tools:ignore="SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck" />
+
+        <!-- Center title or other content -->
+
+        <!-- Right side rounded profile icon -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/admin_profile_icon"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:clickable="true"
+            android:contentDescription="@string/profile"
+            android:focusable="true"
+            android:onClick="onProfileClick"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/round_account_circle_24"
+            app:shapeAppearanceOverlay="@style/Circular"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_card_dash_userData"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:cardMaxElevation="@dimen/_8sdp"
+            app:cardPreventCornerOverlap="false">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_dash_userData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/dash_banner_1"
+                android:scaleType="fitCenter"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:padding="@dimen/_8sdp"
+                android:scaleType="fitCenter"
+                app:contentPadding="@dimen/_5sdp"
+                app:srcCompat="@drawable/ic_user_data"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="@dimen/_230sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:fontFamily="@font/kanit_regular"
+                android:gravity="start|center"
+                android:textStyle="bold"
+                android:text="USERs' INFORMATION"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/admin_card_dash_compaignData"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_5sdp"
+            app:cardMaxElevation="@dimen/_8sdp"
+            app:cardPreventCornerOverlap="false">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_dash_compaignData"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/dash_banner_3"
+                android:scaleType="fitCenter"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:padding="@dimen/_8sdp"
+                android:scaleType="fitCenter"
+                android:tint="@color/first_bg"
+                app:contentPadding="@dimen/_5sdp"
+                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                app:srcCompat="@drawable/ic_camp_data"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:layout_width="@dimen/_230sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_50sdp"
+                android:fontFamily="@font/kanit_regular"
+                android:gravity="start|center"
+                android:textStyle="bold"
+                android:text="DONATION CAMPs' \nINFORMATION"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+        </androidx.cardview.widget.CardView>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:text="More"
+            android:textColor="@color/gray_font"
+            android:textSize="@dimen/_12sdp"
+            tools:ignore="TextSizeCheck" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:rowCount="3"
+            tools:ignore="ExtraText,RedundantNamespace">
+            >
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_6sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <ImageButton
+                        android:id="@+id/admin_BTN_dash_aboutus"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:background="@color/white"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/about_us"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/kanit_regular"
+                    android:text="About us"
+                    android:textColor="@color/toolbar_BG_D"
+                    android:textSize="@dimen/_15sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:cardCornerRadius="@dimen/_6sdp"
+                    app:cardElevation="@dimen/_4sdp">
+
+                    <ImageButton
+                        android:id="@+id/admin_BTN_dash_contactus"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:background="@color/white"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:padding="@dimen/_13sdp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/contact_us"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/kanit_regular"
+                    android:text="Contact us"
+                    android:textColor="@color/toolbar_BG_D"
+                    android:textSize="@dimen/_15sdp"
+                    tools:ignore="TextSizeCheck" />
+            </LinearLayout>
+
+
+        </GridLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:gravity="center"
+            android:text="@string/copyright"
+            android:textSize="@dimen/_8sdp"
+            tools:ignore="TextSizeCheck" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

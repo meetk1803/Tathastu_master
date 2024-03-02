@@ -55,7 +55,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp_screen);
+        setContentView(R.layout.activity_ngo_otp_screen);
 
 //        tvOtpTime_ngo = findViewById(R.id.tv_OTPtime_ngo);
         BTN_otp_ngo = findViewById(R.id.BTN_otp_ngo);
@@ -72,15 +72,18 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
                 String source = getIntent().getStringExtra("source");
                 if ("login".equals(source)) {
                     // If source is login, go back to LoginActivity
-                    Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Login_Screen.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Login_Screen.class);
+//                    startActivity(intent);
+                    finish();
                 } else if ("signin".equals(source)) {
                     // If source is signin, go back to SignInActivity
-                    Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Signin_Screen.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Signin_Screen.class);
+//                    startActivity(intent);
+                    finish();
                 } else {
                     // Default behavior (handle appropriately)
                     onBackPressed();
+                    finish();
                 }
             }
         });

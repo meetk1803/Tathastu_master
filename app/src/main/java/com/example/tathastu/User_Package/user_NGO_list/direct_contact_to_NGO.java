@@ -74,8 +74,9 @@ public class direct_contact_to_NGO extends AppCompatActivity implements Connecti
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(direct_contact_to_NGO.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i = new Intent(direct_contact_to_NGO.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 

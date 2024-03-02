@@ -90,6 +90,9 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
                         showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
                     } else if (!isValidPassword(pwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
+                    }else if (!isValidNumber(mob)) {
+                        showSnackbar(findViewById(android.R.id.content),"Please enter a valid mobile number...");
+
                     }
 
                     //WHEN DATABASE FETCH THE PASSWORD AND CHECK EITHER EQUAL OR NOT
@@ -98,7 +101,7 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
 //                }
                     else {
                         // Clear the error message
-                        Intent i = new Intent(Admin_Login_Screen.this, Admin_DashBoard_Screen.class);
+                        Intent i = new Intent(Admin_Login_Screen.this, Admin_DashBoard_Screen .class);
                         Toast.makeText(Admin_Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                         i.putExtra("source", "login");
                         i.putExtra("mobile", "+91" + mob);
@@ -146,6 +149,11 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
         unregisterReceiver(connectivityReceiver);
     }
 
+    // Helper method to validate phone
+    private boolean isValidNumber(String number) {
+        String numberPattern = "\\b\\d{10}\\b";
+        return number.matches(numberPattern);
+    }
     // Helper method to validate password
     private boolean isValidPassword(String password) {
         // Password should have minimum 8 characters, 1 uppercase, 1 special character, 1 lowercase, and 1 number

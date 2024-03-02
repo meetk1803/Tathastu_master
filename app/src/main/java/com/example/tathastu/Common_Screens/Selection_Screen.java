@@ -1,20 +1,27 @@
 package com.example.tathastu.Common_Screens;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.tathastu.Admin_Package.Admin_Entry.Admin_Login_Screen;
 import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_DashBoard.Update_Profile_Screen;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,6 +30,12 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
     CardView card_select_user,card_select_admin,card_select_ngo;
 
     private ConnectivityReceiver connectivityReceiver;
+
+    private static final int STORAGE_PERMISSION_REQUEST_CODE = 100;
+    private static final int NETWORK_PERMISSION_REQUEST_CODE = 200;
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 300;
+    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 400;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +74,7 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
                     showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
                     return;
                 }else {
-                    Intent i = new Intent(Selection_Screen.this, Login_Screen.class);
+                    Intent i = new Intent(Selection_Screen.this, Admin_Login_Screen.class);
                     startActivity(i);
                 }
             }
@@ -79,9 +92,27 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
                 }
             }
         });
+
+        checkStoragePermission();
+
     }
 
+
     //----------------------------------------------------------------------------------------------------------------------
+
+
+    //FILE ACCESS PERMISSION
+    private void checkStoragePermission() {
+        if (ContextCompat.checkSelfPermission(Selection_Screen.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+
+            // Request permission
+            ActivityCompat.requestPermissions(Selection_Screen.this,
+                    new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    STORAGE_PERMISSION_REQUEST_CODE);
+        }
+
+    }
+
     // Helper method to check if the internet connection is available
     private boolean isInternetAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

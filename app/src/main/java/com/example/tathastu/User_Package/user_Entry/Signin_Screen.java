@@ -107,8 +107,9 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Signin_Screen.this, Login_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(Signin_Screen.this, Login_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 
@@ -201,8 +202,8 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i=new Intent(Signin_Screen.this,Login_Screen.class);
-        startActivity(i);
+//        Intent i=new Intent(Signin_Screen.this,Login_Screen.class);
+//        startActivity(i);
         finish();
     }
 

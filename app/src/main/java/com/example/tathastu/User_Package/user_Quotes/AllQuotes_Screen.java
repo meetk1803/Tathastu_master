@@ -59,8 +59,9 @@ public class AllQuotes_Screen extends AppCompatActivity implements SwipeAdapter.
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(AllQuotes_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(AllQuotes_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 

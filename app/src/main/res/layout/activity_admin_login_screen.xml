@@ -139,6 +139,7 @@
                             android:backgroundTint="@color/toolbar_BG"
                             android:gravity="center"
                             android:text="Login"
+                            android:layout_marginBottom="@dimen/_50sdp"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_17sdp"
                             app:shapeAppearanceOverlay="@style/Circular"

@@ -57,8 +57,9 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Event_Notifications_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(Event_Notifications_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 

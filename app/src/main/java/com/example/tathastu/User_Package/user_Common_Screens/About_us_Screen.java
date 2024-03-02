@@ -9,17 +9,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 
 public class About_us_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
@@ -32,17 +29,35 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us_screen);
 
-        ExtendedFloatingActionButton BTN_about_tc = findViewById(R.id.BTN_about_tc);
+        CardView BTN_about_tc = findViewById(R.id.BTN_about_tc);
+        CardView BTN_about_feedback = findViewById(R.id.BTN_about_feedback);
         FloatingActionButton BTN_about_insta = findViewById(R.id.BTN_about_insta);
         FloatingActionButton BTN_about_fb = findViewById(R.id.BTN_about_fb);
         FloatingActionButton BTN_about_twitter = findViewById(R.id.BTN_about_twitter);
-        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        FloatingActionButton BTN_back = findViewById(R.id.BTN_back);
+
+        //FEEDBACK
+        BTN_about_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isConnected()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
+                } else {
+                    Intent i = new Intent(About_us_Screen.this, FeedBack_Screen.class);
+                    i.putExtra("source", "about");
+                    startActivity(i);
+                }
+            }
+        });
+
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(About_us_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(About_us_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
 
@@ -55,7 +70,6 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-
 
 
         BTN_about_insta.setOnClickListener(new View.OnClickListener() {
@@ -87,11 +101,11 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
         BTN_about_twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isConnected()){
-                String twitterLink = "https://twitter.com/tathastu_g052?t=MrAtvaTuvcF1hbSMDqd5_A&s=09\n";
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink));
-                startActivity(i);}
-                else {
+                if (isConnected()) {
+                    String twitterLink = "https://twitter.com/tathastu_g052?t=MrAtvaTuvcF1hbSMDqd5_A&s=09\n";
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink));
+                    startActivity(i);
+                } else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
             }
@@ -101,11 +115,25 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
         BTN_about_tc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(About_us_Screen.this, Terms_C_activity.class);
-                i.putExtra("source","About_us");
-                startActivity(i);
+                if (!isConnected()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
+                } else {
+                    Intent i = new Intent(About_us_Screen.this, Terms_C_activity.class);
+                    i.putExtra("source", "about");
+                    startActivity(i);
+                }
+
             }
         });
+    }
+//-----------------------------------------------------------------------------------------------------------
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     @Override

@@ -72,8 +72,9 @@ public class Helpline_numbers_Screen extends AppCompatActivity implements Connec
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Helpline_numbers_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(Helpline_numbers_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
             }
         });
     }

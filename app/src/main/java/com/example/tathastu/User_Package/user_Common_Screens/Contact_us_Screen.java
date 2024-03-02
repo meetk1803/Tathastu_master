@@ -15,9 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
+import com.example.tathastu.User_Package.user_Entry.Login_Screen;
+import com.example.tathastu.User_Package.user_Entry.Signin_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -38,6 +41,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         MaterialTextView txt_contact_mno = findViewById(R.id.txt_contact_mno);
         MaterialTextView txt_contact_email = findViewById(R.id.txt_contact_email);
         MaterialTextView txt_contact_address = findViewById(R.id.txt_contact_address);
+        CardView BTN_contact_feedback=findViewById(R.id.BTN_contact_feedback);
 
         setCopyToClipboardListener(txt_contact_mno, "+910123456789");
         setCopyToClipboardListener(txt_contact_email, "tathastu052threesofficial@gmail.com");
@@ -49,8 +53,25 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(Contact_us_Screen.this, DashBoard_Screen.class);
-                startActivity(i);
+//                Intent i =new Intent(Contact_us_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
+                finish();
+            }
+        });
+
+        //FEEDBACK
+        BTN_contact_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isConnected()) {
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
+                    return;
+                } else {
+                    Intent i =new Intent(Contact_us_Screen.this, FeedBack_Screen.class);
+                    i.putExtra("source","contact");
+                    startActivity(i);
+                }
+
             }
         });
 
@@ -102,7 +123,12 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         });
 
     }
-
+//----------------------------------------------------------------------------------
+@Override
+public void onBackPressed() {
+    super.onBackPressed();
+    finish();
+}
     private void setCopyToClipboardListener(MaterialTextView textView, final String text) {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

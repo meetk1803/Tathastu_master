@@ -127,6 +127,7 @@
                                 app:hintEnabled="true"
                                 app:counterEnabled="true"
                                 app:counterMaxLength="6"
+                                app:counterTextColor="@color/status_color"
                                 app:hintTextColor="@color/status_color"
                                 tools:ignore="HardcodedText">
 

@@ -90,6 +90,9 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                         showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
                     } else if (!isValidPassword(pwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
+                    } else if (!isValidNumber(mob)) {
+                        showSnackbar(findViewById(android.R.id.content),"Please enter a valid mobile number...");
+
                     }
 
                     //WHEN DATABASE FETCH THE PASSWORD AND CHECK EITHER EQUAL OR NOT
@@ -156,6 +159,12 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
 
         // Unregister the receiver to avoid memory leaks
         unregisterReceiver(connectivityReceiver);
+    }
+
+    // Helper method to validate phone
+    private boolean isValidNumber(String number) {
+        String numberPattern = "\\b\\d{10}\\b";
+        return number.matches(numberPattern);
     }
 
     // Helper method to validate password

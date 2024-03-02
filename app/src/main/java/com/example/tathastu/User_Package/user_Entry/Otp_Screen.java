@@ -72,12 +72,12 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                 String source = getIntent().getStringExtra("source");
                 if ("login".equals(source)) {
                     // If source is login, go back to LoginActivity
-                    Intent intent = new Intent(Otp_Screen.this, Login_Screen.class);
-                    startActivity(intent);
+
+                    finish();
                 } else if ("signin".equals(source)) {
                     // If source is signin, go back to SignInActivity
-                    Intent intent = new Intent(Otp_Screen.this, Signin_Screen.class);
-                    startActivity(intent);
+
+                    finish();
                 } else {
                     // Default behavior (handle appropriately)
                     onBackPressed();
@@ -139,12 +139,14 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         String source = getIntent().getStringExtra("source");
         if ("login".equals(source)) {
             // If source is login, go back to LoginActivity
-            Intent intent = new Intent(Otp_Screen.this, Login_Screen.class);
-            startActivity(intent);
+//            Intent intent = new Intent(Otp_Screen.this, Login_Screen.class);
+//            startActivity(intent);
+            finish();
         } else if ("signin".equals(source)) {
             // If source is signin, go back to SignInActivity
-            Intent intent = new Intent(Otp_Screen.this, Signin_Screen.class);
-            startActivity(intent);
+//            Intent intent = new Intent(Otp_Screen.this, Signin_Screen.class);
+//            startActivity(intent);
+            finish();
         } else {
             // Default behavior (handle appropriately)
             onBackPressed();
