@@ -18,6 +18,15 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".Admin_Package.Admin_DashBoard.Admin_DashBoard_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Admin_Package.Admin_Entry.Admin_OTP_Screen"
+            android:exported="false" />
+        <activity
+            android:name=".Admin_Package.Admin_Entry.Admin_Login_Screen"
+            android:exported="false" />
+        <activity
             android:name=".NGO_Package.NGO_Entry.NGO_OTP_Screen"
             android:exported="false" />
         <activity

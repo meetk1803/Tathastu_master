@@ -144,34 +144,34 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_15sdp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginTop="@dimen/_15sdp"-->
+<!--                            android:gravity="center"-->
+<!--                            android:orientation="horizontal">-->
 
-                            <com.google.android.material.textview.MaterialTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_regular"
-                                android:text="valid for : "
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                tools:ignore="TextSizeCheck" />
+<!--                            <com.google.android.material.textview.MaterialTextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/inter_regular"-->
+<!--                                android:text="valid for : "-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="@dimen/_12sdp"-->
+<!--                                tools:ignore="TextSizeCheck" />-->
 
-                            <com.google.android.material.textview.MaterialTextView
-                                android:id="@+id/tv_OTPtime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_regular"
-                                android:text="00:00"
-                                android:textColor="@color/status_color"
-                                android:textSize="@dimen/_14sdp"
-                                tools:ignore="TextSizeCheck" />
+<!--                            <com.google.android.material.textview.MaterialTextView-->
+<!--                                android:id="@+id/tv_OTPtime"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/inter_regular"-->
+<!--                                android:text="00:00"-->
+<!--                                android:textColor="@color/status_color"-->
+<!--                                android:textSize="@dimen/_14sdp"-->
+<!--                                tools:ignore="TextSizeCheck" />-->
 
-                        </LinearLayout>
+<!--                        </LinearLayout>-->
 
 
                         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

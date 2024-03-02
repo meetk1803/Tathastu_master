@@ -40,10 +40,10 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
 
     MaterialTextView txt_otp_mno_ngo;
     ExtendedFloatingActionButton BTN_otp_ngo;
-    private MaterialTextView tvOtpTime_ngo;
+//    private MaterialTextView tvOtpTime_ngo;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
-    private static final long OTP_TIMER_DURATION = 300000; // 5 minutes in milliseconds
+    private static final long OTP_TIMER_DURATION =120 * 1000; // 5 minutes in milliseconds
     private static final long INTERVAL = 1000; // 1 second in milliseconds
     public String phonenumber_ngo;
     FirebaseAuth mAuth;
@@ -57,7 +57,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_screen);
 
-        tvOtpTime_ngo = findViewById(R.id.tv_OTPtime_ngo);
+//        tvOtpTime_ngo = findViewById(R.id.tv_OTPtime_ngo);
         BTN_otp_ngo = findViewById(R.id.BTN_otp_ngo);
         mAuth = FirebaseAuth.getInstance();
         txt_otp_mno_ngo=findViewById(R.id.txt_otp_mno_ngo);
@@ -118,6 +118,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
                     showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
                 }*/
                     else {
+                        startOtpTimer();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
                         signInWithPhoneAuthCredential(credential);
                     }
@@ -125,7 +126,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
             }
         });
 
-        startOtpTimer();
+
 
         initiateotp();
     }
@@ -218,7 +219,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
             @Override
             public void onFinish() {
                 // The timer has finished, handle accordingly
-                tvOtpTime_ngo.setText("00:00"); // Update the UI or trigger OTP resend, etc.
+//                tvOtpTime_ngo.setText("00:00"); // Update the UI or trigger OTP resend, etc.
             }
         }.start();
     }
@@ -228,7 +229,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
 
         String timeFormatted = String.format("%02d:%02d", minutes, seconds);
-        tvOtpTime_ngo.setText(timeFormatted);
+//        tvOtpTime_ngo.setText(timeFormatted);
     }
 
     @Override

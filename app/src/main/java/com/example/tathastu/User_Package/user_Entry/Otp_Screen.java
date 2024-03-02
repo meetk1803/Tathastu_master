@@ -43,7 +43,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
     private MaterialTextView tvOtpTime;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
-    private static final long OTP_TIMER_DURATION = 300000; // 5 minutes in milliseconds
+    private static final long OTP_TIMER_DURATION = 120 * 1000; // 5 minutes in milliseconds
     private static final long INTERVAL = 1000; // 1 second in milliseconds
     public String phonenumber;
     FirebaseAuth mAuth;
@@ -118,6 +118,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
                 }*/
                     else {
+                        startOtpTimer();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
                         signInWithPhoneAuthCredential(credential);
                     }
@@ -125,7 +126,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
             }
         });
 
-        startOtpTimer();
+
 
         initiateotp();
     }
