@@ -39,7 +39,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:backgroundTint="@color/white"
             android:text="Skip"
-            android:textColor="@color/toolbar_BG"
+            android:textColor="@color/err_color"
             android:textSize="@dimen/_10sdp"
             app:shapeAppearanceOverlay="@style/Circular"
             tools:ignore="SpeakableTextPresentCheck,TextSizeCheck,TouchTargetSizeCheck" />
@@ -53,11 +53,11 @@
             android:layout_marginBottom="@dimen/_30sdp"
             android:backgroundTint="@color/white"
             android:src="@drawable/round_chevron_right_24"
-            android:tint="@color/toolbar_BG"
+            android:tint="@color/err_color"
             app:fabCustomSize="@dimen/_45sdp"
             app:maxImageSize="@dimen/_30sdp"
             app:shapeAppearanceOverlay="@style/RoundedSquare_BTN"
-            app:tint="@color/toolbar_BG"
+            app:tint="@color/err_color"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -68,16 +68,16 @@
             android:layout_marginBottom="@dimen/_35sdp"
             android:backgroundTint="@color/white"
             android:text="Get Started"
-            android:textColor="@color/toolbar_BG"
+            android:textColor="@color/err_color"
             android:textSize="@dimen/_16sdp"
-            android:tint="@color/toolbar_BG"
+            android:tint="@color/err_color"
             app:fabCustomSize="@dimen/_50sdp"
             app:icon="@drawable/baseline_keyboard_double_arrow_right_24"
             app:iconSize="@dimen/_25sdp"
             app:iconGravity="end"
-            app:iconTint="@color/toolbar_BG"
+            app:iconTint="@color/err_color"
             app:shapeAppearanceOverlay="@style/RoundedSquare_BTN"
-            app:tint="@color/toolbar_BG"
+            app:tint="@color/err_color"
             tools:ignore="SpeakableTextPresentCheck" />
     </FrameLayout>
 </LinearLayout>

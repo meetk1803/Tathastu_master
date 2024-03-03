@@ -85,5 +85,7 @@ We will not share your personal information with third parties without your cons
     <string name="see_details"><b><u>view more </u></b></string>
     <string name="see_less"><b><u>see less</u></b></string>
     <string name="title_activity_history_screen">History_Screen</string>
+    <string name="blood_donation_one">* You can do blood donate only if you are 18 or above.</string>
+    <string name="blood_donation_two">* If you have cancer, diabetes, chest pain, high blood pressure or heart disease etc, you cannot donate blood.</string>
 
 </resources>

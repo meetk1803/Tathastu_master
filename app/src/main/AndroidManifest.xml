@@ -22,8 +22,41 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".User_Package.user_DashBoard.Blood_Selection_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.O_Edit_detail_page"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.O_add_details"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.O_my_request"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_Details_of_Camp"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_Details_of_person"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_Edit_detail_page"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_add_details"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_Request_page"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_Home_Screen_2"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.blood_section.B_Home_Screen"
+            android:exported="true"></activity>
+        <activity
             android:name=".Admin_Package.Admin_Feedback.Admin_All_Feedback"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Admin_Package.Admin_NGO.Person_User_Data.Admin_NGO_p_Details"
             android:exported="true" />

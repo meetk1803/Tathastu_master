@@ -17,6 +17,7 @@
     <color name="third_bg">#FBA989</color>
     <color name="Link">#0000EE</color>
     <color name="textField_Color">#E5F1FF</color>
+    <color name="blood_donation">#8a0303</color>
 
     <array name="active">
         <item>@color/toolbar_BG</item>
