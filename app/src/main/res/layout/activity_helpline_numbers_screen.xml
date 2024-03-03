@@ -81,11 +81,22 @@
                             android:layout_height="@dimen/_1sdp"
                             android:background="@color/status_color"/>
 
+<!--                        <Spinner-->
+<!--                            android:id="@+id/spinner_category"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            android:layout_marginBottom="@dimen/_20sdp"-->
+<!--                            android:layout_marginTop="@dimen/_10sdp"-->
+<!--                            android:entries="@array/helpline_categories"-->
+<!--                            android:prompt="@string/see_all_quote"/>-->
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycle_helpline_numbers"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingBottom="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:layout_marginBottom="@dimen/_10sdp"
                             android:clipToPadding="false"
                             />

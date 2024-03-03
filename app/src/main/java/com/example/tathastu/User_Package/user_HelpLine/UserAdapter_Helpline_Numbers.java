@@ -29,6 +29,11 @@ public class UserAdapter_Helpline_Numbers extends RecyclerView.Adapter<UserAdapt
         this.context = context;
     }
 
+//    public void setData(List<UserModel_Helpline_Numbers> dataList) {
+//        this.helplineList = helplineList;
+//        notifyDataSetChanged();
+//    }
+
     @NonNull
     @Override
     public HelplineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

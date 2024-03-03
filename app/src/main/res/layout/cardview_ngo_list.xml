@@ -63,7 +63,7 @@
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:autoLink="map"
+                android:autoLink="map|web"
                 android:drawableStart="@drawable/round_location_on_24"
                 android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/inter_semibold"
