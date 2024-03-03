@@ -18,21 +18,19 @@ import android.widget.Toast;
 import com.example.tathastu.Admin_Package.Admin_DashBoard.Admin_DashBoard_Screen;
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.android.material.textview.MaterialTextView;
 
 public class Admin_Login_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     public ExtendedFloatingActionButton BTN_login_admin ;
 
     private LinearLayout login_parentLayout_admin;
 
-    public TextInputEditText edtmno_admin,edtpwd_admin;
-    TextInputLayout txtlayout_login_mno_admin;
+    public TextInputEditText edtemail_admin,edtpwd_admin;
+    TextInputLayout txtlayout_login_email_admin;
     private ConnectivityReceiver connectivityReceiver;
 
     @Override
@@ -41,9 +39,9 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
         setContentView(R.layout.activity_admin_login_screen);
 
         BTN_login_admin = findViewById(R.id.BTN_login_admin);
-        edtmno_admin = findViewById(R.id.txt_Loginmno_admin);
+        edtemail_admin = findViewById(R.id.txt_Loginemail_admin);
         edtpwd_admin=findViewById(R.id.txt_login_pwd_admin);
-        txtlayout_login_mno_admin = findViewById(R.id.txtlayout_login_mno_admin);
+        txtlayout_login_email_admin = findViewById(R.id.txtlayout_login_email_admin);
         login_parentLayout_admin=findViewById(R.id.login_parentlayout_admin);
 
         // Set up touch listener for the parent layout
@@ -51,7 +49,7 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // Clear focus from EditText when touched outside
-                edtmno_admin.clearFocus();
+                edtemail_admin.clearFocus();
                 edtpwd_admin.clearFocus();
 
 
@@ -71,18 +69,18 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
         BTN_login_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mob = edtmno_admin.getText().toString();
+                String email = edtemail_admin.getText().toString();
                 String pwd=edtpwd_admin.getText().toString();
                 if (!isInternetAvailable()) {
                     showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
                     return;
                 }else {
-                    if (mob.isEmpty()) {
+                    if (email.isEmpty()) {
                         // Set an error message
                         showSnackbar(findViewById(android.R.id.content), "Please enter mobile number...");
-                    }else if (mob.length() < 10) {
-                        showSnackbar(findViewById(android.R.id.content), "Please enter a valid mobile number...");
-                    }else if (pwd.isEmpty()) {
+                    }else if (!isValidEmail(email)) {
+                        showSnackbar(findViewById(android.R.id.content), "Please enter a valid email address (Gmail, Yahoo, or Outlook)...");
+                    } else if (pwd.isEmpty()) {
                         // Set an error message
                         showSnackbar(findViewById(android.R.id.content), "Please enter password...");
                     }
@@ -90,11 +88,7 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
                         showSnackbar(findViewById(android.R.id.content), "Password should be 8 characters long...");
                     } else if (!isValidPassword(pwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Password must include at least one uppercase letter, one lowercase letter, one special character, and one digit...");
-                    }else if (!isValidNumber(mob)) {
-                        showSnackbar(findViewById(android.R.id.content),"Please enter a valid mobile number...");
-
                     }
-
                     //WHEN DATABASE FETCH THE PASSWORD AND CHECK EITHER EQUAL OR NOT
 //                else if (!pwd.equals(cpwd)) {
 //                    showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match");
@@ -104,7 +98,7 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
                         Intent i = new Intent(Admin_Login_Screen.this, Admin_DashBoard_Screen .class);
                         Toast.makeText(Admin_Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                         i.putExtra("source", "login");
-                        i.putExtra("mobile", "+91" + mob);
+//                        i.putExtra("email", "+91" + mob);
                         startActivity(i);
                     }
                 }
@@ -149,11 +143,19 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
         unregisterReceiver(connectivityReceiver);
     }
 
-    // Helper method to validate phone
-    private boolean isValidNumber(String number) {
-        String numberPattern = "\\b\\d{10}\\b";
-        return number.matches(numberPattern);
+//    // Helper method to validate phone
+//    private boolean isValidNumber(String number) {
+//        String numberPattern = "\\b\\d{10}\\b";
+//        return number.matches(numberPattern);
+//    }
+
+
+    // Helper method to validate Gmail, Yahoo, and Outlook addresses
+    private boolean isValidEmail(String email) {
+        String emailPattern = "^[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com|outlook\\.com)$";
+        return email.matches(emailPattern);
     }
+
     // Helper method to validate password
     private boolean isValidPassword(String password) {
         // Password should have minimum 8 characters, 1 uppercase, 1 special character, 1 lowercase, and 1 number

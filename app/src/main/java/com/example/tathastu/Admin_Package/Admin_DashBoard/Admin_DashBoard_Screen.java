@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.tathastu.Admin_Package.Admin_Entry.Admin_Login_Screen;
+import com.example.tathastu.Admin_Package.Admin_Feedback.Admin_All_Feedback;
+import com.example.tathastu.Admin_Package.Admin_NGO.All_Data.Admin_NGO_Data;
 import com.example.tathastu.Admin_Package.Admin_user.All_Data.Admin_User_Data;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
@@ -27,7 +29,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class Admin_DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     ImageButton admin_BTN_dash_aboutus, admin_BTN_dash_contactus;
-    CardView  admin_card_dash_userData,admin_card_dash_compaignData;
+    CardView  admin_card_dash_userData,admin_card_dash_compaignData,admin_card_dash_feedbackData;
 
     ExtendedFloatingActionButton admin_BTN_dash_logout;
 
@@ -43,6 +45,7 @@ public class Admin_DashBoard_Screen extends AppCompatActivity implements Connect
         admin_BTN_dash_contactus=findViewById(R.id.admin_BTN_dash_contactus);
         admin_card_dash_userData=findViewById(R.id.admin_card_dash_userData);
         admin_card_dash_compaignData=findViewById(R.id.admin_card_dash_compaignData);
+        admin_card_dash_feedbackData=findViewById(R.id.admin_card_dash_feedbackData);
         admin_BTN_dash_logout=findViewById(R.id.admin_BTN_dash_logout);
         admin_profile_icon=findViewById(R.id.admin_profile_icon);
 
@@ -62,6 +65,26 @@ public class Admin_DashBoard_Screen extends AppCompatActivity implements Connect
                 startActivity(i);
             }
         });
+
+
+        //CARD FEEDBACK DATA
+        admin_card_dash_feedbackData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(Admin_DashBoard_Screen.this, Admin_All_Feedback.class);
+                startActivity(i);
+            }
+        });
+
+        //CARD CAMP DATA
+        admin_card_dash_compaignData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(Admin_DashBoard_Screen.this, Admin_NGO_Data.class);
+                startActivity(i);
+            }
+        });
+
         // LOGOUT BUTTON
         admin_BTN_dash_logout.setOnClickListener(new View.OnClickListener() {
             @Override

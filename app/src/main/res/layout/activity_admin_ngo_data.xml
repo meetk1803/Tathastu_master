@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/toolbar_BG"
     android:orientation="vertical"
-    tools:context=".Admin_Package.Admin_NGO.All_Data.Admin_NGO_Data">
+    tools:context=".Admin_Package.Admin_user.All_Data.Admin_User_Data">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:text="Users' Data"
+            android:text="NGOs' Data"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />
@@ -101,7 +101,7 @@
                                         android:drawableEnd="@drawable/round_keyboard_arrow_down_24"
                                         android:drawableTint="@color/white"
                                         android:fontFamily="@font/inter_medium"
-                                        android:text="User Personal Information : "
+                                        android:text="NGOs' Information : "
                                         android:textStyle="bold"
                                         android:textColor="@color/white"
                                         android:textSize="@dimen/_13sdp"

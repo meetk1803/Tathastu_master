@@ -22,8 +22,14 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
-            android:name=".Admin_Package.Admin_user.Person_Donation_History.Admin_person_History_Data"
+            android:name=".Admin_Package.Admin_Feedback.Admin_All_Feedback"
             android:exported="false" />
+        <activity
+            android:name=".Admin_Package.Admin_NGO.Person_User_Data.Admin_NGO_p_Details"
+            android:exported="true" />
+        <activity
+            android:name=".Admin_Package.Admin_NGO.All_Data.Admin_NGO_Data"
+            android:exported="true" />
         <activity
             android:name=".Admin_Package.Admin_user.Person_User_Data.Admin_Person_Details"
             android:exported="true" />

@@ -71,11 +71,11 @@
                             tools:ignore="TextSizeCheck" />
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/txtlayout_login_mno_admin"
+                            android:id="@+id/txtlayout_login_email_admin"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_30sdp"
-                            android:hint="Enter Mobile Number"
+                            android:hint="Enter Email"
                             android:textColorHint="@color/status_color"
                             app:boxBackgroundColor="@color/textField_Color"
                             app:boxBackgroundMode="filled"
@@ -88,12 +88,11 @@
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txt_Loginmno_admin"
+                                android:id="@+id/txt_Loginemail_admin"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
-                                android:inputType="phone"
-                                android:maxLength="10"
+                                android:inputType="textEmailAddress"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_14sdp"
                                 android:textStyle="bold" />
