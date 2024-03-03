@@ -15,12 +15,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.tathastu.Admin_Package.Admin_Entry.Admin_Login_Screen;
+import com.example.tathastu.Admin_Package.Admin_user.All_Data.Admin_User_Data;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
-import com.example.tathastu.User_Package.user_DashBoard.Profile_Screen;
-import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -55,6 +53,15 @@ public class Admin_DashBoard_Screen extends AppCompatActivity implements Connect
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
+
+        //CARD USER DATA
+        admin_card_dash_userData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(Admin_DashBoard_Screen.this, Admin_User_Data.class);
+                startActivity(i);
+            }
+        });
         // LOGOUT BUTTON
         admin_BTN_dash_logout.setOnClickListener(new View.OnClickListener() {
             @Override

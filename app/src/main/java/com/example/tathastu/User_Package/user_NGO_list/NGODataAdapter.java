@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_HelpLine.UserAdapter_Helpline_Numbers;
 
 import java.util.List;
 
@@ -31,10 +30,10 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
 
     @NonNull
     @Override
-    public NGODataAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cardview_ngo_list, parent, false);
-        return new NGODataAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -74,7 +73,7 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         }
     }
 
-    private void handleExpansion(NGODataAdapter.ViewHolder holder, int position) {
+    private void handleExpansion(ViewHolder holder, int position) {
         if (expandedPosition == position) {
             // Collapse the expanded item
             expandedPosition = -1;

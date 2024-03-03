@@ -3,10 +3,9 @@ package com.example.tathastu.User_Package.user_Entry;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +13,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;

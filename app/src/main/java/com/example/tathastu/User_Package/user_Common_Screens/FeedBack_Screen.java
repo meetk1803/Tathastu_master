@@ -1,9 +1,6 @@
 package com.example.tathastu.User_Package.user_Common_Screens;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -12,11 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
-import com.example.tathastu.User_Package.user_Entry.Login_Screen;
-import com.example.tathastu.User_Package.user_Entry.Otp_Screen;
-import com.example.tathastu.User_Package.user_Entry.Signin_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;

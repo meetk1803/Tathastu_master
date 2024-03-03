@@ -1,17 +1,5 @@
 package com.example.tathastu.User_Package.user_Entry;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.tathastu.Common_Screens.Selection_Screen;
-import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
-import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
-import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
 
 import android.app.DatePickerDialog;
@@ -30,9 +18,17 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
+import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.FirebaseDatabase;

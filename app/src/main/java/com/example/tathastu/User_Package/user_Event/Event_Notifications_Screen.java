@@ -2,7 +2,6 @@
 
 package com.example.tathastu.User_Package.user_Event;
 
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;

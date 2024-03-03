@@ -2,7 +2,6 @@ package com.example.tathastu.User_Package.user_Quotes;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -16,8 +15,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
-import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

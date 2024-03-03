@@ -9,7 +9,6 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
-import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
 

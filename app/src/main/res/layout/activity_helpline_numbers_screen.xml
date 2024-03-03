@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,27 +78,43 @@
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="TextSizeCheck" />
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_marginHorizontal="@dimen/_10sdp"
+                            android:layout_marginVertical="@dimen/_3sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:boxBackgroundMode="filled"
+                            android:hint="Select Category"
+                            app:boxBackgroundColor="@color/textField_Color"
+                            app:boxStrokeColor="@color/status_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:hintEnabled="true"
+                            android:textColorHint="@color/toolbar_BG"
+                            app:expandedHintEnabled="true"
+                            android:clickable="false">
+
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                android:id="@+id/dropcat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/status_color"
+                                tools:ignore="SpeakableTextPresentCheck"
+                                android:inputType="none"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_1sdp"
                             android:background="@color/status_color"/>
-
-<!--                        <Spinner-->
-<!--                            android:id="@+id/spinner_category"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:layout_marginBottom="@dimen/_20sdp"-->
-<!--                            android:layout_marginTop="@dimen/_10sdp"-->
-<!--                            android:entries="@array/helpline_categories"-->
-<!--                            android:prompt="@string/see_all_quote"/>-->
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recycle_helpline_numbers"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingBottom="@dimen/_30sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_3sdp"
                             android:layout_marginBottom="@dimen/_10sdp"
                             android:clipToPadding="false"
                             />
