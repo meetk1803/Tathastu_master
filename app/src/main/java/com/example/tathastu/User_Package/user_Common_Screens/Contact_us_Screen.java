@@ -45,6 +45,13 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
         setCopyToClipboardListener(txt_contact_address, "123 ABC Street, City Light Area, Surat 395007, Gujarat, India.");
 
 
+
+        String source = getIntent().getStringExtra("source");
+        if("admin_contact".equals(source)){
+            BTN_contact_feedback.setVisibility(View.GONE);
+        }
+
+
         FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {

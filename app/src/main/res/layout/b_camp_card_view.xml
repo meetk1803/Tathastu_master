@@ -26,28 +26,27 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_name"
-            android:layout_width="335dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:drawablePadding="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="start"
             android:maxLines="2"
-            android:lines="2"
             android:text="Shree Vallabhipur Talika Patidar Pragati Mandal"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            app:autoSizeMaxTextSize="@dimen/_15sdp"
-            app:autoSizeMinTextSize="8sp"
+            app:autoSizeMaxTextSize="@dimen/_14sdp"
+            app:autoSizeMinTextSize="@dimen/_8sdp"
             app:autoSizeTextType="uniform"
-            app:drawableTint="#8a0303"
+            app:drawableTint="@color/blood_donation"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="start"
             android:gravity="center">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -67,14 +66,13 @@
             app:autoSizeMaxTextSize="@dimen/_15sdp"
             app:autoSizeMinTextSize="8sp"
             app:autoSizeTextType="uniform"
-            app:drawableTint="#8a0303"
+            app:drawableTint="@color/blood_donation"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:fontFamily="@font/inter_semibold"
                 android:gravity="start"
                 android:maxLines="2"
@@ -103,7 +101,7 @@
                 app:autoSizeMaxTextSize="@dimen/_15sdp"
                 app:autoSizeMinTextSize="8sp"
                 app:autoSizeTextType="uniform"
-                app:drawableTint="#8a0303"
+                app:drawableTint="@color/blood_donation"
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
 
         </LinearLayout>
@@ -123,12 +121,12 @@
             android:maxLines="2"
             android:text="1-800-662-4357"
             android:textColor="@color/black"
-            android:textColorLink="#8a0303"
+            android:textColorLink="@color/blood_donation"
             android:textSize="@dimen/_12sdp"
             app:autoSizeMaxTextSize="@dimen/_15sdp"
             app:autoSizeMinTextSize="8sp"
             app:autoSizeTextType="uniform"
-            app:drawableTint="#8a0303"
+            app:drawableTint="@color/blood_donation"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -149,7 +147,7 @@
             app:autoSizeMaxTextSize="@dimen/_15sdp"
             app:autoSizeMinTextSize="8sp"
             app:autoSizeTextType="uniform"
-            app:drawableTint="#8a0303"
+            app:drawableTint="@color/blood_donation"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
     </LinearLayout>

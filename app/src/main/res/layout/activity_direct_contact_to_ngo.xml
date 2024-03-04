@@ -75,19 +75,26 @@
                             android:textColor="@color/status_color"
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="TextSizeCheck" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start|center"
+                            android:fontFamily="@font/inter_medium"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="Select Category :"
+                            android:textColor="@color/status_color"
+                            android:textSize="@dimen/_10sdp"
+                            tools:ignore="TextSizeCheck" />
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                             android:layout_marginHorizontal="@dimen/_10sdp"
-                            android:layout_marginVertical="@dimen/_3sdp"
+                            android:layout_marginBottom="@dimen/_3sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:endIconTint="@color/status_color"
                             app:boxBackgroundMode="filled"
-                            android:hint="Select Category"
                             app:boxBackgroundColor="@color/textField_Color"
                             app:boxStrokeColor="@color/status_color"
-                            app:hintTextColor="@color/toolbar_BG"
-                            app:hintEnabled="true"
-                            android:textColorHint="@color/toolbar_BG"
                             app:expandedHintEnabled="true"
                             android:clickable="false">
 

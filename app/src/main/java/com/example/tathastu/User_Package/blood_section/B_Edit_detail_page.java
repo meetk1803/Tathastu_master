@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class B_Edit_detail_page extends AppCompatActivity {
 
     FloatingActionButton btn_back;
-    TextView txt_name,txt_age,txt_weight,txt_type,txt_location,txt_note,txt_mno;
+    TextInputEditText txt_name,txt_age,txt_weight,txt_location,txt_note,txt_mno;
+    MaterialAutoCompleteTextView txt_type;
     Button btn_save;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,6 +39,21 @@ public class B_Edit_detail_page extends AppCompatActivity {
         txt_location = findViewById(R.id.txt_location);
         txt_note = findViewById(R.id.txt_note);
         txt_mno = findViewById(R.id.txt_mno);
+
+        // Define the blood groups array within the same class
+        String[] bloodGroups = new String[]{
+                "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"
+        };
+
+        // Create an ArrayAdapter using the blood groups array and a default layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_dropdown_item,
+                bloodGroups
+        );
+
+        // Set the adapter to the AutoCompleteTextView
+        txt_type.setAdapter(adapter);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

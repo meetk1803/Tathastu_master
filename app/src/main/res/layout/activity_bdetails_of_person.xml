@@ -47,28 +47,27 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/kanit_medium"
             android:text="Patient Details"
             android:textColor="@color/blood_donation"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_18sdp"
-            android:fontFamily="@font/kanit_medium"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:textSize="@dimen/_21sdp"/>
+            android:textSize="@dimen/_21sdp" />
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            app:cardCornerRadius="@dimen/_20sdp"
-            android:backgroundTint="@color/white"
-            app:cardElevation="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_10sdp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="@dimen/_5sdp"
             app:cardMaxElevation="@dimen/_8sdp"
             app:cardPreventCornerOverlap="false">
 
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/boarder"
@@ -80,14 +79,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:autoSizeMaxTextSize="@dimen/_15sdp"
+                    app:autoSizeMinTextSize="@dimen/_10sdp"
+                    app:autoSizeTextType="uniform"
                     android:drawableStart="@drawable/b_per1"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="start|center"
                     android:maxLines="2"
-                    android:text="Patel Jay Kishorbhai"
+                    android:text="Vrund D savani"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp"
                     app:drawableTint="@color/blood_donation"
@@ -99,8 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:drawableStart="@drawable/b_age"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/inter_semibold"
@@ -117,17 +117,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:drawableStart="@drawable/baseline_monitor_weight_24"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="start|center"
-                    android:text="62 Kg"
+                    android:text="65 kg"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp"
                     app:drawableTint="@color/blood_donation"
-                    tools:ignore="TextSizeCheck,TextContrastCheck" />
+                    tools:ignore="TextSizeCheck,TextContrastCheck"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/display_address"
@@ -135,57 +134,75 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:drawableStart="@drawable/round_location_on_24"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/b_location"
                     android:drawablePadding="@dimen/_10sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="start|center"
-                    android:maxLines="3"
-                    android:text="Westfall Hospital, Maxwell Street, Adajan, Surat "
+                    android:maxLines="4"
+                    android:text="Westfall Lawnns, Maxwell Street, Adajan, Surat "
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:textSize="@dimen/_13sdp"
+                    app:autoSizeMaxTextSize="@dimen/_13sdp"
+                    app:autoSizeMinTextSize="@dimen/_8sdp"
+                    app:autoSizeTextType="uniform"
                     app:drawableTint="@color/blood_donation"
                     tools:ignore="TextSizeCheck,TextContrastCheck" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/display_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:autoLink="phone"
+                android:drawableStart="@drawable/b_phone"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="start|center"
+                android:text="+919876509123"
+                android:textColor="@color/black"
+                android:textColorLink="@color/blood_donation"
+                android:textSize="@dimen/_13sdp"
+                app:drawableTint="@color/blood_donation"
+                tools:ignore="TextSizeCheck,TextContrastCheck"  />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="@string/requirements"
+                    android:textColor="@color/blood_donation"
+                    android:textSize="@dimen/_12sdp"
+                    tools:ignore="TextSizeCheck" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/display_note"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:drawableStart="@drawable/b_note"
-                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableStart="@drawable/baseline_more_vert_24"
                     android:fontFamily="@font/inter_semibold"
-                    android:gravity="start|center"
+                    android:gravity="start"
                     android:maxLines="7"
-                    android:text="I need 700ml of blood. Plese help me. B+ group blood is needed in the Westfall Hospital."
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
+                    android:text="I need 700 ml of blood.Please help me.B+ group blood is needed in the westfall Hospital"
+                    android:textColor="@color/blood_donation"
+                    android:textSize="@dimen/_13sdp"
+                    app:autoSizeMaxTextSize="@dimen/_13sdp"
+                    app:autoSizeMinTextSize="@dimen/_10sdp"
+                    app:autoSizeTextType="uniform"
                     app:drawableTint="@color/blood_donation"
                     tools:ignore="TextSizeCheck,TextContrastCheck" />
+            </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/display_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:drawableStart="@drawable/b_phone"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="start|center"
-                    android:textColorLink="@color/blood_donation"
-                    android:text="+919876509123"
-                    android:autoLink="phone"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
-                    app:drawableTint="@color/blood_donation"
-                    tools:ignore="TextSizeCheck,TextContrastCheck" />
 
                 <Button
                     android:id="@+id/BTN_call"
@@ -206,35 +223,38 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="* You can do blood donate only if you are 18 or above."
-            android:textColor="@color/blood_donation"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:lineSpacingExtra="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:textSize="@dimen/_12sdp"/>
+            android:text="* You can do blood donate only if you are 18 or above."
+            android:textColor="@color/blood_donation"
+            android:textSize="@dimen/_12sdp"
+            tools:ignore="TextSizeCheck" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:lineSpacingExtra="@dimen/_5sdp"
             android:text="* If you have cancer, diabetes, chest pain, high blood pressure or heart disease etc, you cannot donate blood."
             android:textColor="@color/blood_donation"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:textSize="@dimen/_12sdp"/>
+            android:textSize="@dimen/_12sdp"
+            tools:ignore="TextSizeCheck" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="* Even if you passed the donor selection, you must inform them about all your other physical and health conditions."
-            android:textColor="@color/blood_donation"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:lineSpacingExtra="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:textSize="@dimen/_12sdp"/>
+            android:text="* Even if you passed the donor selection, you must inform them about all your other physical and health conditions."
+            android:textColor="@color/blood_donation"
+            android:textSize="@dimen/_12sdp"
+            tools:ignore="TextSizeCheck" />
 
     </LinearLayout>
 

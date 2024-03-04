@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:text="NGOs' Details"
+            android:text="Give Feedback"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />

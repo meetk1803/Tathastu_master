@@ -34,9 +34,8 @@
             android:layout_width="@dimen/_270sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="top|left"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/kanit_medium"
-            android:lineSpacingExtra="@dimen/_5sdp"
             android:text="Edit Your Request"
             android:layout_marginStart="@dimen/_15sdp"
             android:textColor="@color/blood_donation"
@@ -46,7 +45,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:hint="Enter Full Name"
             app:boxStrokeColor="@color/blood_donation"
             app:boxStrokeErrorColor="@color/err_color"
@@ -55,9 +54,8 @@
             app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
             app:boxCornerRadiusTopEnd="@dimen/_15sdp"
             app:boxCornerRadiusTopStart="@dimen/_15sdp"
-            app:cursorErrorColor="@color/err_color"
+            android:textColorHint="#49454F"
             app:hintTextColor="@color/blood_donation"
-            app:prefixTextColor="@color/blood_donation"
             tools:ignore="HardcodedText">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -75,7 +73,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:hint="Enter Patient Age"
             app:boxStrokeColor="@color/blood_donation"
             app:boxStrokeErrorColor="@color/err_color"
@@ -87,6 +85,7 @@
             app:cursorErrorColor="@color/err_color"
             app:hintTextColor="@color/blood_donation"
             app:prefixTextColor="@color/blood_donation"
+            android:textColorHint="#49454F"
             tools:ignore="HardcodedText">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -104,7 +103,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:hint="Enter Patient Weight"
             app:boxStrokeColor="@color/blood_donation"
             app:boxStrokeErrorColor="@color/err_color"
@@ -116,6 +115,7 @@
             app:cursorErrorColor="@color/err_color"
             app:hintTextColor="@color/blood_donation"
             app:prefixTextColor="@color/blood_donation"
+            android:textColorHint="#49454F"
             tools:ignore="HardcodedText">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -133,7 +133,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:hint="Required Blood group"
             app:boxStrokeColor="@color/blood_donation"
             app:boxStrokeErrorColor="@color/err_color"
@@ -143,23 +143,58 @@
             app:boxCornerRadiusTopEnd="@dimen/_15sdp"
             app:boxCornerRadiusTopStart="@dimen/_15sdp"
             app:cursorErrorColor="@color/err_color"
+            app:boxBackgroundColor="@color/white"
+            app:endIconTint="@color/blood_donation"
             app:hintTextColor="@color/blood_donation"
+            tools:ignore="HardcodedText"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:hintEnabled="true"
+            android:textColorHint="#49454F"
+            app:expandedHintEnabled="true"
+            android:clickable="false">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/txt_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/black"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:inputType="none"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:hint="Enter Mobile no"
+            app:boxStrokeColor="@color/blood_donation"
+            app:boxStrokeErrorColor="@color/err_color"
+            app:cursorColor="@color/blood_donation"
+            app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_15sdp"
+            app:boxCornerRadiusTopStart="@dimen/_15sdp"
+            app:cursorErrorColor="@color/err_color"
+            app:hintTextColor="@color/blood_donation"
+            android:textColorHint="#49454F"
             app:prefixTextColor="@color/blood_donation"
             tools:ignore="HardcodedText">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_type"
+                android:id="@+id/txt_mno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
+                android:inputType="phone"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp"
                 android:textStyle="bold"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp">
@@ -167,10 +202,11 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/txt_getlocation"
                 android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="left"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_12sdp"
                 app:itemIconSize="@dimen/_100sdp"
+                android:tint="@color/blood_donation"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -180,7 +216,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 android:layout_width="281dp"
-                android:layout_height="97dp"
+                android:layout_height="wrap_content"
                 android:hint="Enter Address"
                 app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_15sdp"
@@ -191,6 +227,7 @@
                 app:cursorColor="@color/blood_donation"
                 app:cursorErrorColor="@color/err_color"
                 app:hintTextColor="@color/blood_donation"
+                android:textColorHint="#49454F"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -205,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:inputType="textMultiLine"
+                    android:inputType="textImeMultiLine"
                     android:lines="3"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp"
@@ -213,13 +250,13 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="@dimen/_250sdp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:hint="Enter Additional Detail"
+            android:hint="Enter Description"
             app:boxStrokeColor="@color/blood_donation"
             app:boxStrokeErrorColor="@color/err_color"
             app:cursorColor="@color/blood_donation"
@@ -228,6 +265,7 @@
             app:prefixTextColor="@color/blood_donation"
             tools:ignore="HardcodedText"
             app:boxCornerRadiusBottomStart="@dimen/_15sdp"
+            android:textColorHint="#49454F"
             app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
             app:boxCornerRadiusTopEnd="@dimen/_15sdp"
             app:boxCornerRadiusTopStart="@dimen/_15sdp">
@@ -245,34 +283,7 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="@dimen/_250sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:hint="Enter Mobile no"
-            app:boxStrokeColor="@color/blood_donation"
-            app:boxStrokeErrorColor="@color/err_color"
-            app:cursorColor="@color/blood_donation"
-            app:boxCornerRadiusBottomStart="@dimen/_15sdp"
-            app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
-            app:boxCornerRadiusTopEnd="@dimen/_15sdp"
-            app:boxCornerRadiusTopStart="@dimen/_15sdp"
-            app:cursorErrorColor="@color/err_color"
-            app:hintTextColor="@color/blood_donation"
-            app:prefixTextColor="@color/blood_donation"
-            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_mno"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:inputType="phone"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
 
 
         <Button

@@ -36,6 +36,15 @@ public class About_us_Screen extends AppCompatActivity implements ConnectivityRe
         FloatingActionButton BTN_about_twitter = findViewById(R.id.BTN_about_twitter);
         FloatingActionButton BTN_back = findViewById(R.id.BTN_back);
 
+
+        String source = getIntent().getStringExtra("source");
+        if("admin_about".equals(source)){
+            BTN_about_feedback.setVisibility(View.GONE);
+        }if("admin_contact".equals(source)){
+            BTN_about_feedback.setVisibility(View.GONE);
+        }
+
+
         //FEEDBACK
         BTN_about_feedback.setOnClickListener(new View.OnClickListener() {
             @Override

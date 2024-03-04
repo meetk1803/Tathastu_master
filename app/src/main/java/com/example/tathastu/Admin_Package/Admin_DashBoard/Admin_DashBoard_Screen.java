@@ -101,6 +101,7 @@ public class Admin_DashBoard_Screen extends AppCompatActivity implements Connect
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Admin_DashBoard_Screen.this, Contact_us_Screen.class);
+                i.putExtra("source","admin_contact");
                 startActivity(i);
             }
         });
@@ -110,6 +111,7 @@ public class Admin_DashBoard_Screen extends AppCompatActivity implements Connect
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Admin_DashBoard_Screen.this, About_us_Screen.class);
+                i.putExtra("source","admin_about");
                 startActivity(i);
             }
         });
