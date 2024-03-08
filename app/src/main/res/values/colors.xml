@@ -19,6 +19,7 @@
     <color name="textField_Color">#E5F1FF</color>
     <color name="blood_donation">#8a0303</color>
     <color name="food_donation">#DE970B</color>
+    <color name="edu_donation">#4A1F97</color>
 
     <array name="active">
         <item>@color/toolbar_BG</item>

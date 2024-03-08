@@ -149,7 +149,7 @@
                             android:layout_marginTop="@dimen/_50sdp"
                             android:backgroundTint="@color/toolbar_BG"
                             android:gravity="center"
-                            android:text="Login"
+                            android:text="Send OTP"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_17sdp"
                             app:shapeAppearanceOverlay="@style/Circular"

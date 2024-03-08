@@ -170,6 +170,31 @@
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtlayout_Signin_mno_optional_ngo"
+                            android:layout_width="@dimen/_250sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:hint="Enter Mobile No.(Optional)"
+                            app:boxStrokeColor="@color/toolbar_BG"
+                            app:boxStrokeErrorColor="@color/err_color"
+                            app:cursorColor="@color/black"
+                            app:cursorErrorColor="@color/err_color"
+                            app:hintTextColor="@color/toolbar_BG"
+                            app:prefixText="+91"
+                            app:prefixTextColor="@color/black"
+                            tools:ignore="HardcodedText">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txt_Signinmno_optional_ngo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:inputType="phone"
+                                android:maxLength="10"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_13sdp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_address_ngo"
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"

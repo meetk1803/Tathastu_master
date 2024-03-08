@@ -1,4 +1,4 @@
-package com.example.tathastu.NGO_Package.NGO_Food_Camp;
+package com.example.tathastu.NGO_Package.NGO_Blood_Camp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,27 +11,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.tathastu.NGO_Package.NGO_Food_Camp.Donor.NGO_food_user_request;
-import com.example.tathastu.NGO_Package.NGO_Food_Camp.History.NGO_food_camp_history;
-import com.example.tathastu.NGO_Package.NGO_Food_Camp.Request.NGO_food_camp_request;
+import com.example.tathastu.NGO_Package.NGO_Blood_Camp.History.NGO_blood_camp_history;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-public class NGO_FoodCamp_Selection extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
-    CardView BTN_food_req,BTN_food_history,BTN_food_user_request;
+public class NGO_BloodCamp_Selection extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+    CardView BTN_blood_req,BTN_blood_history;
     // INTERNET
     private ConnectivityReceiver connectivityReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ngo_food_camp_selection);
+        setContentView(R.layout.activity_ngo_blood_camp_selection);
 
-        BTN_food_req=findViewById(R.id.BTN_food_req);
-        BTN_food_history=findViewById(R.id.BTN_food_history);
-        BTN_food_user_request=findViewById(R.id.BTN_food_user_request);
+        BTN_blood_req=findViewById(R.id.BTN_blood_req);
+        BTN_blood_history=findViewById(R.id.BTN_blood_history);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -50,30 +47,23 @@ public class NGO_FoodCamp_Selection extends AppCompatActivity implements Connect
         });
 
         //PERSON REQUIREMENT
-        BTN_food_req.setOnClickListener(new View.OnClickListener() {
+        BTN_blood_req.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(NGO_FoodCamp_Selection.this, NGO_food_camp_request.class);
+                Intent i=new Intent(NGO_BloodCamp_Selection.this, NGO_blood_camp_request.class);
                 startActivity(i);
             }
         });
 
         //CAMP REQUIREMENT
-        BTN_food_history.setOnClickListener(new View.OnClickListener() {
+        BTN_blood_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(NGO_FoodCamp_Selection.this, NGO_food_camp_history.class);
+                Intent i=new Intent(NGO_BloodCamp_Selection.this, NGO_blood_camp_history.class);
                 startActivity(i);
             }
         });
-//CAMP REQUIREMENT
-        BTN_food_user_request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(NGO_FoodCamp_Selection.this, NGO_food_user_request.class);
-                startActivity(i);
-            }
-        });
+
     }
     //----------------------------------------------------------------------------------------------------
 

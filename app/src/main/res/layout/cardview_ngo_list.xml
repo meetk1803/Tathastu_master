@@ -306,6 +306,21 @@
                 app:autoSizeTextType="uniform"
                 app:drawableTint="@color/black"
                 tools:ignore="TextSizeCheck,TextContrastCheck,TouchTargetSizeCheck" />
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/BTN_user_donate"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:backgroundTint="@color/toolbar_BG"
+                android:elevation="0dp"
+                android:gravity="center"
+                android:text="Donate"
+                android:paddingVertical="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                app:shapeAppearanceOverlay="@style/Circular"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </LinearLayout>
 

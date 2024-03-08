@@ -378,7 +378,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/kanit_regular"
-                            android:text="Payment History"
+                            android:text="Collection History"
                             android:gravity="center"
                             android:lineHeight="@dimen/_15sdp"
                             android:textColor="@color/toolbar_BG_D"

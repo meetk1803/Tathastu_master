@@ -22,6 +22,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.tathastu.NGO_Package.NGO_Blood_Camp.NGO_BloodCamp_Selection;
+import com.example.tathastu.NGO_Package.NGO_Education_Camp.NGO_Educamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
 import com.example.tathastu.NGO_Package.NGO_Food_Camp.NGO_FoodCamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_History.NGO_History_Screen;
@@ -110,7 +112,15 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
         BTN_dash_blood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(NGO_Dashboard_Screen.this, Blood_Selection_Screen.class);
+                Intent i = new Intent(NGO_Dashboard_Screen.this, NGO_BloodCamp_Selection.class);
+                startActivity(i);
+            }
+        });
+ //FOR Education DONATION
+        BTN_dash_edu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NGO_Dashboard_Screen.this, NGO_Educamp_Selection.class);
                 startActivity(i);
             }
         });
@@ -157,6 +167,7 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(NGO_Dashboard_Screen.this, direct_contact_to_NGO.class);
+                i.putExtra("source", "ngoDashboard");
                 startActivity(i);
             }
         });

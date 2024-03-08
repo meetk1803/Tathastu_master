@@ -186,7 +186,7 @@
                             android:layout_marginBottom="@dimen/_20sdp"
                             android:backgroundTint="@color/toolbar_BG"
                             android:gravity="center"
-                            android:text="Verify OTP"
+                            android:text="Submit OTP"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_15sdp"
                             app:shapeAppearanceOverlay="@style/Circular"

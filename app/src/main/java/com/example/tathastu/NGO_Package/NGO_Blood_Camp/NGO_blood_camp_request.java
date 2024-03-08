@@ -1,4 +1,4 @@
-package com.example.tathastu.NGO_Package.NGO_Food_Camp;
+package com.example.tathastu.NGO_Package.NGO_Blood_Camp;
 
 import static com.example.tathastu.R.style.CustomDatePickerStyle;
 
@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.tathastu.NGO_Package.NGO_Blood_Camp.NGO_blood_camp_request;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,22 +30,17 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class NGO_food_camp_request extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,ConnectivityReceiver.ConnectivityReceiverListener {
-
+public class NGO_blood_camp_request extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, ConnectivityReceiver.ConnectivityReceiverListener {
     TextInputEditText edtName,edtstartdate,edtenddate,edtmno,edtemail,edtaddress,edtdesc;
     private SimpleDateFormat dateFormatter;
-    LinearLayout linear_layout_food;
+    LinearLayout linear_layout_blood;
     Button BTN_add;
     private DatePickerDialog datePickerDialog;
-
-
-
     private ConnectivityReceiver connectivityReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ngo_food_camp_request);
-
+        setContentView(R.layout.activity_ngo_blood_camp_request);
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         edtName = findViewById(R.id.txt_name);
         edtstartdate = findViewById(R.id.txt_start_date);
@@ -53,14 +49,14 @@ public class NGO_food_camp_request extends AppCompatActivity implements DatePick
         edtemail = findViewById(R.id.txt_email);
         edtaddress = findViewById(R.id.txt_location);
         edtdesc = findViewById(R.id.txt_note);
-        linear_layout_food = findViewById(R.id.linear_layout_food);
+        linear_layout_blood = findViewById(R.id.linear_layout_blood);
         BTN_add = findViewById(R.id.BTN_add); // replace 'your_button_id' with the actual ID
 
         datePickerDialog = new DatePickerDialog(this, R.style.CustomDatePickerStyle, this, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
         // Set up touch listener for the parent layout
-        linear_layout_food.setOnTouchListener(new View.OnTouchListener() {
+        linear_layout_blood.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // Clear focus from EditText when touched outside
@@ -73,7 +69,7 @@ public class NGO_food_camp_request extends AppCompatActivity implements DatePick
                 edtdesc.clearFocus();
 
 
-                hideSoftKeyboard(linear_layout_food);
+                hideSoftKeyboard(linear_layout_blood);
                 return false;
             }
         });
@@ -163,9 +159,9 @@ public class NGO_food_camp_request extends AppCompatActivity implements DatePick
         int dayOfMonth = newCalendar.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(
-                NGO_food_camp_request.this,
+                NGO_blood_camp_request.this,
                 CustomDatePickerStyle,
-                NGO_food_camp_request.this,
+                NGO_blood_camp_request.this,
                 year, month, dayOfMonth
         );
 

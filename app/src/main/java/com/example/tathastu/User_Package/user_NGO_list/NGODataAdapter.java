@@ -1,4 +1,6 @@
 package com.example.tathastu.User_Package.user_NGO_list;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,16 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHolder> {
-
+    private boolean showDonateButton = true;
     private Context context;
     private List<NGOData> dataList;
     private int expandedPosition = -1;
 
-    public NGODataAdapter(List<NGOData> dataList,Context context) {
+    public NGODataAdapter(List<NGOData> dataList, Context context) {
         this.context = context;
         this.dataList = dataList;
     }
@@ -34,6 +42,12 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cardview_ngo_list, parent, false);
         return new ViewHolder(view);
+    }
+
+    // Setter method for the flag
+    public void setShowDonateButton(boolean showDonateButton) {
+        this.showDonateButton = showDonateButton;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -51,14 +65,14 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         holder.txtNGOfacebook.setText(ngoData.getNgoFacebook());
         holder.txtNGOtwitter.setText(ngoData.getNgoTwitter());
         holder.txtNGOyoutube.setText(ngoData.getNgoYoutube());
-        // Set a click listener for the helpline name to handle expansion
-        holder.txtNgoName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                handleExpansion(holder, holder.getAdapterPosition());
-            }
-        });
 
+        holder.btnDonate.setVisibility(showDonateButton ? View.VISIBLE : View.GONE);
+
+        // Set a click listener for the helpline name to handle expansion
+        holder.txtNgoName.setOnClickListener(v -> handleExpansion(holder, holder.getAdapterPosition()));
+
+
+        holder.btnDonate.setOnClickListener(v -> initiateDonation(ngoData.getNgoName(), ngoData.getNgoMno(),ngoData.getNgoEmail()));
         // Handle expansion logic
         if (holder.getAdapterPosition() == expandedPosition) {
             // Show expanded details
@@ -71,6 +85,7 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
             // Set the down arrow drawable
             holder.txtNgoName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.round_keyboard_arrow_down_24, 0);
         }
+
     }
 
     private void handleExpansion(ViewHolder holder, int position) {
@@ -87,7 +102,6 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         }
     }
 
-
     @Override
     public int getItemCount() {
         return dataList.size();
@@ -95,7 +109,8 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtNgoName, txtNGOaddress, txtCategory, txtMobile, txtNGOwebsite, txtNGOemail, txtNGOinstagram, txtNGOlinkedin, txtNGOfacebook, txtNGOtwitter, txtNGOyoutube;
-        LinearLayout layout_NGO; // Add this line
+        LinearLayout layout_NGO;
+        ExtendedFloatingActionButton btnDonate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,22 +126,14 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
             txtNGOtwitter = itemView.findViewById(R.id.txt_NGO_twitter);
             txtNGOyoutube = itemView.findViewById(R.id.txt_NGO_youtube);
             layout_NGO = itemView.findViewById(R.id.layout_NGO);
+            btnDonate = itemView.findViewById(R.id.BTN_user_donate);
             Linkify.addLinks(txtNGOaddress, Linkify.MAP_ADDRESSES);
 
             // Set OnClickListener for the address TextView
-            txtNGOaddress.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Handle redirection to map or location here
-                    redirectToMap(txtNGOaddress.getText().toString());
-                }
-            });
+            txtNGOaddress.setOnClickListener(v -> redirectToMap(txtNGOaddress.getText().toString()));
         }
 
         private void redirectToMap(String address) {
-            // Implement your logic to open the map or location using the address
-            // You can use Intent to open a map application or a web link
-            // For example, using Google Maps
             Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(address));
             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
             mapIntent.setPackage("com.google.android.apps.maps");
@@ -142,5 +149,23 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         }
     }
 
+    private void initiateDonation(String ngoName, String mobileNumber,String email) {
+        Checkout checkout = new Checkout();
+        checkout.setKeyID("rzp_test_pQTWDiMbCO1e2Z"); // Replace with your actual Razorpay key
 
+        try {
+            JSONObject options = new JSONObject();
+            options.put("name", ngoName); // Replace with NGO name
+            options.put("description", "Donation for " + ngoName);
+            options.put("currency", "INR");
+            options.put("amount", "10000"); // Replace with the donation amount in paisa
+            options.put("prefill.contact", mobileNumber);
+            options.put("prefill.email", email);
+            options.put("theme.color", "#2e80df");
+            options.put("method", new JSONObject().put("upi", true));
+            checkout.open((Activity) context, options);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

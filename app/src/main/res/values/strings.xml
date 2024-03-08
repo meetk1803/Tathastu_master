@@ -85,11 +85,20 @@ We will not share your personal information with third parties without your cons
     <string name="see_details"><b><u>view more </u></b></string>
     <string name="see_less"><b><u>see less</u></b></string>
     <string name="title_activity_history_screen">History_Screen</string>
+
+
+    //blood
     <string name="blood_donation_one">You can donate blood only if you are 18 years old or above.</string>
     <string name="blood_donation_two">If you have conditions such as cancer, diabetes, chest pain, high blood pressure, or heart disease, you are not eligible to donate blood.</string>
     <string name="blood_donation_three">Even if you pass the donor selection, it is essential to inform about any other physical or health conditions you may have.</string>
+
+    //food
+    <string name="food_donation_one">Food donation eligibility requires individuals to be 18 years or older.</string>
+    <string name="food_donation_two">Please refrain from donating opened or expired food products for the well-being of recipients.</string>
+    <string name="food_donation_three">Due to dietary restrictions and allergies, we encourage donors to avoid items containing nuts or potential allergens.</string>
     <string name="description"><b><u>Description :</u></b></string>
     <string name="important"><b><u>Important :</u></b></string>
     <string name="requirements"><b><u>Requirements :</u></b></string>
+    <string name="food_details"><b><u>Food Details</u></b></string>
 
 </resources>

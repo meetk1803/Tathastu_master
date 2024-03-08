@@ -1,4 +1,4 @@
-package com.example.tathastu.User_Package.blood_section;
+package com.example.tathastu.NGO_Package.NGO_Blood_Camp.History;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,19 +12,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class B_Home_Screen_2 extends AppCompatActivity {
+public class NGO_blood_camp_history extends AppCompatActivity {
 
-    FloatingActionButton btn_back, btn_request;
+    FloatingActionButton btn_back;
     RecyclerView recyclerView;
-    adapter2 adapter2;
+    NGO_blood_camp_historyadapter adapter;
     ArrayList<String> item1, item2, item3, item4, item5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bhome_screen2);
-
+        setContentView(R.layout.activity_ngo_blood_camp_history);
         btn_back = findViewById(R.id.BTN_back);
-        recyclerView = findViewById(R.id.recycle_camp_requirements);
+        recyclerView = findViewById(R.id.recycle_blood_camp_history);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,10 +33,10 @@ public class B_Home_Screen_2 extends AppCompatActivity {
         });
 
         item1 = new ArrayList<>();
-        item1.add("Shree Vallabhipur Taluka Patidar Pragati Mandal");
-        item1.add("Jivan Jyot Trust");
-        item1.add("Smt P.J Koshiya Charitable Trust");
-        item1.add("Bruhad Dhandhuka Taluka Pragati Mandal");
+        item1.add("123Shree Vallabhipur Taluka Patidar Pragati Mandal");
+        item1.add("123Jivan Jyot Trust");
+        item1.add("123Smt P.J Koshiya Charitable Trust");
+        item1.add("123Bruhad Dhandhuka Taluka Pragati Mandal");
 
         item2 = new ArrayList<>();
         item2.add("21-03-2024");
@@ -58,14 +57,14 @@ public class B_Home_Screen_2 extends AppCompatActivity {
         item4.add("+67-434-8448");
 
         item5 = new ArrayList<>();
-        item5.add("KATARGAM");
-        item5.add("VARACHHA");
-        item5.add("UTRAN");
-        item5.add("ADAJAN");
+        item5.add("KATARGAM1");
+        item5.add("VARACHHA2");
+        item5.add("UTRAN3");
+        item5.add("ADAJAN4");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter2 = new adapter2(this,item1,item2,item3,item4,item5);
-        recyclerView.setAdapter(adapter2);
+        adapter = new NGO_blood_camp_historyadapter(this,item1,item2,item3,item4,item5);
+        recyclerView.setAdapter(adapter);
 
     }
 }

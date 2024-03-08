@@ -225,41 +225,97 @@
 
         </androidx.cardview.widget.CardView>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:text="* You can do blood donate only if you are 18 or above."
-            android:textColor="@color/blood_donation"
-            android:textSize="@dimen/_12sdp"
-            tools:ignore="TextSizeCheck" />
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:orientation="vertical">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:text="* If you have cancer, diabetes, chest pain, high blood pressure or heart disease etc, you cannot donate blood."
-            android:textColor="@color/blood_donation"
-            android:textSize="@dimen/_12sdp"
-            tools:ignore="TextSizeCheck" />
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="start|center"
+                android:text="@string/important"
+                android:textColor="@color/blood_donation"
+                android:textSize="@dimen/_12sdp"
+                tools:ignore="TextSizeCheck" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:text="* Even if you passed the donor selection, you must inform them about all your other physical and health conditions."
-            android:textColor="@color/blood_donation"
-            android:textSize="@dimen/_12sdp"
-            tools:ignore="TextSizeCheck" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/round_keyboard_arrow_right_24"
+                    android:drawableTint="@color/blood_donation" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="start|center"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:text="@string/blood_donation_one"
+                    android:textColor="@color/blood_donation"
+                    android:textSize="@dimen/_11sdp"
+                    tools:ignore="TextSizeCheck" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/round_keyboard_arrow_right_24"
+                    android:drawableTint="@color/blood_donation" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="start|center"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:text="@string/blood_donation_two"
+                    android:textColor="@color/blood_donation"
+                    android:textSize="@dimen/_11sdp"
+                    tools:ignore="TextSizeCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/round_keyboard_arrow_right_24"
+                    android:drawableTint="@color/blood_donation" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:gravity="start|center"
+                    android:lineSpacingExtra="@dimen/_3sdp"
+                    android:text="@string/blood_donation_three"
+                    android:textColor="@color/blood_donation"
+                    android:textSize="@dimen/_11sdp"
+                    tools:ignore="TextSizeCheck" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -218,7 +218,7 @@
                             android:layout_width="@dimen/_250sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
-                            android:hint="Date of Birth"
+                            android:hint="Enter Address"
                             app:boxStrokeColor="@color/toolbar_BG"
                             app:boxStrokeErrorColor="@color/err_color"
                             app:cursorColor="@color/black"
@@ -234,9 +234,6 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textMultiLine"
-                                android:focusableInTouchMode="true"
-                                android:cursorVisible="false"
-                                android:focusable="false"
                                 android:text="1234 Elm Street,Citytown, State 56789,"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
     tools:ignore="SpeakableTextPresentCheck"
-    tools:context=".NGO_Package.NGO_Food_Camp.Request.NGO_food_camp_request">
-
+    tools:context=".NGO_Package.NGO_Blood_Camp.NGO_blood_camp_request">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linear_layout_food"
+            android:id="@+id/linear_layout_blood"
             android:orientation="vertical"
             android:gravity="center"
             android:padding="16dp">
@@ -27,7 +25,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="start"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:backgroundTint="@color/food_donation"
+                android:backgroundTint="@color/blood_donation"
                 android:src="@drawable/round_arrow_back_24"
                 app:fabCustomSize="@dimen/_30sdp"
                 app:fabSize="mini"
@@ -43,7 +41,7 @@
                 android:fontFamily="@font/kanit_medium"
                 android:text="Add Request"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:textColor="@color/food_donation"
+                android:textColor="@color/blood_donation"
                 android:textSize="@dimen/_20sdp" />
 
 
@@ -59,15 +57,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="Enter NGO Name"
-                    app:boxStrokeColor="@color/food_donation"
+                    app:boxStrokeColor="@color/blood_donation"
                     app:boxStrokeErrorColor="@color/err_color"
-                    app:cursorColor="@color/food_donation"
+                    app:cursorColor="@color/blood_donation"
                     app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                     app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopStart="@dimen/_15sdp"
                     android:textColorHint="#49454F"
-                    app:hintTextColor="@color/food_donation"
+                    app:hintTextColor="@color/blood_donation"
                     tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -95,14 +93,14 @@
                         android:layout_weight="2"
                         android:layout_height="wrap_content"
                         android:hint="Start date"
-                        app:boxStrokeColor="@color/food_donation"
-                        app:cursorColor="@color/food_donation"
+                        app:boxStrokeColor="@color/blood_donation"
+                        app:cursorColor="@color/blood_donation"
                         app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                         app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                         android:textColorHint="#49454F"
                         app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                         app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                        app:hintTextColor="@color/food_donation"
+                        app:hintTextColor="@color/blood_donation"
                         tools:ignore="HardcodedText">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -125,7 +123,7 @@
                         android:text="To"
                         android:textStyle="bold"
                         android:fontFamily="@font/inter_medium"
-                        android:textColor="@color/food_donation"
+                        android:textColor="@color/blood_donation"
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -136,13 +134,13 @@
                         android:layout_height="wrap_content"
                         android:hint="End date"
                         android:textColorHint="#49454F"
-                        app:boxStrokeColor="@color/food_donation"
-                        app:cursorColor="@color/food_donation"
+                        app:boxStrokeColor="@color/blood_donation"
+                        app:cursorColor="@color/blood_donation"
                         app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                         app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                         app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                         app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                        app:hintTextColor="@color/food_donation"
+                        app:hintTextColor="@color/blood_donation"
                         tools:ignore="HardcodedText">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -168,17 +166,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="Enter Mobile No."
-                    app:boxStrokeColor="@color/food_donation"
+                    app:boxStrokeColor="@color/blood_donation"
                     app:boxStrokeErrorColor="@color/err_color"
-                    app:cursorColor="@color/food_donation"
+                    app:cursorColor="@color/blood_donation"
                     app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                     app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopStart="@dimen/_15sdp"
                     app:cursorErrorColor="@color/err_color"
-                    app:hintTextColor="@color/food_donation"
+                    app:hintTextColor="@color/blood_donation"
                     android:textColorHint="#49454F"
-                    app:prefixTextColor="@color/food_donation"
+                    app:prefixTextColor="@color/blood_donation"
                     tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -197,17 +195,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="Enter Mobile No.(Optional)"
-                    app:boxStrokeColor="@color/food_donation"
+                    app:boxStrokeColor="@color/blood_donation"
                     app:boxStrokeErrorColor="@color/err_color"
-                    app:cursorColor="@color/food_donation"
+                    app:cursorColor="@color/blood_donation"
                     app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                     app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopStart="@dimen/_15sdp"
                     app:cursorErrorColor="@color/err_color"
-                    app:hintTextColor="@color/food_donation"
+                    app:hintTextColor="@color/blood_donation"
                     android:textColorHint="#49454F"
-                    app:prefixTextColor="@color/food_donation"
+                    app:prefixTextColor="@color/blood_donation"
                     tools:ignore="HardcodedText">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -227,14 +225,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="Enter Email"
-                    app:boxStrokeColor="@color/food_donation"
-                    app:cursorColor="@color/food_donation"
+                    app:boxStrokeColor="@color/blood_donation"
+                    app:cursorColor="@color/blood_donation"
                     app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                     app:boxCornerRadiusBottomEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                    app:hintTextColor="@color/food_donation"
-                    app:prefixTextColor="@color/food_donation"
+                    app:hintTextColor="@color/blood_donation"
+                    app:prefixTextColor="@color/blood_donation"
                     android:textColorHint="#49454F"
                     tools:ignore="HardcodedText">
 
@@ -264,7 +262,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_12sdp"
                         app:itemIconSize="@dimen/_100sdp"
-                        android:tint="@color/food_donation"
+                        android:tint="@color/blood_donation"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -280,9 +278,9 @@
                         app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                         app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                         app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                        app:boxStrokeColor="@color/food_donation"
-                        app:cursorColor="@color/food_donation"
-                        app:hintTextColor="@color/food_donation"
+                        app:boxStrokeColor="@color/blood_donation"
+                        app:cursorColor="@color/blood_donation"
+                        app:hintTextColor="@color/blood_donation"
                         android:textColorHint="#49454F"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -313,10 +311,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="Enter Description"
-                    app:boxStrokeColor="@color/food_donation"
-                    app:cursorColor="@color/food_donation"
-                    app:hintTextColor="@color/food_donation"
-                    app:prefixTextColor="@color/food_donation"
+                    app:boxStrokeColor="@color/blood_donation"
+                    app:cursorColor="@color/blood_donation"
+                    app:hintTextColor="@color/blood_donation"
+                    app:prefixTextColor="@color/blood_donation"
                     tools:ignore="HardcodedText"
                     app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                     android:textColorHint="#49454F"
@@ -349,10 +347,8 @@
                 android:text="ADD"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/food_donation"
+                android:backgroundTint="@color/blood_donation"
                 android:layout_marginTop="@dimen/_25sdp"/>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
-
-
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,7 @@ import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.razorpay.PaymentResultListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class direct_contact_to_NGO extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class direct_contact_to_NGO extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener, PaymentResultListener {
 
 
     private RecyclerView recyclerView;
@@ -70,6 +71,16 @@ public class direct_contact_to_NGO extends AppCompatActivity implements Connecti
 
         fetchJsonData("All");
 
+
+        // Check if it's triggered from the NGO dashboard
+        if ("ngoDashboard".equals(getIntent().getStringExtra("source"))) {
+            // Hide donate button
+            adapter.setShowDonateButton(false);
+        } else {
+            // Show donate button (default behavior for user)
+            adapter.setShowDonateButton(true);
+        }
+
         dropcat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -100,6 +111,18 @@ public class direct_contact_to_NGO extends AppCompatActivity implements Connecti
     }
 
     //----------------------------------------------------------------------
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        // Handle payment success
+        showToast("Payment Successful");
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        // Handle payment failure
+        showToast("Payment Failed: " + s);
+    }
 
 
     void fetchJsonData(String cat){
