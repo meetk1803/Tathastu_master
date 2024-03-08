@@ -22,14 +22,15 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class Food_Selection_Screen extends AppCompatActivity  implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_selection_screen);
-        CardView BTN_food_request=findViewById(R.id.BTN_food_request);
-        CardView BTN_food_camp=findViewById(R.id.BTN_food_camp);
-        CardView BTN_food_request_history=findViewById(R.id.BTN_food_request_history);
-        CardView BTN_other_food_donors=findViewById(R.id.BTN_other_food_donors);
+        CardView BTN_food_request = findViewById(R.id.BTN_food_request);
+        CardView BTN_food_camp = findViewById(R.id.BTN_food_camp);
+        CardView BTN_food_request_history = findViewById(R.id.BTN_food_request_history);
+        CardView BTN_other_food_donors = findViewById(R.id.BTN_other_food_donors);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -38,7 +39,7 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        FloatingActionButton BTN_back = findViewById(R.id.BTN_back);
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +52,7 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
         BTN_food_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Food_Selection_Screen.this, Food_User_Request.class);
+                Intent i = new Intent(Food_Selection_Screen.this, Food_User_Request.class);
                 startActivity(i);
             }
         });
@@ -60,7 +61,7 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
         BTN_food_camp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Food_Selection_Screen.this, Food_Donation_Camp.class);
+                Intent i = new Intent(Food_Selection_Screen.this, Food_Donation_Camp.class);
                 startActivity(i);
             }
         });
@@ -68,7 +69,7 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
         BTN_food_request_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Food_Selection_Screen.this, Food_user_History.class);
+                Intent i = new Intent(Food_Selection_Screen.this, Food_user_History.class);
                 startActivity(i);
             }
         });
@@ -76,7 +77,7 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
         BTN_other_food_donors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Food_Selection_Screen.this, Food_user_all_donors.class);
+                Intent i = new Intent(Food_Selection_Screen.this, Food_user_all_donors.class);
                 startActivity(i);
             }
         });
@@ -127,4 +128,4 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
             showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
         }
     }
-    }
+}

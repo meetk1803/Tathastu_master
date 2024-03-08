@@ -135,6 +135,15 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
             }
         });
 
+        //FOR Education DONATION
+        BTN_dash_edu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard_Screen.this, Education_Selection_Screen.class);
+                startActivity(i);
+            }
+        });
+
 
         //FOR CONTACT US>>>
         BTN_dash_contactus.setOnClickListener(new View.OnClickListener() {

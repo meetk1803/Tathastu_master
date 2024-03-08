@@ -14,18 +14,27 @@ import android.widget.TextView;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen;
 import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen_2;
+import com.example.tathastu.User_Package.Education_Section.Edu_User_Request;
+import com.example.tathastu.User_Package.Education_Section.History.Edu_user_History;
+import com.example.tathastu.User_Package.Food_Section.All_Donors.Food_user_all_donors;
+import com.example.tathastu.User_Package.Food_Section.Camp.Food_Donation_Camp;
+import com.example.tathastu.User_Package.Food_Section.Food_User_Request;
+import com.example.tathastu.User_Package.Food_Section.History.Food_user_History;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class Education_Selection_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education_selection_screen);
-        CardView BTN_food_person=findViewById(R.id.BTN_edu_person);
-        CardView BTN_food_camp=findViewById(R.id.BTN_edu_camp);
+        CardView BTN_edu_request = findViewById(R.id.BTN_edu_request);
+        CardView BTN_edu_camp = findViewById(R.id.BTN_edu_camp);
+        CardView BTN_edu_request_history = findViewById(R.id.BTN_edu_request_history);
+        CardView BTN_other_edu_donors = findViewById(R.id.BTN_other_edu_donors);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -34,7 +43,7 @@ public class Education_Selection_Screen extends AppCompatActivity implements Con
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        FloatingActionButton BTN_back = findViewById(R.id.BTN_edu_back);
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,20 +52,36 @@ public class Education_Selection_Screen extends AppCompatActivity implements Con
             }
         });
 
-        //PERSON REQUIREMENT
-        BTN_food_person.setOnClickListener(new View.OnClickListener() {
+        //Request
+        BTN_edu_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Education_Selection_Screen.this, B_Home_Screen.class);
+                Intent i = new Intent(Education_Selection_Screen.this, Edu_User_Request.class);
                 startActivity(i);
             }
         });
 
-        //CAMP REQUIREMENT
-        BTN_food_camp.setOnClickListener(new View.OnClickListener() {
+        //CAMP
+        BTN_edu_camp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Education_Selection_Screen.this, B_Home_Screen_2.class);
+                Intent i = new Intent(Education_Selection_Screen.this, Food_Donation_Camp.class);
+                startActivity(i);
+            }
+        });
+        //History
+        BTN_edu_request_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Education_Selection_Screen.this, Edu_user_History.class);
+                startActivity(i);
+            }
+        });
+//All DOnors
+        BTN_other_edu_donors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Education_Selection_Screen.this, Food_user_all_donors.class);
                 startActivity(i);
             }
         });

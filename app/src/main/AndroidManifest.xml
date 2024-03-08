@@ -35,6 +35,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
+        <activity android:name=".User_Package.Education_Section.History.Edu_user_history_edit_request"
+            android:exported="true"/>
+        <activity android:name=".User_Package.Education_Section.History.Edu_user_History"
+            android:exported="true"/>
+        <activity
+            android:name=".User_Package.Education_Section.Edu_User_Request"
+            android:exported="false" />
         <activity
             android:name=".User_Package.Food_Section.All_Donors.Food_user_allDonors_indetails"
             android:exported="false" />
