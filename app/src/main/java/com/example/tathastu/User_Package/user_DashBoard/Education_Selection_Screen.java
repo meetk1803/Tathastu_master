@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen;
 import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen_2;
+import com.example.tathastu.User_Package.Education_Section.All_Donors.Edu_user_all_donors;
 import com.example.tathastu.User_Package.Education_Section.Camp.Edu_Donation_Camp;
 import com.example.tathastu.User_Package.Education_Section.Edu_User_Request;
 import com.example.tathastu.User_Package.Education_Section.History.Edu_user_History;
@@ -82,7 +83,7 @@ public class Education_Selection_Screen extends AppCompatActivity implements Con
         BTN_other_edu_donors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Education_Selection_Screen.this, Food_user_all_donors.class);
+                Intent i = new Intent(Education_Selection_Screen.this, Edu_user_all_donors.class);
                 startActivity(i);
             }
         });
