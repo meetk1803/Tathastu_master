@@ -35,6 +35,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
+        <activity android:name=".User_Package.Education_Section.Camp.Edu_Donation_Camp"
+            android:exported="true"/>
+        <activity android:name=".User_Package.Education_Section.Camp.Edu_Camp_Indetails"
+            android:exported="true"/>
         <activity android:name=".User_Package.Education_Section.History.Edu_user_history_edit_request"
             android:exported="true"/>
         <activity android:name=".User_Package.Education_Section.History.Edu_user_History"
