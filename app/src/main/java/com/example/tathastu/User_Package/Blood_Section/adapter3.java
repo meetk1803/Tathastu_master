@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -13,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -109,22 +111,32 @@ public class adapter3 extends RecyclerView.Adapter<adapter3.ViewHolder> {
 
                 private void showDeleteConfirmationDialog() {
                     AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                    builder.setMessage("Are you sure you want to delete?")
-                            .setTitle("Delete Item")
-                            .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // Perform delete operation here
-                                    // For example, you can delete the item from your database or perform any other action
-                                    dialog.dismiss(); // Dismiss the dialog
-                                }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // User cancelled the dialog
-                                    dialog.dismiss(); // Dismiss the dialog
-                                }
-                            });
-                    AlertDialog dialog = builder.create();
+                    View dialogView = LayoutInflater.from(itemView.getContext()).inflate(R.layout.custom_delete_dialog, null);
+                    builder.setView(dialogView);
+
+                    ExtendedFloatingActionButton btnExitYes = dialogView.findViewById(R.id.BTN_exit_yes);
+                    ExtendedFloatingActionButton btnExitNo = dialogView.findViewById(R.id.BTN_exit_no);
+
+
+                    final AlertDialog dialog = builder.create();
+
+                    btnExitYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(layoutInflater.getContext(), "Delete clicked", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnExitNo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Handle 'No' button click
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.setCancelable(false); // Prevent dismiss on outside touch
                     dialog.show();
                 }
             });

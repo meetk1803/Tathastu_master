@@ -1,4 +1,4 @@
-package com.example.tathastu.NGO_Package.NGO_Food_Camp.Donor;
+package com.example.tathastu.User_Package.Food_Section.All_Donors;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,17 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tathastu.NGO_Package.NGO_Food_Camp.History.NGO_food_camp_history;
-import com.example.tathastu.NGO_Package.NGO_Food_Camp.History.NGO_food_camp_history_indetails;
+import com.example.tathastu.NGO_Package.NGO_Food_Camp.Donor.NGO_food_user_request_inDetails;
 import com.example.tathastu.R;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -24,12 +20,12 @@ import java.util.List;
 
 
 // Home screen/Home screen2 - camp card
-public class NGO_food_donorAdapter extends RecyclerView.Adapter<NGO_food_donorAdapter.ViewHolder> {
+public class Food_user_alldonorAdapter extends RecyclerView.Adapter<Food_user_alldonorAdapter.ViewHolder> {
     private LayoutInflater layoutInflater;
     private List<String> name, number, email, loc, note;
 
 
-    NGO_food_donorAdapter(NGO_food_user_request context, ArrayList<String> name, ArrayList<String> number, ArrayList<String> email, ArrayList<String> loc, ArrayList<String> note) {
+    Food_user_alldonorAdapter(Food_user_all_donors context, ArrayList<String> name, ArrayList<String> number, ArrayList<String> email, ArrayList<String> loc, ArrayList<String> note) {
         this.layoutInflater = LayoutInflater.from(context);
         this.name = name;
         this.number = number;
@@ -62,6 +58,7 @@ public class NGO_food_donorAdapter extends RecyclerView.Adapter<NGO_food_donorAd
         String title5 = note.get(i);
         viewHolder.textnote.setText(title5);
 
+        viewHolder.BTN_food_donor_delete.setVisibility(View.GONE);
         // similarly you can set new image for each card and descriptions
 
     }
@@ -75,7 +72,8 @@ public class NGO_food_donorAdapter extends RecyclerView.Adapter<NGO_food_donorAd
 
         CardView cardView;
         TextView textname,textnumber,textloc,textnote;
-        FloatingActionButton BTN_delete;
+        FloatingActionButton BTN_food_donor_delete;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -84,54 +82,14 @@ public class NGO_food_donorAdapter extends RecyclerView.Adapter<NGO_food_donorAd
             textnumber = itemView.findViewById(R.id.txt_food_donor_mno);
             textloc = itemView.findViewById(R.id.txt_food_donor_location);
             textnote = itemView.findViewById(R.id.txt_food_donor_fooddetails);
-            BTN_delete = itemView.findViewById(R.id.BTN_food_donor_delete);
+            BTN_food_donor_delete=itemView.findViewById(R.id.BTN_food_donor_delete);
             itemView.setOnClickListener(this);
-
-            BTN_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showDeleteConfirmationDialog();
-
-                }
-
-                // Show exit confirmation dialog
-                private void showDeleteConfirmationDialog() {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-                    View dialogView = LayoutInflater.from(itemView.getContext()).inflate(R.layout.custom_delete_dialog, null);
-                    builder.setView(dialogView);
-
-                    ExtendedFloatingActionButton btnExitYes = dialogView.findViewById(R.id.BTN_exit_yes);
-                    ExtendedFloatingActionButton btnExitNo = dialogView.findViewById(R.id.BTN_exit_no);
-
-
-                    final AlertDialog dialog = builder.create();
-
-                    btnExitYes.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(layoutInflater.getContext(), "Delete clicked", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        }
-                    });
-
-                    btnExitNo.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            // Handle 'No' button click
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialog.setCancelable(false); // Prevent dismiss on outside touch
-                    dialog.show();
-                }
-            });
         }
 
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            Intent i = new Intent(view.getContext(), NGO_food_user_request_inDetails.class);
+            Intent i = new Intent(view.getContext(), Food_user_allDonors_indetails.class);
             i.putExtra("name", name.get(getAdapterPosition()));
             i.putExtra("number", number.get(getAdapterPosition()));
             i.putExtra("email", email.get(getAdapterPosition()));

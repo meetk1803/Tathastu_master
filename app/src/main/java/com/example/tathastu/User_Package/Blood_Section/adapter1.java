@@ -11,6 +11,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.Blood_Section.B_Details_of_person;
+import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +90,7 @@ public class adapter1 extends RecyclerView.Adapter<adapter1.ViewHolder> {
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            Intent i = new Intent(view.getContext(),B_Details_of_person.class);
+            Intent i = new Intent(view.getContext(), B_Details_of_person.class);
             i.putExtra("title", name.get(getAdapterPosition()));
             i.putExtra("age", age.get(getAdapterPosition()));
             i.putExtra("mno", mno.get(getAdapterPosition()));

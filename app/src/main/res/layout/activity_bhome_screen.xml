@@ -151,15 +151,17 @@
                             android:text="Blood Requirement Request :"
                             android:textSize="@dimen/_16sdp"
                             android:textColor="@color/blood_donation" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_18sdp"
-                            android:fontFamily="@font/inter_regular"
                             android:layout_marginEnd="@dimen/_10sdp"
+                            android:fontFamily="@font/inter_regular"
                             android:text="This is the list of individuals who actually require blood. If you want to donate, you can contact them directly, "
+                            android:textColor="@color/blood_donation"
                             android:textSize="@dimen/_10sdp"
-                            android:textColor="@color/blood_donation" />
+                            tools:ignore="TextSizeCheck" />
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_1sdp"

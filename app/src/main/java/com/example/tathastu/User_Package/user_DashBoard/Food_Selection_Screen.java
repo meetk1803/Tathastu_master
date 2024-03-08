@@ -12,8 +12,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen;
-import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen_2;
+import com.example.tathastu.User_Package.Food_Section.All_Donors.Food_user_all_donors;
+import com.example.tathastu.User_Package.Food_Section.Camp.Food_Donation_Camp;
+import com.example.tathastu.User_Package.Food_Section.Food_User_Request;
+import com.example.tathastu.User_Package.Food_Section.History.Food_user_History;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,8 +26,10 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_selection_screen);
-        CardView BTN_food_person=findViewById(R.id.BTN_food_person);
+        CardView BTN_food_request=findViewById(R.id.BTN_food_request);
         CardView BTN_food_camp=findViewById(R.id.BTN_food_camp);
+        CardView BTN_food_request_history=findViewById(R.id.BTN_food_request_history);
+        CardView BTN_other_food_donors=findViewById(R.id.BTN_other_food_donors);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -43,20 +47,36 @@ public class Food_Selection_Screen extends AppCompatActivity  implements Connect
             }
         });
 
-        //PERSON REQUIREMENT
-        BTN_food_person.setOnClickListener(new View.OnClickListener() {
+        //Request
+        BTN_food_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Food_Selection_Screen.this, B_Home_Screen.class);
+                Intent i=new Intent(Food_Selection_Screen.this, Food_User_Request.class);
                 startActivity(i);
             }
         });
 
-        //CAMP REQUIREMENT
+        //CAMP
         BTN_food_camp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(Food_Selection_Screen.this, B_Home_Screen_2.class);
+                Intent i=new Intent(Food_Selection_Screen.this, Food_Donation_Camp.class);
+                startActivity(i);
+            }
+        });
+        //History
+        BTN_food_request_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Food_Selection_Screen.this, Food_user_History.class);
+                startActivity(i);
+            }
+        });
+//All DOnors
+        BTN_other_food_donors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Food_Selection_Screen.this, Food_user_all_donors.class);
                 startActivity(i);
             }
         });

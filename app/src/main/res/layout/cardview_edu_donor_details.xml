@@ -26,6 +26,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txt_edu_donor_name"
             android:layout_width="match_parent"
+            android:drawableEnd="@drawable/round_keyboard_arrow_right_24"
+            android:drawableTint="@color/edu_donation"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="3"

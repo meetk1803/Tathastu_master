@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.Admin_Package.Admin_user.Person_User_Data.Admin_Person_Details;
 import com.example.tathastu.R;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.List;
 
@@ -80,12 +82,41 @@ public class Admin_User_DataAdapter extends RecyclerView.Adapter<Admin_User_Data
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle click, e.g., delete the item
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        deleteItem(position);
-                    }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+                    View dialogView = LayoutInflater.from(itemView.getContext()).inflate(R.layout.custom_delete_dialog, null);
+                    builder.setView(dialogView);
+
+                    ExtendedFloatingActionButton btnExitYes = dialogView.findViewById(R.id.BTN_exit_yes);
+                    ExtendedFloatingActionButton btnExitNo = dialogView.findViewById(R.id.BTN_exit_no);
+
+
+                    final AlertDialog dialog = builder.create();
+
+                    btnExitYes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Handle click, e.g., delete the item
+                            int position = getAdapterPosition();
+                            if (position != RecyclerView.NO_POSITION) {
+                                deleteItem(position);
+                            }
+                            dialog.dismiss();
+                        }
+                    });
+
+                    btnExitNo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Handle 'No' button click
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.setCancelable(false); // Prevent dismiss on outside touch
+                    dialog.show();
                 }
+
+
             });
         }
     }
@@ -94,4 +125,5 @@ public class Admin_User_DataAdapter extends RecyclerView.Adapter<Admin_User_Data
         userDataModelList.remove(position);
         notifyItemRemoved(position);
     }
+
 }

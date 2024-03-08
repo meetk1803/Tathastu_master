@@ -41,6 +41,8 @@
                 android:fontFamily="@font/inter_semibold"
                 android:gravity="start"
                 android:maxLines="2"
+                android:drawableEnd="@drawable/round_keyboard_arrow_right_24"
+                android:drawableTint="@color/edu_donation"
                 android:text="Shree Vallabhipur Talika Patidar Pragati Mandal"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
@@ -159,40 +161,19 @@
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
 
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:orientation="vertical"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_weight="0">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/BTN_edit"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:backgroundTint="@color/edu_donation"
-                android:src="@drawable/b_edit"
-                android:visibility="gone"
-                app:fabCustomSize="@dimen/_30sdp"
-                app:fabSize="mini"
-                app:tint="@color/white"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/BTN_delete"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:backgroundTint="@color/edu_donation"
-                android:src="@drawable/b_delete"
-                app:fabCustomSize="@dimen/_30sdp"
-                app:fabSize="mini"
-                app:tint="@color/white"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-        </LinearLayout>
     </LinearLayout>
 
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/BTN_delete"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:backgroundTint="@color/edu_donation"
+        android:src="@drawable/b_delete"
+        app:fabCustomSize="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_gravity="end|bottom"
+        app:fabSize="mini"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 </androidx.cardview.widget.CardView>
