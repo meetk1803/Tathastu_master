@@ -15,13 +15,25 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
             android:text="Register"
             android:textColor="@color/white"
             android:textSize="@dimen/_30sdp" />
-
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/BTN_back"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="start"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:backgroundTint="@color/status_color"
+            android:src="@drawable/round_arrow_back_24"
+            app:fabCustomSize="@dimen/_30sdp"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,25 +47,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/BTN_back"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_gravity="start"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:backgroundTint="@color/status_color"
-                    android:src="@drawable/round_arrow_back_24"
-                    app:fabCustomSize="@dimen/_30sdp"
-                    app:fabSize="mini"
-                    app:tint="@color/white"
-                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_60sdp">
+                    android:layout_marginTop="@dimen/_95sdp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:layout_width="match_parent"
@@ -66,7 +66,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_20sdp"
-
                         android:layout_marginBottom="@dimen/_50sdp"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -97,7 +96,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_fname"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_20sdp"
                             android:hint="Enter First Name"
@@ -121,7 +120,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_lname"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Last Name"
@@ -145,7 +144,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_dob"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Bithdate"
@@ -173,7 +172,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_email"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Email"
@@ -197,7 +196,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_mno"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Mobile No."
@@ -224,7 +223,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_pwd"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Password"
@@ -251,7 +250,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_Signin_cpwd"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_280sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:hint="Enter Confirm Password"

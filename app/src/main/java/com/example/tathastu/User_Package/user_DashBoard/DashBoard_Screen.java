@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.blood_section.B_Home_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
@@ -95,7 +94,6 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 
         BTN_dash_food = findViewById(R.id.BTN_dash_food);
         BTN_dash_blood = findViewById(R.id.BTN_dash_blood);
-        BTN_dash_cloth = findViewById(R.id.BTN_dash_cloth);
         BTN_dash_edu = findViewById(R.id.BTN_dash_edu);
         BTN_dash_aboutus = findViewById(R.id.BTN_dash_aboutus);
         BTN_dash_contactus = findViewById(R.id.BTN_dash_contactus);
@@ -120,6 +118,14 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
+        //FOR BLOOD DONATION
+        BTN_dash_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard_Screen.this, Food_Selection_Screen.class);
+                startActivity(i);
+            }
+        });
         //FOR BLOOD DONATION
         BTN_dash_blood.setOnClickListener(new View.OnClickListener() {
             @Override

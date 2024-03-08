@@ -1,33 +1,33 @@
-package com.example.tathastu.User_Package.blood_section;
+package com.example.tathastu.User_Package.Blood_Section;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
 
-public class O_Edit_detail_page extends AppCompatActivity {
+public class O_add_details extends AppCompatActivity {
 
     FloatingActionButton btn_back;
-    TextInputEditText txt_name1,txt_sdate,txt_edate,txt_location,txt_note,txt_mno;
-    Button btn_save;
+    TextView txt_name,txt_sdate,txt_edate,txt_location,txt_note,txt_mno;
+    Button btn_submit;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oedit_detail_page);
+        setContentView(R.layout.activity_oadd_details);
 
         btn_back = findViewById(R.id.BTN_back);
-        btn_save = findViewById(R.id.BTN_add);
-        txt_name1 = findViewById(R.id.txt_name);
+        btn_submit = findViewById(R.id.BTN_add);
+        txt_name = findViewById(R.id.txt_name);
         txt_sdate = findViewById(R.id.txt_sdate);
         txt_edate = findViewById(R.id.txt_edate);
         txt_location = findViewById(R.id.txt_location);
@@ -41,23 +41,13 @@ public class O_Edit_detail_page extends AppCompatActivity {
             }
         });
 
-        btn_save.setOnClickListener(new View.OnClickListener() {
+        btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(O_Edit_detail_page.this, "Request Saved.", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(O_Edit_detail_page.this, O_my_request.class);
+                Toast.makeText(O_add_details.this, "Request Created Successfuly", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(O_add_details.this, B_Request_page.class);
                 startActivity(i);
             }
         });
-
-        Intent intent = getIntent();
-        String title1 = intent.getStringExtra("title");
-        txt_name1.setText(title1);
-        String title2 = intent.getStringExtra("sdate");
-        txt_sdate.setText(title2);
-        String title3 = intent.getStringExtra("edate");
-        txt_edate.setText(title3);
-        String title4 = intent.getStringExtra("mno");
-        txt_mno.setText(title4);
     }
 }

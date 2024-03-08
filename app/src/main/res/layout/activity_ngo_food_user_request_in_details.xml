@@ -34,7 +34,7 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/kanit_medium"
-                android:text="Food Donors' Details"
+                android:text="Food Donor Details"
                 android:textColor="@color/food_donation"
                 android:textSize="@dimen/_16sdp" />
 

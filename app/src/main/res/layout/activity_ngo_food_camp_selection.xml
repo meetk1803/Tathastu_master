@@ -165,7 +165,7 @@
                                 android:drawableEnd="@drawable/round_keyboard_arrow_right_24"
                                 android:drawableTint="@color/white"
                                 android:fontFamily="@font/inter_medium"
-                                android:text="Food Donors' Request"
+                                android:text="Food Donors"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_15sdp"
                                 android:textStyle="bold"

@@ -12,8 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.blood_section.B_Home_Screen;
-import com.example.tathastu.User_Package.blood_section.B_Home_Screen_2;
+import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen;
+import com.example.tathastu.User_Package.Blood_Section.B_Home_Screen_2;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,8 +26,8 @@ public class Blood_Selection_Screen extends AppCompatActivity implements Connect
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_selection_screen);
 
-        CardView BTN_Blood_person=findViewById(R.id.BTN_Blood_person);
-        CardView BTN_Blood_camp=findViewById(R.id.BTN_Blood_camp);
+        CardView BTN_Blood_person=findViewById(R.id.BTN_blood_person);
+        CardView BTN_Blood_camp=findViewById(R.id.BTN_blood_camp);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();

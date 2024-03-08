@@ -1,40 +1,36 @@
-package com.example.tathastu.User_Package.blood_section;
+package com.example.tathastu.NGO_Package.NGO_Education_Camp.History;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import com.example.tathastu.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class B_Details_of_person extends AppCompatActivity {
+public class NGO_edu_camp_historyIndetails extends AppCompatActivity {
 
     FloatingActionButton but_back;
     Button but_call;
-    TextView bgruop;
-            AppCompatTextView name, age1, weight, address, note, phone;
-String example;
-    @SuppressLint("MissingInflatedId")
+    AppCompatTextView name, sdate, edate, address, note, phone;
+    String example;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bdetails_of_person);
+        setContentView(R.layout.activity_ngo_edu_camp_history_indetails);
 
-        bgruop = findViewById(R.id.display_group);
-        name = findViewById(R.id.display_name);
-        age1 = findViewById(R.id.display_age);
-        weight = findViewById(R.id.display_weight);
-        address = findViewById(R.id.display_address);
-        note = findViewById(R.id.display_note);
-        phone = findViewById(R.id.display_phone);
-
+        name = findViewById(R.id.display_edu_name);
+        sdate = findViewById(R.id.display_edu_sdate);
+        edate = findViewById(R.id.display_edu_edate);
+        address = findViewById(R.id.display_edu_address);
+        note = findViewById(R.id.display_edu_note);
+        phone = findViewById(R.id.display_edu_phone);
 
         but_back = findViewById(R.id.BTN_back);
         but_back.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +41,7 @@ String example;
         });
 
         example = phone.getText().toString();
-        but_call = findViewById(R.id.BTN_call);
+        but_call = findViewById(R.id.BTN_edu_call);
         but_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,15 +52,15 @@ String example;
         });
 
         Intent intent = getIntent();
-        String bgroup = intent.getStringExtra("bgroup");
-        bgruop.setText(bgroup);
         String title = intent.getStringExtra("title");
         name.setText(title);
-        String age = intent.getStringExtra("age");
-        age1.setText(age);
+        String sdate1 = intent.getStringExtra("sdate");
+        sdate.setText(sdate1);
+        String edate1 = intent.getStringExtra("edate");
+        edate.setText(edate1);
+        String loc = intent.getStringExtra("loc");
+        //address.setText(loc);
         String mno = intent.getStringExtra("mno");
         phone.setText(mno);
-        String loc = intent.getStringExtra("loc");
-        address.setText(loc);
     }
 }

@@ -65,14 +65,14 @@
                             android:fontFamily="@font/inter_regular"
                             android:gravity="center"
                             android:lineSpacingExtra="@dimen/_5sdp"
-                            android:text="Enter your registered mobile number"
+                            android:text="Enter your registered email &amp; password"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"
                             tools:ignore="TextSizeCheck" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_login_email_admin"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_290sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_30sdp"
                             app:endIconDrawable="@drawable/baseline_info_24"
@@ -104,7 +104,7 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/txtlayout_login_pwd_admin"
-                            android:layout_width="@dimen/_250sdp"
+                            android:layout_width="@dimen/_290sdp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:hint="Enter Password"

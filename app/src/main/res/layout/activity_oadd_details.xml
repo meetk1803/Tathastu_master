@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:layout_height="match_parent"
     tools:ignore="SpeakableTextPresentCheck"
-    tools:context=".User_Package.blood_section.O_add_details">
+    tools:context=".User_Package.Blood_Section.O_add_details">
 
     <LinearLayout
         android:layout_width="match_parent"

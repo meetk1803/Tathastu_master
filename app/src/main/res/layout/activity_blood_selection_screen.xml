@@ -65,7 +65,7 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/BTN_Blood_person"
+                        android:id="@+id/BTN_blood_person"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center"
@@ -101,7 +101,7 @@
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/BTN_Blood_camp"
+                        android:id="@+id/BTN_blood_camp"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center"

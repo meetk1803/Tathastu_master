@@ -75,7 +75,6 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
 
         BTN_dash_food = findViewById(R.id.BTN_dash_food);
         BTN_dash_blood = findViewById(R.id.BTN_dash_blood);
-        BTN_dash_cloth = findViewById(R.id.BTN_dash_cloth);
         BTN_dash_edu = findViewById(R.id.BTN_dash_edu);
         BTN_dash_aboutus = findViewById(R.id.BTN_dash_aboutus);
         BTN_dash_contactus = findViewById(R.id.BTN_dash_contactus);

@@ -242,42 +242,7 @@
                             android:textSize="@dimen/_15sdp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10sdp"
-                            app:cardCornerRadius="@dimen/_6sdp"
-                            app:cardElevation="@dimen/_4sdp">
-
-                            <ImageButton
-                                android:id="@+id/BTN_dash_cloth"
-                                android:layout_width="@dimen/_80sdp"
-                                android:layout_height="@dimen/_80sdp"
-                                android:background="@color/white"
-                                android:outlineSpotShadowColor="@color/black"
-                                android:padding="@dimen/_5sdp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/cloth_donation"
-                                tools:ignore="SpeakableTextPresentCheck" />
-
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/kanit_regular"
-                            android:text="Cloth"
-                            android:textColor="@color/toolbar_BG_D"
-                            android:textSize="@dimen/_15sdp" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -544,8 +509,8 @@
                             android:layout_gravity="center"
                             android:gravity="start|center"
                             android:layout_marginLeft="@dimen/_50sdp"
-                            android:fontFamily="@font/kanit_regular"
-                            android:text="Direct contact with Donation Centers"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Other NGOs &amp; \nDonation Centers"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_15sdp" />
                     </androidx.cardview.widget.CardView>

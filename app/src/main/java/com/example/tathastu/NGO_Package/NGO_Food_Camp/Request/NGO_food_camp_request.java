@@ -36,9 +36,6 @@ public class NGO_food_camp_request extends AppCompatActivity implements DatePick
     LinearLayout linear_layout_food;
     Button BTN_add;
     private DatePickerDialog datePickerDialog;
-
-
-
     private ConnectivityReceiver connectivityReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,4 +1,4 @@
-package com.example.tathastu.User_Package.blood_section;
+package com.example.tathastu.User_Package.Blood_Section;
 
 import android.os.Bundle;
 import android.view.View;

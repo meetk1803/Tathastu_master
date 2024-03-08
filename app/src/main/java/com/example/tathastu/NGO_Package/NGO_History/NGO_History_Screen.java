@@ -35,8 +35,6 @@ public class NGO_History_Screen extends AppCompatActivity implements Connectivit
 
         // Assuming you have a RecyclerView with the id "userdata" in your layout
         RecyclerView recycle_history_transaction_Usermodel = findViewById(R.id.recycle_history_transaction_Usermodel);
-        RecyclerView recycle_history_food_Usermodel = findViewById(R.id.recycle_history_food_Usermodel);
-        RecyclerView recycle_history_blood_Usermodel = findViewById(R.id.recycle_history_Blood_Usermodel);
 
         // Create a LinearLayoutManager for the RecyclerView
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

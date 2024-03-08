@@ -100,5 +100,8 @@ We will not share your personal information with third parties without your cons
     <string name="important"><b><u>Important :</u></b></string>
     <string name="requirements"><b><u>Requirements :</u></b></string>
     <string name="food_details"><b><u>Food Details</u></b></string>
+    <string name="edu_donation_one">Provide new or gently used educational stationery to support learning.</string>
+    <string name="edu_donation_two">Focus on essentials like notebooks, pens, and pencils for maximum impact.</string>
+    <string name="edu_donation_three">Ensure items are in good condition to enhance students\' educational experience.</string>
 
 </resources>

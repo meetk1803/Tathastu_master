@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:layout_height="match_parent"
     tools:ignore="SpeakableTextPresentCheck"
-    tools:context=".User_Package.blood_section.B_Details_of_Camp">
+    tools:context=".User_Package.Blood_Section.B_Details_of_Camp">
 
     <ScrollView
         android:layout_width="match_parent"

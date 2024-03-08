@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/blood_donation"
     android:orientation="vertical"
-    tools:context=".User_Package.blood_section.B_Request_page">
+    tools:context=".User_Package.Blood_Section.B_Request_page">
 
     <FrameLayout
         android:layout_width="match_parent"

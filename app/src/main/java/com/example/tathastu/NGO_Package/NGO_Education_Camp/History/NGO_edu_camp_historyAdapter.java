@@ -1,5 +1,6 @@
-package com.example.tathastu.User_Package.blood_section;
+package com.example.tathastu.NGO_Package.NGO_Education_Camp.History;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,27 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tathastu.NGO_Package.NGO_Food_Camp.History.NGO_food_camp_history_indetails;
+import com.example.tathastu.NGO_Package.NGO_Food_Camp.History.NGO_food_camp_historyadapter;
 import com.example.tathastu.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-// Home screen/Home screen2 - camp card
-public class adapter2 extends RecyclerView.Adapter<adapter2.ViewHolder> {
+public class NGO_edu_camp_historyAdapter extends RecyclerView.Adapter<NGO_edu_camp_historyAdapter.ViewHolder>{
     private LayoutInflater layoutInflater;
     private List<String> name, sdate, edate, mno, loc;
 
-    adapter2(B_Home_Screen context, ArrayList<String> name, ArrayList<String> sdate, ArrayList<String> edate, ArrayList<String> mno, ArrayList<String> loc){
-        this.layoutInflater = LayoutInflater.from(context);
-        this.name = name;
-        this.sdate = sdate;
-        this.edate = edate;
-        this.mno = mno;
-        this.loc = loc;
-    }
 
-    adapter2(B_Home_Screen_2 context, ArrayList<String> name, ArrayList<String> sdate, ArrayList<String> edate, ArrayList<String> mno, ArrayList<String> loc){
+    NGO_edu_camp_historyAdapter(Context context, ArrayList<String> name, ArrayList<String> sdate, ArrayList<String> edate, ArrayList<String> mno, ArrayList<String> loc){
         this.layoutInflater = LayoutInflater.from(context);
         this.name = name;
         this.sdate = sdate;
@@ -41,14 +34,14 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.ViewHolder> {
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = layoutInflater.inflate(R.layout.b_camp_card_view,viewGroup,false);
-        return new ViewHolder(view);
+    public NGO_edu_camp_historyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = layoutInflater.inflate(R.layout.cardview_ngo_edu_history,viewGroup,false);
+        return new NGO_edu_camp_historyAdapter.ViewHolder(view);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull NGO_edu_camp_historyAdapter.ViewHolder viewHolder, int i) {
 
         // bind the textview with data received
         String title = name.get(i);
@@ -74,7 +67,7 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.ViewHolder> {
     public int getItemCount() {
         return name.size();
     }
-    
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         CardView cardView;
@@ -96,7 +89,7 @@ public class adapter2 extends RecyclerView.Adapter<adapter2.ViewHolder> {
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            Intent i = new Intent(view.getContext(),B_Details_of_Camp.class);
+            Intent i = new Intent(view.getContext(), NGO_edu_camp_historyIndetails.class);
             i.putExtra("title", name.get(getAdapterPosition()));
             i.putExtra("sdate", sdate.get(getAdapterPosition()));
             i.putExtra("edate", edate.get(getAdapterPosition()));
