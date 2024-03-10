@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/toolbar_BG"
+    android:orientation="vertical"
+    tools:context=".User_Package.user_Event.user_Event_inDetails">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center"
+            android:text="Event Details"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/BTN_event_back"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="start"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:backgroundTint="@color/status_color"
+            android:src="@drawable/round_arrow_back_24"
+            app:fabCustomSize="@dimen/_30sdp"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/BTN_event_share"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:backgroundTint="@color/status_color"
+            android:src="@drawable/baseline_share_24"
+            app:fabCustomSize="@dimen/_30sdp"
+            app:fabSize="mini"
+            app:tint="@color/white"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    app:shapeAppearanceOverlay="@style/TopRoundedCorner" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:orientation="vertical"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_17sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="@dimen/_5sdp"
+                app:cardMaxElevation="@dimen/_8sdp"
+                app:cardPreventCornerOverlap="false">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/eventimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/donate_cloth"
+                    android:scaleType="centerCrop" />
+
+
+            </androidx.cardview.widget.CardView>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ename"
+                android:layout_width="@dimen/_270sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:fontFamily="@font/kanit_medium"
+                android:lineSpacingExtra="@dimen/_5sdp"
+                android:text="Event Name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22sdp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_228sdp"
+                android:fillViewport="true"
+                tools:ignore="SpeakableTextPresentCheck">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    >
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/oname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit_medium"
+                        android:lineSpacingExtra="@dimen/_5sdp"
+                        android:text="Organizer Name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/baseline_date_range_24"
+                            />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/edate"
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kanit_medium"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="Event Date"
+                            android:textColor="@color/material_dynamic_neutral50"
+                            android:textSize="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/baseline_location_on_24"
+                            />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/eaddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kanit_regular"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="Address"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kanit_regular"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text=" , "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/ecity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/kanit_regular"
+                            android:lineSpacingExtra="@dimen/_5sdp"
+                            android:text="city"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/edesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/_140sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/kanit_regular"
+                        android:text="Description"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+            </ScrollView>
+
+            <ProgressBar
+                android:id="@+id/eprogress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_height="wrap_content"
+                android:scaleY="6"
+                android:progressBackgroundTint="#E4DFDF"
+                android:elevation="@dimen/_5sdp"
+                android:progressTint="#f2b400">
+            </ProgressBar>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:src="@drawable/baseline_group_24"
+                    />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/eparticipated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:fontFamily="@font/kanit_medium"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="20"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:fontFamily="@font/kanit_medium"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="/"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/etotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:fontFamily="@font/kanit_medium"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="100"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:fontFamily="@font/kanit_medium"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Participated Person"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btn_volunteer"
+                android:layout_width="@dimen/_260sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:backgroundTint="#f2b400"
+                android:gravity="center"
+                android:text="Volunteer"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_17sdp"
+                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>
