@@ -35,48 +35,57 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
-        <activity android:name=".User_Package.Education_Section.All_Donors.Edu_user_allDonors_indetails"
-            android:exported="true"/>
-        <activity android:name=".User_Package.Education_Section.All_Donors.Edu_user_all_donors"
-            android:exported="true"/>
-        <activity android:name=".User_Package.Education_Section.Camp.Edu_Donation_Camp"
-            android:exported="true"/>
-        <activity android:name=".User_Package.Education_Section.Camp.Edu_Camp_Indetails"
-            android:exported="true"/>
-        <activity android:name=".User_Package.Education_Section.History.Edu_user_history_edit_request"
-            android:exported="true"/>
-        <activity android:name=".User_Package.Education_Section.History.Edu_user_History"
-            android:exported="true"/>
+        <activity
+            android:name=".User_Package.user_NGO_list.Donate_payment"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.Education_Section.All_Donors.Edu_user_allDonors_indetails"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.Education_Section.All_Donors.Edu_user_all_donors"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.Education_Section.Camp.Edu_Donation_Camp"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.Education_Section.Camp.Edu_Camp_Indetails"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.Education_Section.History.Edu_user_history_edit_request"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.Education_Section.History.Edu_user_History"
+            android:exported="true" />
         <activity
             android:name=".User_Package.Education_Section.Edu_User_Request"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.All_Donors.Food_user_allDonors_indetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.History.Food_user_history_edit_request"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.All_Donors.Food_user_all_donors"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.Camp.Food_Camp_Indetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.History.Food_user_History"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.Camp.Food_Donation_Camp"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.Food_Section.Food_User_Request"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.user_DashBoard.Education_Selection_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.user_DashBoard.Food_Selection_Screen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".NGO_Package.NGO_Education_Camp.Donor.NGO_edu_user_request_indetails"
             android:exported="true" />

@@ -1,6 +1,5 @@
 package com.example.tathastu.User_Package.user_NGO_list;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,11 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.razorpay.Checkout;
-import com.razorpay.PaymentResultListener;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -72,7 +66,15 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         holder.txtNgoName.setOnClickListener(v -> handleExpansion(holder, holder.getAdapterPosition()));
 
 
-        holder.btnDonate.setOnClickListener(v -> initiateDonation(ngoData.getNgoName(), ngoData.getNgoMno(),ngoData.getNgoEmail()));
+        holder.btnDonate.setOnClickListener(v -> {
+            Intent intent = new Intent(context, Donate_payment.class);
+            intent.putExtra("ngoName", ngoData.getNgoName());
+            intent.putExtra("ngoEmail", ngoData.getNgoEmail());
+            intent.putExtra("ngoMno", ngoData.getNgoMno());
+            context.startActivity(intent);
+        });
+
+
         // Handle expansion logic
         if (holder.getAdapterPosition() == expandedPosition) {
             // Show expanded details
@@ -149,23 +151,4 @@ public class NGODataAdapter extends RecyclerView.Adapter<NGODataAdapter.ViewHold
         }
     }
 
-    private void initiateDonation(String ngoName, String mobileNumber,String email) {
-        Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_test_pQTWDiMbCO1e2Z"); // Replace with your actual Razorpay key
-
-        try {
-            JSONObject options = new JSONObject();
-            options.put("name", ngoName); // Replace with NGO name
-            options.put("description", "Donation for " + ngoName);
-            options.put("currency", "INR");
-            options.put("amount", "10000"); // Replace with the donation amount in paisa
-            options.put("prefill.contact", mobileNumber);
-            options.put("prefill.email", email);
-            options.put("theme.color", "#2e80df");
-            options.put("method", new JSONObject().put("upi", true));
-            checkout.open((Activity) context, options);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 }
