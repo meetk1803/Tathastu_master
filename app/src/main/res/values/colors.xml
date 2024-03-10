@@ -20,6 +20,9 @@
     <color name="blood_donation">#8a0303</color>
     <color name="food_donation">#DE970B</color>
     <color name="edu_donation">#4A1F97</color>
+    <color name="success">#5cb85c</color>
+    <color name="failed">#FF0000</color>
+
 
     <array name="active">
         <item>@color/toolbar_BG</item>

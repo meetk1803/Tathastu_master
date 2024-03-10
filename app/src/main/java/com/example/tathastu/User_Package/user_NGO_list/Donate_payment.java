@@ -170,20 +170,20 @@ public class Donate_payment extends AppCompatActivity implements ConnectivityRec
 
     public void initiateDonation(String ngoName, String ngoMno, String ngoEmail, String donationAmount) {
         Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_test_XhlHct9tqCA3jm"); // Replace with your actual Razorpay key
+        checkout.setKeyID("rzp_test_iiWet5Chi79qWI"); // Replace with your actual Razorpay key
 
         try {
             JSONObject options = new JSONObject();
             options.put("name", ngoName);
             Toast.makeText(this, ngoEmail, Toast.LENGTH_SHORT).show();
             Toast.makeText(this, ngoMno, Toast.LENGTH_SHORT).show();
-            options.put("description", "Donation for " + ngoName);
+            options.put("description", "Sent to " + ngoName);
             options.put("currency", "INR");
             options.put("amount", Integer.parseInt(donationAmount) * 100);
 
             JSONObject preFill = new JSONObject();
             preFill.put("contact", ngoMno);
-            preFill.put("email", ngoEmail); // Confirm the key used here
+            preFill.put("email", "meetkakadiya111@gmail.com"); // Confirm the key used here
             options.put("prefill", preFill);
             options.put("environment", "sandbox"); // "sandbox" or "production"
             Toast.makeText(this, ngoEmail, Toast.LENGTH_SHORT).show();

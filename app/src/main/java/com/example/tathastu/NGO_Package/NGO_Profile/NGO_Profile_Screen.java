@@ -20,10 +20,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textview.MaterialTextView;
 
 public class NGO_Profile_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     TextInputEditText txt_Profile_Fname_ngo, txt_Profile_email_ngo, txt_Profile_mno_ngo, txt_Profile_address_ngo, txt_Profile_cat_ngo;
 
+    MaterialTextView txt_btn_NGO_add_social;
     // INTERNET
     private ConnectivityReceiver connectivityReceiver;
 
@@ -47,6 +49,7 @@ public class NGO_Profile_Screen extends AppCompatActivity implements Connectivit
         txt_Profile_address_ngo = findViewById(R.id.txt_Profile_address_ngo);
         txt_Profile_cat_ngo = findViewById(R.id.txt_Profile_cat_ngo);
         BTN_Profile_edit = findViewById(R.id.BTN_Profile_edit);
+        txt_btn_NGO_add_social =findViewById(R.id.txt_btn_NGO_add_social);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -69,6 +72,14 @@ public class NGO_Profile_Screen extends AppCompatActivity implements Connectivit
             public void onClick(View v) {
                 Intent i = new Intent(NGO_Profile_Screen.this, NGO_Update_Profile.class);
                 startActivity(i);
+            }
+        });
+
+
+        txt_btn_NGO_add_social.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NGO_Profile_Screen.this,NGO_Social_Media.class));
             }
         });
     }

@@ -29,9 +29,13 @@
             android:layout_marginHorizontal="@dimen/_8sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="start"
-            android:text="Money Donation"
+            android:autoSizeTextType="uniform"
+            android:maxLines="3"
+            android:autoSizeMaxTextSize="@dimen/_13sdp"
+            android:autoSizeMinTextSize="@dimen/_10sdp"
+            android:text="Sent to NGO NAME"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
 
@@ -44,16 +48,21 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_weight="2"
                 android:fontFamily="@font/inter_semibold"
                 android:gravity="start"
-                android:text="donated by you,"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
+                android:text="method"
+                android:autoSizeMinTextSize="@dimen/_8sdp"
+                android:autoSizeMaxTextSize="@dimen/_10sdp"
+                android:autoSizeTextType="uniform"
+                android:maxLines="2"
+                android:textColor="@color/gray_font"
+                android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_history_money"
@@ -70,12 +79,16 @@
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
         </LinearLayout>
-
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_history_date"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/_8sdp"
                 android:fontFamily="@font/inter_semibold"
@@ -86,7 +99,37 @@
                 android:textStyle="bold"
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
 
-    </LinearLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="end"
+                android:text="Success"
+                android:textColor="@color/success"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
+                tools:ignore="TextSizeCheck,TextContrastCheck" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/inter_regular"
+            android:gravity="start"
+            android:text="transactoin id"
+            android:textColor="@color/gray_font"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+
+</LinearLayout>
 
 </androidx.cardview.widget.CardView>
