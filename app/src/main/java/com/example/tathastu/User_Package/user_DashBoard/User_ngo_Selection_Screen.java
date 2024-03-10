@@ -1,39 +1,35 @@
-package com.example.tathastu.NGO_Package.NGO_Profile;
+package com.example.tathastu.User_Package.user_DashBoard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.tathastu.Common_Screens.Selection_Screen;
-import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.Food_Section.All_Donors.Food_user_all_donors;
+import com.example.tathastu.User_Package.Food_Section.Camp.Food_Donation_Camp;
+import com.example.tathastu.User_Package.Food_Section.Food_User_Request;
+import com.example.tathastu.User_Package.Food_Section.History.Food_user_History;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.example.tathastu.User_Package.user_NGO_list.New_NGO_list.direct_contact_to_new_NGO;
+import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-public class NGO_Social_Media extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class User_ngo_Selection_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ngo_social_media);
-
-        FloatingActionButton BTN_back=findViewById(R.id.BTN_social_back);
-
-        BTN_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        setContentView(R.layout.activity_user_ngo_selection_screen);
+        CardView BTN_user_new_ngo = findViewById(R.id.BTN_user_new_ngo);
+        CardView BTN_user_old_ngo = findViewById(R.id.BTN_user_old_ngo);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -41,22 +37,41 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        FloatingActionButton BTN_back = findViewById(R.id.BTN_user_ngolist_back);
+        //BACK
+        BTN_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        //Request
+        BTN_user_new_ngo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(User_ngo_Selection_Screen.this, direct_contact_to_new_NGO.class);
+                startActivity(i);
+            }
+        });
+
+        //CAMP
+        BTN_user_old_ngo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(User_ngo_Selection_Screen.this, direct_contact_to_NGO.class);
+                startActivity(i);
+            }
+        });
     }
-    //--------------------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------------------------------------
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();
-    }
-    // Helper method to check if the internet connection is available
-    private boolean isInternetAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-        }
-        return false;
     }
 
     @Override
@@ -66,6 +81,7 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
         // Unregister the receiver to avoid memory leaks
         unregisterReceiver(connectivityReceiver);
     }
+
     //SNACKBAR
     private void showSnackbar(View view, String message) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
@@ -82,7 +98,7 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
         // Add custom view to Snackbar
         Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
         snackbarLayout.removeAllViews(); // Remove all default views
-        snackbarLayout.setPadding(1,1,1,1);
+        snackbarLayout.setPadding(1, 1, 1, 1);
         snackbarLayout.addView(customView, 0);
 
         snackbar.show();

@@ -36,8 +36,14 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".User_Package.user_DashBoard.User_ngo_Selection_Screen"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_NGO_list.New_NGO_list.direct_contact_to_new_NGO"
+            android:exported="true" />
+        <activity
             android:name=".NGO_Package.NGO_Profile.NGO_Social_Media"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.user_NGO_list.Donate_payment"
             android:exported="true" />

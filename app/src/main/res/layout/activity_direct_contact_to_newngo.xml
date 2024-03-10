@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/toolbar_BG"
     android:orientation="vertical"
-    tools:context=".User_Package.user_NGO_list.direct_contact_to_NGO">
+    tools:context=".User_Package.user_NGO_list.New_NGO_list.direct_contact_to_new_NGO">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
-            android:text="Existing NGOs' Details"
+            android:text="New NGOs' Details"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />

@@ -37,7 +37,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/BTN_back"
+                    android:id="@+id/BTN_social_back"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="start"

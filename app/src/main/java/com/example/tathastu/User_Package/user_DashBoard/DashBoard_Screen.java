@@ -54,7 +54,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
-    ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_cloth, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
+    ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
     MaterialTextView txt_dash_seeall,txt_dash_seeallquotes;
     CardView card_dash_directContact,card_dash_event;
     private AppCompatTextView dash_quote;
@@ -202,7 +202,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         card_dash_directContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DashBoard_Screen.this, direct_contact_to_NGO.class);
+                Intent i = new Intent(DashBoard_Screen.this, User_ngo_Selection_Screen.class);
                 startActivity(i);
             }
         });
