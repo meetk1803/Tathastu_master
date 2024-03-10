@@ -59,7 +59,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -81,14 +81,35 @@
                             android:layout_height="@dimen/_1sdp"
                             android:background="@color/status_color"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycle_Event_Usermodel"
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+<!--                            android:id="@+id/recycle_Event_Usermodel"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:paddingTop="@dimen/_8sdp"-->
+<!--                            android:paddingBottom="@dimen/_20sdp"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            />-->
+
+                        <ScrollView
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="@dimen/_8sdp"
-                            android:paddingBottom="@dimen/_20sdp"
-                            android:clipToPadding="false"
-                            />
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fillViewport="true"
+                            tools:ignore="SpeakableTextPresentCheck">
+
+                            <ListView
+                                android:id="@+id/admin_eventlist"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="@dimen/_15sdp"
+                                android:layout_marginRight="@dimen/_15sdp"
+                                android:divider="@color/white"
+                                android:dividerHeight="@dimen/_10sdp"
+                                android:footerDividersEnabled="true"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </ScrollView>
 
                     </LinearLayout>
 
