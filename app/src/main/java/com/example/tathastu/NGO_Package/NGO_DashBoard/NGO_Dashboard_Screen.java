@@ -32,6 +32,7 @@ import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
 import com.example.tathastu.User_Package.user_DashBoard.Blood_Selection_Screen;
+import com.example.tathastu.User_Package.user_DashBoard.User_ngo_Selection_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
 import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
@@ -165,13 +166,11 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
         card_dash_directContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(NGO_Dashboard_Screen.this, direct_contact_to_NGO.class);
+                Intent i = new Intent(NGO_Dashboard_Screen.this, User_ngo_Selection_Screen.class);
                 i.putExtra("source", "ngoDashboard");
                 startActivity(i);
             }
         });
-
-
 
 
 

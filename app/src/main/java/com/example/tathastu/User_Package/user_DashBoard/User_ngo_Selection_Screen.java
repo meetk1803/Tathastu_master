@@ -47,11 +47,16 @@ public class User_ngo_Selection_Screen extends AppCompatActivity implements Conn
             }
         });
 
+        Intent i = getIntent();
+
+        String source = i.getStringExtra("source");
+        
         //Request
         BTN_user_new_ngo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(User_ngo_Selection_Screen.this, direct_contact_to_new_NGO.class);
+                i.putExtra("source",source);
                 startActivity(i);
             }
         });
@@ -61,6 +66,7 @@ public class User_ngo_Selection_Screen extends AppCompatActivity implements Conn
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(User_ngo_Selection_Screen.this, direct_contact_to_NGO.class);
+                i.putExtra("source",source);
                 startActivity(i);
             }
         });
