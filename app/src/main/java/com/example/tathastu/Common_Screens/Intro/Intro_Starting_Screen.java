@@ -16,7 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.tathastu.Common_Screens.After_Intro_Start;
 import com.example.tathastu.Common_Screens.Selection_Screen;
+import com.example.tathastu.Common_Screens.Splash_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -182,9 +185,10 @@ public class Intro_Starting_Screen extends AppCompatActivity {
 
     private void launchHomeScreen() {
         intropref.setIsFirstTimeLaunch(false);
-        Intent i = new Intent(Intro_Starting_Screen.this, Selection_Screen.class);
+        Intent i = new Intent(Intro_Starting_Screen.this, After_Intro_Start.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+        Animatoo.INSTANCE.animateSlideLeft(Intro_Starting_Screen.this);
         finish();
     }
 }

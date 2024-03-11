@@ -17,9 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
+import com.example.tathastu.User_Package.user_Entry.Otp_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -71,19 +73,17 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
                 // Handle the back button based on the source
                 String source = getIntent().getStringExtra("source");
                 if ("login".equals(source)) {
-                    // If source is login, go back to LoginActivity
-//                    Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Login_Screen.class);
-//                    startActivity(intent);
+
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(NGO_OTP_Screen.this);
                 } else if ("signin".equals(source)) {
-                    // If source is signin, go back to SignInActivity
-//                    Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Signin_Screen.class);
-//                    startActivity(intent);
+
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(NGO_OTP_Screen.this);
                 } else {
-                    // Default behavior (handle appropriately)
                     onBackPressed();
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(NGO_OTP_Screen.this);
                 }
             }
         });
@@ -144,13 +144,16 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
             // If source is login, go back to LoginActivity
             Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Login_Screen.class);
             startActivity(intent);
+            Animatoo.INSTANCE.animateSlideRight(this);
         } else if ("signin".equals(source)) {
             // If source is signin, go back to SignInActivity
             Intent intent = new Intent(NGO_OTP_Screen.this, NGO_Signin_Screen.class);
             startActivity(intent);
+            Animatoo.INSTANCE.animateSlideRight(this);
         } else {
             // Default behavior (handle appropriately)
             onBackPressed();
+            Animatoo.INSTANCE.animateSlideRight(this);
         }
     }
 
@@ -199,6 +202,7 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
 
                             Intent i = new Intent(NGO_OTP_Screen.this, DashBoard_Screen.class);
                             startActivity(i);
+                            Animatoo.INSTANCE.animateSlideLeft(NGO_OTP_Screen.this);
 
                         } else {
 

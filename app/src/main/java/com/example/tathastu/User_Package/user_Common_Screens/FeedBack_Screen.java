@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,19 +39,15 @@ public class FeedBack_Screen extends AppCompatActivity implements ConnectivityRe
             public void onClick(View v) {
                 String source = getIntent().getStringExtra("source");
                 if ("about".equals(source)) {
-                    // If source is login, go back to LoginActivity
-//                    Intent intent = new Intent(FeedBack_Screen.this, About_us_Screen.class);
-//                    startActivity(intent);
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(FeedBack_Screen.this);
                 } else if ("contact".equals(source)) {
-                    // If source is signin, go back to SignInActivity
-//                    Intent intent = new Intent(FeedBack_Screen.this, Contact_us_Screen.class);
-//                    startActivity(intent);
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(FeedBack_Screen.this);
                 } else {
-                    // Default behavior (handle appropriately)
                     onBackPressed();
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(FeedBack_Screen.this);
                 }
             }
         });
@@ -62,6 +59,7 @@ public class FeedBack_Screen extends AppCompatActivity implements ConnectivityRe
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+        Animatoo.INSTANCE.animateSlideRight(FeedBack_Screen.this);
     }
 
     @Override

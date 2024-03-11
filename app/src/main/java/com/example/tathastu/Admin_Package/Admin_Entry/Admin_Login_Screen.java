@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.Admin_Package.Admin_DashBoard.Admin_DashBoard_Screen;
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
@@ -100,6 +101,7 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
                         i.putExtra("source", "login");
 //                        i.putExtra("email", "+91" + mob);
                         startActivity(i);
+                        Animatoo.INSTANCE.animateSlideLeft(Admin_Login_Screen.this);
                     }
                 }
             }
@@ -116,6 +118,7 @@ public class Admin_Login_Screen extends AppCompatActivity implements Connectivit
         super.onBackPressed();
         Intent i=new Intent(Admin_Login_Screen.this, Selection_Screen.class);
         startActivity(i);
+        Animatoo.INSTANCE.animateSlideRight(this);
         finish();
     }
 

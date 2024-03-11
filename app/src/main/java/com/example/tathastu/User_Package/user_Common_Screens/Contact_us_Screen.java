@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,6 +61,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
 //                Intent i =new Intent(Contact_us_Screen.this, DashBoard_Screen.class);
 //                startActivity(i);
                 finish();
+                Animatoo.INSTANCE.animateSlideRight(Contact_us_Screen.this);
             }
         });
 
@@ -74,6 +76,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
                     Intent i =new Intent(Contact_us_Screen.this, FeedBack_Screen.class);
                     i.putExtra("source","contact");
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideLeft(Contact_us_Screen.this);
                 }
 
             }
@@ -94,6 +97,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
                     String instagramLink = "https://www.instagram.com/tathastu.g052?igsh=OGQ5ZDc2ODk2ZA==\n";
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(instagramLink));
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSwipeLeft(Contact_us_Screen.this);
                 } else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
@@ -107,6 +111,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
                     String facebookLink = "https://www.facebook.com/tathastu.g052?mibextid=ZbWKwL\n";
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(facebookLink));
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSwipeLeft(Contact_us_Screen.this);
                 } else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
@@ -119,7 +124,10 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
                 if(isConnected()){
                     String twitterLink = "https://twitter.com/tathastu_g052?t=MrAtvaTuvcF1hbSMDqd5_A&s=09\n";
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink));
-                    startActivity(i);}
+                    startActivity(i);
+                    Animatoo.INSTANCE.animateSwipeLeft(Contact_us_Screen.this);
+                }
+
                 else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
@@ -132,6 +140,7 @@ public class Contact_us_Screen extends AppCompatActivity implements Connectivity
 public void onBackPressed() {
     super.onBackPressed();
     finish();
+    Animatoo.INSTANCE.animateSlideRight(Contact_us_Screen.this);
 }
     private void setCopyToClipboardListener(MaterialTextView textView, final String text) {
         textView.setOnClickListener(new View.OnClickListener() {

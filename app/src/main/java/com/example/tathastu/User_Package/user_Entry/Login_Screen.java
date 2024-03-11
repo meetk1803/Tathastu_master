@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_DashBoard.profile_getset;
@@ -133,6 +134,7 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                                             i.putExtra("lnamel",lname);
                                             i.putExtra("check","login");
                                             startActivity(i);
+                                            Animatoo.INSTANCE.animateSlideLeft(Login_Screen.this);
 
                                         } else {
 
@@ -167,6 +169,7 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                 } else {
                     Intent i = new Intent(Login_Screen.this, Signin_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideLeft(Login_Screen.this);
                 }
             }
         });
@@ -180,6 +183,7 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
         super.onBackPressed();
         Intent i=new Intent(Login_Screen.this, Selection_Screen.class);
         startActivity(i);
+        Animatoo.INSTANCE.animateSlideRight(this);
         finish();
     }
 

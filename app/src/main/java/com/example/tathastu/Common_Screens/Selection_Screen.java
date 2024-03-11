@@ -1,33 +1,34 @@
 package com.example.tathastu.Common_Screens;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.tathastu.Admin_Package.Admin_Entry.Admin_Login_Screen;
 import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_DashBoard.Update_Profile_Screen;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.snackbar.Snackbar;
 
-public class Selection_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
-    CardView card_select_user,card_select_admin,card_select_ngo;
+public class Selection_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+    CardView card_select_user, card_select_admin, card_select_ngo;
 
     private ConnectivityReceiver connectivityReceiver;
 
@@ -42,9 +43,9 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection_screen);
 
-        card_select_user=findViewById(R.id.card_select_user);
-        card_select_admin=findViewById(R.id.card_select_admin);
-        card_select_ngo=findViewById(R.id.card_select_ngo);
+        card_select_user = findViewById(R.id.card_select_user);
+        card_select_admin = findViewById(R.id.card_select_admin);
+        card_select_ngo = findViewById(R.id.card_select_ngo);
 
 
         // Initialize the ConnectivityReceiver
@@ -58,11 +59,16 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
             @Override
             public void onClick(View v) {
                 if (!isInternetAvailable()) {
-                    showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                     return;
-                }else {
+                } else {
+                    YoYo.with(Techniques.Tada)
+                            .duration(1000)
+                            .repeat(0)
+                            .playOn(card_select_user);
                     Intent i = new Intent(Selection_Screen.this, Login_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateZoom(Selection_Screen.this);
                 }
             }
         });
@@ -71,11 +77,16 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
             @Override
             public void onClick(View v) {
                 if (!isInternetAvailable()) {
-                    showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                     return;
-                }else {
+                } else {
+                    YoYo.with(Techniques.Tada)
+                            .duration(1000)
+                            .repeat(0)
+                            .playOn(card_select_admin);
                     Intent i = new Intent(Selection_Screen.this, Admin_Login_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateZoom(Selection_Screen.this);
                 }
             }
         });
@@ -84,11 +95,16 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
             @Override
             public void onClick(View v) {
                 if (!isInternetAvailable()) {
-                    showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                     return;
-                }else {
+                } else {
+                    YoYo.with(Techniques.Tada)
+                            .duration(1000)
+                            .repeat(0)
+                            .playOn(card_select_ngo);
                     Intent i = new Intent(Selection_Screen.this, NGO_Login_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateZoom(Selection_Screen.this);
                 }
             }
         });
@@ -100,6 +116,14 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
 
     //----------------------------------------------------------------------------------------------------------------------
 
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Selection_Screen.this,After_Intro_Start.class));
+        Animatoo.INSTANCE.animateSlideRight(Selection_Screen.this);
+        finish();
+        super.onBackPressed();
+    }
 
     //FILE ACCESS PERMISSION
     private void checkStoragePermission() {
@@ -147,7 +171,7 @@ public class Selection_Screen extends AppCompatActivity implements ConnectivityR
         // Add custom view to Snackbar
         Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
         snackbarLayout.removeAllViews(); // Remove all default views
-        snackbarLayout.setPadding(1,1,1,1);
+        snackbarLayout.setPadding(1, 1, 1, 1);
         snackbarLayout.addView(customView, 0);
 
         snackbar.show();

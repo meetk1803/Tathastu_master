@@ -14,15 +14,13 @@
        android:layout_height="match_parent">
 
        <com.google.android.material.imageview.ShapeableImageView
-           android:layout_width="@dimen/_110sdp"
-           android:layout_height="@dimen/_110sdp"
+           android:layout_width="@dimen/_150sdp"
+           android:layout_height="@dimen/_150sdp"
            android:layout_gravity="center"
-           android:elevation="@dimen/_3sdp"
-           android:background="@drawable/shadow_rec_white"
-           app:shapeAppearanceOverlay="@style/RoundedSquare"
-           app:srcCompat="@drawable/icon_app"/>
+           app:srcCompat="@drawable/splash_screen_icon"/>
 
        <com.google.android.material.imageview.ShapeableImageView
+           android:id="@+id/app_word"
            android:layout_width="@dimen/_200sdp"
            android:layout_height="@dimen/_250sdp"
            android:layout_gravity="bottom|center"

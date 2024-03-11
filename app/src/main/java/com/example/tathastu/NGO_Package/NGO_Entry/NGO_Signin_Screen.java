@@ -23,6 +23,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
@@ -117,7 +118,9 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
         BTN_back_ngo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
+                Animatoo.INSTANCE.animateSlideRight(NGO_Signin_Screen.this);
             }
         });
 
@@ -139,6 +142,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                     Intent i = new Intent(NGO_Signin_Screen.this, Terms_C_activity.class);
                     i.putExtra("source", "signin");
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideUp(NGO_Signin_Screen.this);
                 }
             }
         });
@@ -200,6 +204,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                 } else {
                     Intent i = new Intent(NGO_Signin_Screen.this, NGO_Login_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideRight(NGO_Signin_Screen.this);
                 }
             }
         });
@@ -210,6 +215,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Animatoo.INSTANCE.animateSlideRight(this);
 //        Intent i=new Intent(Signin_Screen.this,Login_Screen.class);
 //        startActivity(i);
         finish();
@@ -276,6 +282,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                         i.putExtra("source", "signin");
                         i.putExtra("mobile", "+91" + mob);
                         startActivity(i);
+                        Animatoo.INSTANCE.animateSlideLeft(NGO_Signin_Screen.this);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

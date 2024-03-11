@@ -64,6 +64,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.3.0'
     implementation 'com.google.android.gms:play-services-fido:20.1.0'
     implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.github.AtifSayings:Animatoo:1.0.1' //animation activity
+    implementation 'com.daimajia.androidanimations:library:2.4@aar' //animation text
     //Profile Image
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'com.squareup.picasso:picasso:2.71828'

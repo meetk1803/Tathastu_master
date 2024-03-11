@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
@@ -106,6 +107,7 @@ public class NGO_Login_Screen extends AppCompatActivity implements ConnectivityR
                         i.putExtra("source", "login");
                         i.putExtra("mobile", "+91" + mob);
                         startActivity(i);
+                        Animatoo.INSTANCE.animateSlideLeft(NGO_Login_Screen.this);
                     }
                 }
             }
@@ -121,6 +123,7 @@ public class NGO_Login_Screen extends AppCompatActivity implements ConnectivityR
                 } else {
                     Intent i = new Intent(NGO_Login_Screen.this, NGO_Signin_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideLeft(NGO_Login_Screen.this);
                 }
             }
         });
@@ -134,6 +137,7 @@ public class NGO_Login_Screen extends AppCompatActivity implements ConnectivityR
         super.onBackPressed();
         Intent i=new Intent(NGO_Login_Screen.this, Selection_Screen.class);
         startActivity(i);
+        Animatoo.INSTANCE.animateSlideRight(this);
         finish();
     }
 

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
@@ -54,7 +55,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class Otp_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class Otp_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     MaterialTextView txt_otp_mno;
     ExtendedFloatingActionButton BTN_otp;
@@ -63,7 +64,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
     private long timeLeftInMillis;
     private static final long OTP_TIMER_DURATION = 120 * 1000; // 5 minutes in milliseconds
     private static final long INTERVAL = 1000; // 1 second in milliseconds
-    public String phonenumber,fname,lname,email,birth_of_date,password,mob,check,mailv,fnamel,lnamel;
+    public String phonenumber, fname, lname, email, birth_of_date, password, mob, check, mailv, fnamel, lnamel;
     FirebaseAuth mAuth;
     String otpid;
     public EditText edtotp;
@@ -78,10 +79,10 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 //        tvOtpTime = findViewById(R.id.tv_OTPtime);
         BTN_otp = findViewById(R.id.BTN_otp);
         mAuth = FirebaseAuth.getInstance();
-        txt_otp_mno=findViewById(R.id.txt_otp_mno);
+        txt_otp_mno = findViewById(R.id.txt_otp_mno);
         edtotp = findViewById(R.id.txt_OTP);
 
-        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        FloatingActionButton BTN_back = findViewById(R.id.BTN_back);
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,16 +90,16 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                 // Handle the back button based on the source
                 String source = getIntent().getStringExtra("source");
                 if ("login".equals(source)) {
-                    // If source is login, go back to LoginActivity
-
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(Otp_Screen.this);
                 } else if ("signin".equals(source)) {
-                    // If source is signin, go back to SignInActivity
-
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(Otp_Screen.this);
                 } else {
-                    // Default behavior (handle appropriately)
                     onBackPressed();
+                    Animatoo.INSTANCE.animateSlideRight(Otp_Screen.this);
+                    // Default behavior (handle appropriately)
+
                 }
             }
         });
@@ -113,12 +114,9 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         check = getIntent().getStringExtra("check");
         mailv = getIntent().getStringExtra("fsmail");
         fnamel = getIntent().getStringExtra("fnamel");
-        lnamel = getIntent().getStringExtra("lnamel");        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
-        txt_otp_mno.setText("+91 XXXXXX"+last_four_digits);
-
-        Toast.makeText(this, phonenumber, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, last_four_digits, Toast.LENGTH_SHORT).show();
-
+        lnamel = getIntent().getStringExtra("lnamel");
+        String last_four_digits = phonenumber.substring(phonenumber.length() - 4);
+        txt_otp_mno.setText("+91 XXXXXX" + last_four_digits);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -133,9 +131,9 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
                 String enteredotp = edtotp.getText().toString();
                 if (!isInternetAvailable()) {
-                    showSnackbar(findViewById(android.R.id.content),"Please check your internet connection...");
+                    showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                     return;
-                }else {
+                } else {
                     if (enteredotp.isEmpty()) {
                         showSnackbar(findViewById(android.R.id.content), "Please enter an OTP...");
                     } else if (enteredotp.length() < 6) {
@@ -154,7 +152,6 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         });
 
 
-
         initiateotp();
     }
 //---------------------------------------------------------------------------------------------------
@@ -165,18 +162,23 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         super.onBackPressed();
         String source = getIntent().getStringExtra("source");
         if ("login".equals(source)) {
+
             // If source is login, go back to LoginActivity
 //            Intent intent = new Intent(Otp_Screen.this, Login_Screen.class);
 //            startActivity(intent);
             finish();
+            Animatoo.INSTANCE.animateSlideRight(this);
         } else if ("signin".equals(source)) {
+
             // If source is signin, go back to SignInActivity
 //            Intent intent = new Intent(Otp_Screen.this, Signin_Screen.class);
 //            startActivity(intent);
             finish();
+            Animatoo.INSTANCE.animateSlideRight(this);
         } else {
             // Default behavior (handle appropriately)
             onBackPressed();
+            Animatoo.INSTANCE.animateSlideRight(this);
         }
     }
 
@@ -223,11 +225,11 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            if (check.equals("register")){
+                            if (check.equals("register")) {
 
-                                SharedPreferences sharedPreferences = getSharedPreferences(Login_Screen.PREFS_NAME,0);
+                                SharedPreferences sharedPreferences = getSharedPreferences(Login_Screen.PREFS_NAME, 0);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("hasLoggedIn",true);
+                                editor.putBoolean("hasLoggedIn", true);
                                 editor.commit();
 
                                 Map<String, Object> map = new HashMap<>();
@@ -249,9 +251,9 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                                                 showSnackbar(findViewById(android.R.id.content), "Successfully Registered.");
                                                 Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
                                                 startActivity(i);
-
-                                                sendregistermail(fname,lname,email,mob,password);
-                                                sendloggedinmail(fname,lname,email);
+                                                Animatoo.INSTANCE.animateSlideLeft(Otp_Screen.this);
+                                                sendregistermail(fname, lname, email, mob, password);
+                                                sendloggedinmail(fname, lname, email);
 
                                             }
                                         })
@@ -266,15 +268,15 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
                             } else {
 
-                                SharedPreferences sharedPreferences = getSharedPreferences(Login_Screen.PREFS_NAME,0);
+                                SharedPreferences sharedPreferences = getSharedPreferences(Login_Screen.PREFS_NAME, 0);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("hasLoggedIn",true);
+                                editor.putBoolean("hasLoggedIn", true);
                                 editor.commit();
 
                                 Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
                                 startActivity(i);
-
-                                sendloggedinmail(fnamel,lnamel,mailv);
+                                Animatoo.INSTANCE.animateSlideLeft(Otp_Screen.this);
+                                sendloggedinmail(fnamel, lnamel, mailv);
 
                             }
 
@@ -287,7 +289,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                 });
     }
 
-    public void sendregistermail(String finame,String laname,String email,String contact,String pass){
+    public void sendregistermail(String finame, String laname, String email, String contact, String pass) {
 
         try {
             String senderEmail = "tathastu052threesofficial@gmail.com";
@@ -304,12 +306,12 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     "                </tr>\n" +
                     "                <tr>\n" +
                     "                    <td bgcolor=\"#ffffff\" style=\"padding: 10px; color: black;\">\n" +
-                    "                        <p>Hello "+finame +" "+ laname+",</p>\n" +
+                    "                        <p>Hello " + finame + " " + laname + ",</p>\n" +
                     "                        <p>Thank you for joining Tathastu - The Donation App! Your commitment to making a difference is truly appreciated.</p>\n" +
                     "                        <p>You are registered with your mobile number & password as below :</p>\n" +
                     "                        <ul>\n" +
-                    "                            <li><strong>Mobile Number  :  </strong>+91 "+contact+"</li>\n" +
-                    "                            <li><strong>Password  :  </strong>"+pass+"</li>\n" +
+                    "                            <li><strong>Mobile Number  :  </strong>+91 " + contact + "</li>\n" +
+                    "                            <li><strong>Password  :  </strong>" + pass + "</li>\n" +
                     "                        </ul>\n" +
                     "                        </p>\n" +
                     "                        <p>Thank you for joining hands with [Tathastu - The Donation App] in making a positive impact! If you have any questions or need assistance, feel free to reach out to us at tathastu052threesofficial@gmail.com.\n" +
@@ -353,7 +355,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     "                </tr>\n" +
                     "                <tr>\n" +
                     "                    <td bgcolor=\"#ffffff\" style=\"padding: 10px; color: black;\">\n" +
-                    "                        <p>Hello "+fname + lname+",</p>\n" +
+                    "                        <p>Hello " + fname + lname + ",</p>\n" +
                     "                        <p>Welcome back to Tathastu - The Donation App! You have successfully logged in with your registered mobile number.</p>\n" +
                     "                        <p>If you have any questions or need assistance, feel free to reach out to us at tathastu052threesofficial@gmail.com.</p>\n" +
                     "                        <p style=\"text-align: center; margin: 20px 0;\">Follow us on:</p>\n" +
@@ -409,7 +411,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
             // Setting the subject and message content as HTML
             mimeMessage.setSubject("Registration Successfully !!");
-            mimeMessage.setContent(registerMessage,"text/html");
+            mimeMessage.setContent(registerMessage, "text/html");
 
             Thread t = new Thread(new Runnable() {
                 @Override
@@ -430,19 +432,13 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
             });
             t.start();
 
-        }
-
-        catch (AddressException e) {
+        } catch (AddressException e) {
             // Handling address exception
             Toast.makeText(Otp_Screen.this, "Error Occurred : " + e, Toast.LENGTH_SHORT).show();
-        }
-
-        catch (MessagingException e) {
+        } catch (MessagingException e) {
             // Handling messaging exception (e.g. network error)
             Toast.makeText(Otp_Screen.this, "Error Occurred : " + e, Toast.LENGTH_SHORT).show();
-        }
-
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             Toast.makeText(Otp_Screen.this, "Error Occurred : " + e, Toast.LENGTH_SHORT).show();
         }
 
@@ -450,7 +446,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
     }
 
-    public void sendloggedinmail(String fname1,String lname2,String email) {
+    public void sendloggedinmail(String fname1, String lname2, String email) {
 
         try {
             String senderEmail = "tathastu052threesofficial@gmail.com";
@@ -467,7 +463,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     "                </tr>\n" +
                     "                <tr>\n" +
                     "                    <td bgcolor=\"#ffffff\" style=\"padding: 10px; color: black;\">\n" +
-                    "                        <p>Hello "+fname1 +" "+ lname2+",</p>\n" +
+                    "                        <p>Hello " + fname1 + " " + lname2 + ",</p>\n" +
                     "                        <p>Welcome back to Tathastu - The Donation App! You have successfully logged in with your registered mobile number.</p>\n" +
                     "                        <p>If you have any questions or need assistance, feel free to reach out to us at tathastu052threesofficial@gmail.com.</p>\n" +
                     "                        <p style=\"text-align: center; margin: 20px 0;\">Follow us on:</p>\n" +
@@ -544,19 +540,13 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
             });
             t.start();
 
-        }
-
-        catch (AddressException e) {
+        } catch (AddressException e) {
             // Handling address exception
             Toast.makeText(Otp_Screen.this, "Error Occurred : " + e, Toast.LENGTH_SHORT).show();
-        }
-
-        catch (MessagingException e) {
+        } catch (MessagingException e) {
             // Handling messaging exception (e.g. network error)
             Toast.makeText(Otp_Screen.this, "Error Occurred : " + e, Toast.LENGTH_SHORT).show();
-        }
-
-        catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException e) {
             Toast.makeText(Otp_Screen.this, "Error Occurred : " + e, Toast.LENGTH_SHORT).show();
         }
 
@@ -628,7 +618,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         // Add custom view to Snackbar
         Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarView;
         snackbarLayout.removeAllViews(); // Remove all default views
-        snackbarLayout.setPadding(1,1,1,1);
+        snackbarLayout.setPadding(1, 1, 1, 1);
         snackbarLayout.addView(customView, 0);
 
         snackbar.show();

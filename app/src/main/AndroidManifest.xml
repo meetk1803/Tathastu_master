@@ -36,6 +36,9 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".Common_Screens.After_Intro_Start"
+            android:exported="true" />
+        <activity
             android:name=".NGO_Package.NGO_Campaign.NGO_Campaign_View_Donations"
             android:exported="true" />
         <activity

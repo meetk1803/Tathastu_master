@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -49,15 +50,18 @@ public class Terms_C_activity extends AppCompatActivity implements ConnectivityR
 //                    Intent intent = new Intent(Terms_C_activity.this, Signin_Screen.class);
 //                    startActivity(intent);
                     finish();
+                    Animatoo.INSTANCE.animateSlideDown(Terms_C_activity.this);
                 } else if ("about".equals(source)) {
                     // If source is signin, go back to SignInActivity
 //                    Intent intent = new Intent(Terms_C_activity.this, About_us_Screen.class);
 //                    startActivity(intent);
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(Terms_C_activity.this);
                 } else {
                     // Default behavior (handle appropriately)
                     onBackPressed();
                     finish();
+                    Animatoo.INSTANCE.animateSlideRight(Terms_C_activity.this);
                 }
             }
         });
@@ -71,6 +75,7 @@ public class Terms_C_activity extends AppCompatActivity implements ConnectivityR
                     String instagramLink = "https://www.instagram.com/tathastu.g052?igsh=OGQ5ZDc2ODk2ZA==\n";
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(instagramLink));
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSwipeLeft(Terms_C_activity.this);
                 } else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
@@ -84,6 +89,7 @@ public class Terms_C_activity extends AppCompatActivity implements ConnectivityR
                     String facebookLink = "https://www.facebook.com/tathastu.g052?mibextid=ZbWKwL\n";
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(facebookLink));
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSwipeLeft(Terms_C_activity.this);
                 } else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
@@ -95,12 +101,23 @@ public class Terms_C_activity extends AppCompatActivity implements ConnectivityR
                 if(isConnected()){
                     String twitterLink = "https://twitter.com/tathastu_g052?t=MrAtvaTuvcF1hbSMDqd5_A&s=09\n";
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(twitterLink));
-                    startActivity(i);}
+                    startActivity(i);
+                    Animatoo.INSTANCE.animateSwipeLeft(Terms_C_activity.this);
+                }
                 else {
                     showSnackbar(findViewById(android.R.id.content), "Please check your internet connection...");
                 }
             }
         });
+    }
+//--------------------------------------------------------------------------------------------------
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        Animatoo.INSTANCE.animateSlideDown(Terms_C_activity.this);
     }
 
     @Override

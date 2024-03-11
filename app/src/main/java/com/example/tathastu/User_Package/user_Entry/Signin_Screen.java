@@ -21,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
@@ -103,9 +104,11 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 //                Intent i =new Intent(Signin_Screen.this, Login_Screen.class);
 //                startActivity(i);
                 finish();
+                Animatoo.INSTANCE.animateSlideRight(Signin_Screen.this);
             }
         });
 
@@ -127,6 +130,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                     Intent i = new Intent(Signin_Screen.this, Terms_C_activity.class);
                     i.putExtra("source","signin");
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideUp(Signin_Screen.this);
                 }
             }
         });
@@ -179,6 +183,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                 } else {
                     Intent i = new Intent(Signin_Screen.this, Login_Screen.class);
                     startActivity(i);
+                    Animatoo.INSTANCE.animateSlideRight(Signin_Screen.this);
                 }
             }
         });
@@ -198,6 +203,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Animatoo.INSTANCE.animateSlideRight(this);
 //        Intent i=new Intent(Signin_Screen.this,Login_Screen.class);
 //        startActivity(i);
         finish();
@@ -303,6 +309,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
         i.putExtra("mob",mob);
         i.putExtra("check",ch);
         startActivity(i);
+        Animatoo.INSTANCE.animateSlideLeft(Signin_Screen.this);
 
     }
 
