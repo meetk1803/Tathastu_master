@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "944955852048",
-    "project_id": "tathastu-c703d",
-    "storage_bucket": "tathastu-c703d.appspot.com"
+    "project_number": "908019522002",
+    "project_id": "tathastu1-40ad5",
+    "storage_bucket": "tathastu1-40ad5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:944955852048:android:2f92ec71d3b388baa75195",
+        "mobilesdk_app_id": "1:908019522002:android:9cea1dd207dfc5c696d00b",
         "android_client_info": {
           "package_name": "com.example.tathastu"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCVUHOJCUQtXyi27h0ZhsjbV74m-wDp6_M"
+          "current_key": "AIzaSyCDD2AtXa0iIG4S-1LiIzVw5fm9_OdN0bg"
         }
       ],
       "services": {

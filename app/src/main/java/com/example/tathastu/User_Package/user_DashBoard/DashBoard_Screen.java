@@ -132,6 +132,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 

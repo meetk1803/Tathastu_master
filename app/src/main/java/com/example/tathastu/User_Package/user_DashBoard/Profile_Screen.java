@@ -62,7 +62,6 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
 
         referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 profile_getset userpro = snapshot.getValue(profile_getset.class);
