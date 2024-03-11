@@ -34,7 +34,7 @@
             android:maxLines="2"
             android:paddingHorizontal="@dimen/_5sdp"
             android:text="Substance Abuse and Mental Health Administration (SAMHSA) Helpline"
-            android:textColor="@color/status_color"
+            android:textColor="@color/other_ngo"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
             app:autoSizeMaxTextSize="@dimen/_15sdp"
@@ -106,7 +106,7 @@
                 android:layout_height="@dimen/_2sdp"
                 android:layout_marginHorizontal="@dimen/_8sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:background="@color/status_color" />
+                android:background="@color/other_ngo" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_NGO_mno"
@@ -184,7 +184,7 @@
                 android:layout_height="@dimen/_2sdp"
                 android:layout_marginHorizontal="@dimen/_8sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:background="@color/status_color" />
+                android:background="@color/other_ngo" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_NGO_instagram"
@@ -312,7 +312,7 @@
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/_5sdp"
-                android:backgroundTint="@color/toolbar_BG"
+                android:backgroundTint="@color/other_ngo"
                 android:elevation="0dp"
                 android:gravity="center"
                 android:text="Donate"

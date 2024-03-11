@@ -1,6 +1,7 @@
-// Event_Notifications_Screen.java
+package com.example.tathastu.NGO_Package.NGO_Campaign;
 
-package com.example.tathastu.User_Package.user_Event;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -9,16 +10,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Campaign.campaigns;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,73 +29,58 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event_Notifications_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class NGO_Campaign extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
-
-    List<events> eventsList;
+    List<campaigns> campaignsList;
     DatabaseReference reference;
-    FloatingActionButton btn_back;
-    ListView admin_eventlist;
+    Button btn_addcampaign;
+    ImageButton btn_search,btn_back;
+    ListView admin_clist;
 
-    String[] ename ={
-            "Tapi Revival Project",
-            "Serve Orphanage",
+    String[] cname ={
+            "Beti Bachao Beti Padhao",
+            "We Raise By Lifting Others",
             "Animal Rescue",
             "Woman Empowerment",
     };
-    String[] edesc ={
-            "The prime objective of the work is to improve the water quality of river tapi, which is the major resource of drinking water for citizens of surat city.Projecting of river tapi from any further degradation and thereby improvisation and restoration of the river water quality.",
-            "The prime objective of project is to made a significant impact by improving living condition at the orphanage , which is achieved by helping to create opportunities for children through supporting their education and care. ",
-            "Combine your passion for animal and desire to give to society by improving the unfortunate situation of abandoned street animals. During this volunteer program, You can help look for a new safe and beautiful home for stray dogs and cats. ",
+    String[] desc ={
+            "Beti Bacho Beti Padhao is a campaign launched by Goverment of india.It mainly ensure financial security for the girl child. the scheme also tries to ensure education of the girl child and her participation in society.",
+            "We Raise By Lifting Others was created by Khushi Orphanage. It was established to support orphans in orphanages.This campaign aims to provide shelter , food , cloths and other services for orphans.",
+            "Animal Rescue campaign is running by Jivdaya Trust. The Goal is to rescue abandoned and stray animals and get them adopted, to prevent rare and extinst spices of animals and misery of each and every animals and birds.",
             "Woman Empowerment is running by tathastu, this campaign aims is to supports womans by providing education and other services to the woman in specially rural areas.",
     };
-
-    String[] oname ={
-            "Youth Foundation",
-            "Helping Hand Foundation",
-            "Green Foundation",
-            "Woman Empowerment",
+    String[] oname = {
+            "Indian Goverment",
+            "Khushi Orphanage",
+            "Jivdaya Trust",
+            "Tathastu trust"
     };
-    String[] eaddress = {
-            "River front,",
-            "pavadar gali",
-            "renuka nagar",
-            "sardar chowk"
-    };
-    String[] ecity = {
-            "surat",
-            "ahemedabad",
-            "gandhinagar",
-            "vaddodara"
+    String[] ocontact = {
+            "9856231478",
+            "9985637562",
+            "8595231478",
+            "9856698532"
     };
 
-    String[] edate = {
-            "05-11-2024",
-            "02-03-2024",
-            "18-05-2024",
-            "22-03-2024"
+    Integer[] totalfund = {
+            350000,400000,360000,200000
     };
-
-    Integer[] etotal = {
-            350,400,360,850
+    Integer[] donatedfund = {
+            150000,200000,260000,85000
     };
-    Integer[] eparticipated = {
-            226,200,260,200
-    };
-    Integer[] eimgid = {
-            R.drawable.event_cleaning,
+    Integer[] imgid = {
+            R.drawable.campaign_beti_bachao,
             R.drawable.campaign_orphan,
             R.drawable.campaign_animal,
             R.drawable.campaign_woman,
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_notifications_screen);
+        setContentView(R.layout.activity_ngo_campaign);
 
-        admin_eventlist = findViewById(R.id.admin_eventlist);
-        btn_back = findViewById(R.id.BTN_back);
+        btn_addcampaign = (Button) findViewById(R.id.btn_addcampaign);
+        admin_clist = (ListView) findViewById(R.id.admin_clist);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -116,35 +99,33 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
                 finish();
             }
         });
+        ArrayList<campaigns> campaignsList = new ArrayList<>();
+        adminCampaignListAdapter cadapter = new adminCampaignListAdapter(this,campaignsList);
+        admin_clist.setAdapter(cadapter);
+        admin_clist.setClickable(true);
 
-        ArrayList<events> evetsList = new ArrayList<>();
 
-        eventListAdapter eadapter = new eventListAdapter(this, evetsList);
-        admin_eventlist.setAdapter(eadapter);
-        admin_eventlist.setClickable(true);
-
-        reference = FirebaseDatabase.getInstance().getReference().child("events");
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns");
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( @NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    evetsList.clear();
+                    campaignsList.clear();
 
                     // adding data in Array List
 
                     for(DataSnapshot cdataSnapshot : snapshot.getChildren()){
-                        events e = cdataSnapshot.getValue(events.class);
+                        campaigns c = cdataSnapshot.getValue(campaigns.class);
 
-                        evetsList.add(e);
+                        campaignsList.add(c);
                         //Log.d("Campaigns", "Name: " + campaigns.getCname());
 
                     }
 
-                    eadapter.notifyDataSetChanged();
+                    cadapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -152,21 +133,27 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
 
         });
 
-
-        admin_eventlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        admin_clist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                Intent i = new Intent(Event_Notifications_Screen.this,user_Event_inDetails.class);
-                i.putExtra("ename",evetsList.get(position).getName());
+                Intent i = new Intent(NGO_Campaign.this,NGO_Campaign_indetails.class);
+                i.putExtra("cname",campaignsList.get(position).getName());
                 startActivity(i);
+
             }
         });
 
-
+        btn_addcampaign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NGO_Campaign.this, NGO_Add_New_Campaign_Request.class);
+                startActivity(i);
+            }
+        });
     }
 
-
+    //-------------------------------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -193,7 +180,6 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
         snackbarLayout.removeAllViews(); // Remove all default views
         snackbarLayout.setPadding(1, 1, 1, 1);
         snackbarLayout.addView(customView, 0);
-
         snackbar.show();
     }
 

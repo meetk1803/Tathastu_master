@@ -1,4 +1,4 @@
-package com.example.tathastu.User_Package.user_Event;
+package com.example.tathastu.NGO_Package.NGO_Event;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,15 +13,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Event.events;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,23 +31,36 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class user_Event_inDetails extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class NGO_Event_inDetails extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
 
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageReference;
     ProgressBar eprogress;
-    TextView ename, oname, edesc, edate, eaddress, ecity, eparticipated, etotal;
-    ImageView eventimage, share;
-    Button btn_volunteer;
+    MaterialTextView ename, oname, edesc, edate, eaddress, ecity, eparticipated, etotal;
+    ShapeableImageView eventimage;
+    Button btn_volunteer,btn_editevent;
 
-    String iename, iedes, ieparticipated, ietotal, ieaddress, iecity, iedate, ioname, imageUrl;
+    String iename,iedes,ieparticipated,ietotal,ieaddress,iecity,iedate,ioname,imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_event_in_details);
+        setContentView(R.layout.activity_ngo_event_in_details);
+
+        eprogress = (ProgressBar) findViewById(R.id.eprogress);
+        ename = (MaterialTextView) findViewById(R.id.ename);
+        edesc = (MaterialTextView) findViewById(R.id.edesc);
+        edate = (MaterialTextView) findViewById(R.id.edate);
+        oname = (MaterialTextView) findViewById(R.id.oname);
+        eaddress = (MaterialTextView) findViewById(R.id.eaddress);
+        ecity = (MaterialTextView) findViewById(R.id.ecity);
+        eparticipated = (MaterialTextView) findViewById(R.id.eparticipated);
+        etotal = (MaterialTextView) findViewById(R.id.etotal);
+        eventimage = (ShapeableImageView) findViewById(R.id.eventimage);
+        btn_volunteer = (Button) findViewById(R.id.btn_volunteer);
+        btn_editevent = (Button) findViewById(R.id.btn_editevent);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -55,30 +69,18 @@ public class user_Event_inDetails extends AppCompatActivity implements Connectiv
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        FloatingActionButton BTN_back = findViewById(R.id.BTN_event_back);
-
-        // BACK
+        FloatingActionButton BTN_back=findViewById(R.id.BTN_event_back);
+        //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent i =new Intent(Event_Notifications_Screen.this, DashBoard_Screen.class);
+//                startActivity(i);
                 finish();
             }
         });
 
-        eprogress = findViewById(R.id.eprogress);
-        ename = findViewById(R.id.ename);
-        edesc = findViewById(R.id.edesc);
-        edate = findViewById(R.id.edate);
-        oname = findViewById(R.id.oname);
-        eaddress = findViewById(R.id.eaddress);
-        ecity = findViewById(R.id.ecity);
-        eparticipated = findViewById(R.id.eparticipated);
-        etotal = findViewById(R.id.etotal);
-        eventimage = findViewById(R.id.eventimage);
-        btn_volunteer = findViewById(R.id.btn_volunteer);
-        share = findViewById(R.id.BTN_event_share);
-
-        Intent intent = getIntent();
+        Intent intent = this.getIntent();
         iename = intent.getStringExtra("ename");
 
         reference = FirebaseDatabase.getInstance().getReference().child("events").child(iename);
@@ -110,7 +112,7 @@ public class user_Event_inDetails extends AppCompatActivity implements Connectiv
                     ecity.setText(iecity);
                     etotal.setText(ietotal);
                     eparticipated.setText(ieparticipated);
-                    Glide.with(user_Event_inDetails.this).load(imageUrl).into(eventimage);
+                    Glide.with(NGO_Event_inDetails.this).load(imageUrl).into(eventimage);
 
                 }
             }
@@ -121,34 +123,28 @@ public class user_Event_inDetails extends AppCompatActivity implements Connectiv
             }
         });
 
-        share.setOnClickListener(new View.OnClickListener() {
+
+        btn_editevent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                String sharesubject = iename;
-                String sharebody = " Join " + iename + " by " + ioname + "\n\n" + iedes + "\n\nPlace : " + ieaddress + " , " + iecity + " \nDate  : " + iedate + "\n\n" + "- Tathastu";
-
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, " " + iename);
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, sharebody);
-                startActivity(Intent.createChooser(sharingIntent, "Share "));
+                Intent i = new Intent(NGO_Event_inDetails.this,NGO_Event_Edit_Request.class);
+                i.putExtra("ename",ename.getText().toString());
+                startActivity(i);
             }
         });
 
         btn_volunteer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (Integer.parseInt(ietotal) <= Integer.parseInt(ieparticipated)) {
-                    Toast.makeText(user_Event_inDetails.this, "Sorry, the event is full", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent i = new Intent(user_Event_inDetails.this, user_Event_Volunteer_Request.class);
-                    i.putExtra("ename", ename.getText().toString());
-                    startActivity(i);
-                }
+                Intent i = new Intent(NGO_Event_inDetails.this, NGO_Event_View_Volunteers.class);
+                i.putExtra("ename",ename.getText().toString());
+                startActivity(i);
             }
         });
+
     }
+
+    //-------------------------------------------------------------------------------------------------
 
     @Override
     protected void onDestroy() {
@@ -158,7 +154,7 @@ public class user_Event_inDetails extends AppCompatActivity implements Connectiv
         unregisterReceiver(connectivityReceiver);
     }
 
-    // SNACKBAR
+    //SNACKBAR
     private void showSnackbar(View view, String message) {
         Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_SHORT);
         View snackbarView = snackbar.getView();
@@ -176,7 +172,6 @@ public class user_Event_inDetails extends AppCompatActivity implements Connectiv
         snackbarLayout.removeAllViews(); // Remove all default views
         snackbarLayout.setPadding(1, 1, 1, 1);
         snackbarLayout.addView(customView, 0);
-
         snackbar.show();
     }
 

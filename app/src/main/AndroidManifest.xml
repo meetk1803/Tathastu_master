@@ -36,8 +36,50 @@
         android:theme="@style/Theme.Tathastu"
         tools:targetApi="31">
         <activity
+            android:name=".NGO_Package.NGO_Campaign.NGO_Campaign_View_Donations"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Campaign.NGO_Edit_New_Campaign_Request"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Campaign.NGO_Add_New_Campaign_Request"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Campaign.NGO_Campaign_indetails"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Campaign.NGO_Campaign"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_Campaign.user_Campaign_Donate"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_Campaign.user_Funding_indetails_Campaign"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_Campaign.user_Funding_Campaign"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Event.NGO_Event_View_Volunteers"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Event.NGO_Event_inDetails"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Event.NGO_Event_Edit_Request"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Event.NGO_Event_Add_Request"
+            android:exported="true" />
+        <activity
+            android:name=".NGO_Package.NGO_Event.NGO_event_notify"
+            android:exported="true" />
+        <activity
+            android:name=".User_Package.user_Event.user_Event_Volunteer_Request"
+            android:exported="true" />
+        <activity
             android:name=".User_Package.user_Event.user_Event_inDetails"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".User_Package.user_DashBoard.User_ngo_Selection_Screen"
             android:exported="true" />

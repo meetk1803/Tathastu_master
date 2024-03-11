@@ -25,16 +25,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Campaign.user_Funding_Campaign;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
 import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.example.tathastu.User_Package.user_Event.Event_Notifications_Screen;
-import com.example.tathastu.User_Package.user_Event.UserAdapter_Event_Notify;
-import com.example.tathastu.User_Package.user_Event.UserModel_Event_Notify;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
 import com.example.tathastu.User_Package.user_History.History_Screen;
-import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
 import com.example.tathastu.User_Package.user_Quotes.AllQuotes_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -56,7 +54,7 @@ import java.util.List;
 public class DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
     MaterialTextView txt_dash_seeall,txt_dash_seeallquotes;
-    CardView card_dash_directContact,card_dash_event;
+    CardView card_dash_directContact,card_dash_campaign,card_dash_event;
     private AppCompatTextView dash_quote;
     private int currentQuoteId = 1; // Initial quote ID
     private boolean isToastDisplayed = false; // Variable to track whether the toast has been displayed
@@ -83,12 +81,6 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recycle_Event_Usermodel.setLayoutManager(layoutManager);
 
-// Create a list of UserModel_Event_Notify objects (replace these with your actual data)
-        List<UserModel_Event_Notify> eventList = generateDummyData();
-
-// Create an instance of UserAdapter_Event_Notify and set it to the RecyclerView
-        UserAdapter_Event_Notify adapter = new UserAdapter_Event_Notify(eventList);
-        recycle_Event_Usermodel.setAdapter(adapter);
 
 
 
@@ -105,6 +97,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         txt_dash_seeall = findViewById(R.id.txt_dash_seeall);
         txt_dash_seeallquotes = findViewById(R.id.txt_dash_seeallquotes);
         card_dash_directContact = findViewById(R.id.card_dash_directcontact);
+        card_dash_campaign = findViewById(R.id.card_dash_compaign);
         card_dash_event = findViewById(R.id.card_dash_event);
 
         dash_quote = findViewById(R.id.dash_quote);
@@ -207,6 +200,15 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
             }
         });
 
+//CARDVIEW ----- CAmpaign
+        card_dash_campaign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DashBoard_Screen.this, user_Funding_Campaign.class);
+                startActivity(i);
+            }
+        });
+
 
         //CARDVIEW ----- EVENT NOTIFICATIONS
         card_dash_event.setOnClickListener(new View.OnClickListener() {
@@ -260,28 +262,6 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 //-------------------------------------------------------------------------------------------------------------------------
 
 
-
-    //SEE ALL FOR ADS OR EVENT BANNERS ON SCREEN
-    private List<UserModel_Event_Notify> generateDummyData() {
-        // Replace this method with your actual data retrieval logic
-        List<UserModel_Event_Notify> dummyData = new ArrayList<>();
-
-        // Add dummy data with alternating banner images
-        for (int i = 0; i < 5; i++) { // Change 5 to the number of items you want
-            int ngoImageResId = (i % 2 == 0) ? R.drawable.donate_food : R.drawable.donate_blood; // Change this to the correct image resource for NGO
-            String ngoName = "SURACHANA EDUCATION AND CHARITABLE TRUST";
-            String ngoDescription = "For donation of blood and food. Also, there is a facility for volunteering. Are you interested? Please join us.";
-            String ngoAddress = "Surachana Education And Charitable Trust, B-2, City Light Apartment, Parle Point, Surat 395 007, Gujarat, India";
-            String eventDate = "12/12/2024";
-
-            UserModel_Event_Notify userModel = new UserModel_Event_Notify(ngoImageResId, ngoName, ngoDescription, ngoAddress, eventDate);
-            dummyData.add(userModel);
-        }
-
-        // Add more dummy data as needed
-
-        return dummyData;
-    }
 
     //PROFILE METHOD
     public void onProfileClick(View view) {

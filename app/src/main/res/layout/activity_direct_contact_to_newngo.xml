@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/toolbar_BG"
+    android:background="@color/other_ngo"
     android:orientation="vertical"
     tools:context=".User_Package.user_NGO_list.New_NGO_list.direct_contact_to_new_NGO">
 
@@ -37,7 +37,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="start"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:backgroundTint="@color/status_color"
+                    android:backgroundTint="@color/other_ngo"
                     android:src="@drawable/round_arrow_back_24"
                     app:fabCustomSize="@dimen/_30sdp"
                     app:fabSize="mini"
@@ -72,7 +72,7 @@
                             android:paddingHorizontal="@dimen/_20sdp"
                             android:text="There are some NGOs' Details for your help,you can call on that number by clicking on the number and also more details about the NGO where you can see the details of NGO : "
                             android:layout_marginBottom="@dimen/_1sdp"
-                            android:textColor="@color/status_color"
+                            android:textColor="@color/other_ngo"
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="TextSizeCheck" />
                         <com.google.android.material.textview.MaterialTextView
@@ -82,7 +82,7 @@
                             android:fontFamily="@font/inter_medium"
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:text="Select Category :"
-                            android:textColor="@color/status_color"
+                            android:textColor="@color/other_ngo"
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="TextSizeCheck" />
                         <com.google.android.material.textfield.TextInputLayout
@@ -91,10 +91,10 @@
                             android:layout_marginBottom="@dimen/_3sdp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:endIconTint="@color/status_color"
+                            app:endIconTint="@color/other_ngo"
                             app:boxBackgroundMode="filled"
                             app:boxBackgroundColor="@color/textField_Color"
-                            app:boxStrokeColor="@color/status_color"
+                            app:boxStrokeColor="@color/other_ngo"
                             app:expandedHintEnabled="true"
                             android:clickable="false">
 
@@ -103,7 +103,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textStyle="bold"
-                                android:textColor="@color/status_color"
+                                android:textColor="@color/other_ngo"
                                 tools:ignore="SpeakableTextPresentCheck"
                                 android:inputType="none"/>
 
@@ -111,7 +111,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_1sdp"
-                            android:background="@color/status_color"/>
+                            android:background="@color/other_ngo"/>
 
 
 
@@ -136,7 +136,7 @@
                             android:gravity="center"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_1sdp"
-                            android:background="@color/status_color"/>
+                            android:background="@color/other_ngo"/>
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="match_parent"
@@ -146,7 +146,7 @@
                             android:background="@color/white"
                             android:gravity="center"
                             android:text="All NGOs are available in the SURAT city"
-                            android:textColor="@color/status_color"
+                            android:textColor="@color/other_ngo"
                             android:textSize="@dimen/_10sdp"
                             tools:ignore="TextSizeCheck,TextContrastCheck" />
 

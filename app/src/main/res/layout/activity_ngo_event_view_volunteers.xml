@@ -6,22 +6,25 @@
     android:layout_height="match_parent"
     android:background="@color/event_notify"
     android:orientation="vertical"
-    tools:context=".User_Package.user_Event.Event_Notifications_Screen">
+    tools:context=".NGO_Package.NGO_Event.NGO_Event_View_Volunteers">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
-            android:layout_gravity="center"
-            android:text="Upcoming Events"
+            android:gravity="center"
+            android:text="Volunteers"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,8 +46,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -57,7 +59,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -68,7 +70,7 @@
                         android:layout_gravity="start|center"
                         android:fontFamily="@font/inter_medium"
                         android:paddingHorizontal="@dimen/_20sdp"
-                        android:text="Here you can see the upcoming events' details related to donation camps : "
+                        android:text="List of volunteers who want to participate in these events : "
                         android:layout_marginBottom="@dimen/_5sdp"
                         android:textColor="@color/event_notify"
                         android:textSize="@dimen/_10sdp"
@@ -79,20 +81,31 @@
                         android:layout_height="@dimen/_1sdp"
                         android:background="@color/event_notify"/>
 
-                    <ListView
-                        android:id="@+id/admin_eventlist"
+                    <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_15sdp"
-                        android:divider="@color/white"
-                        android:dividerHeight="@dimen/_10sdp"
-                        android:footerDividersEnabled="true" />
-                </LinearLayout>
+                        android:fillViewport="true"
+                        tools:ignore="SpeakableTextPresentCheck">
 
+
+                        <ListView
+                            android:id="@+id/volunteer_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:dividerHeight="@dimen/_5sdp"
+                            android:footerDividersEnabled="true"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </ScrollView>
+                </LinearLayout>
             </FrameLayout>
+
         </LinearLayout>
     </FrameLayout>
 

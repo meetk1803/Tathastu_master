@@ -1,6 +1,7 @@
-// Event_Notifications_Screen.java
+package com.example.tathastu.NGO_Package.NGO_Event;
 
-package com.example.tathastu.User_Package.user_Event;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -9,16 +10,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_Event.eventListAdapter;
+import com.example.tathastu.User_Package.user_Event.events;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -31,18 +30,25 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event_Notifications_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
+public class NGO_event_notify extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
-
     List<events> eventsList;
     DatabaseReference reference;
-    FloatingActionButton btn_back;
+    Button btn_addevent;
+    ImageButton btn_search,btn_back;
     ListView admin_eventlist;
 
     String[] ename ={
             "Tapi Revival Project",
             "Serve Orphanage",
             "Animal Rescue",
+            "Woman Empowerment",
+    };
+
+    String[] oname ={
+            "Youth Foundation",
+            "Helping Hand Foundation",
+            "Green Foundation",
             "Woman Empowerment",
     };
     String[] edesc ={
@@ -52,12 +58,6 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
             "Woman Empowerment is running by tathastu, this campaign aims is to supports womans by providing education and other services to the woman in specially rural areas.",
     };
 
-    String[] oname ={
-            "Youth Foundation",
-            "Helping Hand Foundation",
-            "Green Foundation",
-            "Woman Empowerment",
-    };
     String[] eaddress = {
             "River front,",
             "pavadar gali",
@@ -82,7 +82,7 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
             350,400,360,850
     };
     Integer[] eparticipated = {
-            226,200,260,200
+            150,200,260,200
     };
     Integer[] eimgid = {
             R.drawable.event_cleaning,
@@ -90,14 +90,13 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
             R.drawable.campaign_animal,
             R.drawable.campaign_woman,
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event_notifications_screen);
+        setContentView(R.layout.activity_ngo_event_notify);
 
-        admin_eventlist = findViewById(R.id.admin_eventlist);
-        btn_back = findViewById(R.id.BTN_back);
+        btn_addevent = (Button) findViewById(R.id.btn_addevent);
+        admin_eventlist = (ListView) findViewById(R.id.admin_eventlist);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -117,6 +116,9 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
             }
         });
 
+
+
+
         ArrayList<events> evetsList = new ArrayList<>();
 
         eventListAdapter eadapter = new eventListAdapter(this, evetsList);
@@ -135,7 +137,6 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
 
                     for(DataSnapshot cdataSnapshot : snapshot.getChildren()){
                         events e = cdataSnapshot.getValue(events.class);
-
                         evetsList.add(e);
                         //Log.d("Campaigns", "Name: " + campaigns.getCname());
 
@@ -157,16 +158,23 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                Intent i = new Intent(Event_Notifications_Screen.this,user_Event_inDetails.class);
+                Intent i = new Intent(NGO_event_notify.this,NGO_Event_inDetails.class);
                 i.putExtra("ename",evetsList.get(position).getName());
                 startActivity(i);
             }
         });
 
+        btn_addevent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NGO_event_notify.this,NGO_Event_Add_Request.class);
+                startActivity(i);
+            }
+        });
 
     }
 
-
+//---------------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -193,7 +201,6 @@ public class Event_Notifications_Screen extends AppCompatActivity implements Con
         snackbarLayout.removeAllViews(); // Remove all default views
         snackbarLayout.setPadding(1, 1, 1, 1);
         snackbarLayout.addView(customView, 0);
-
         snackbar.show();
     }
 

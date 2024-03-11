@@ -20,6 +20,9 @@
     <color name="blood_donation">#8a0303</color>
     <color name="food_donation">#DE970B</color>
     <color name="edu_donation">#4A1F97</color>
+    <color name="other_ngo">#0F3F78</color>
+    <color name="event_notify">#8A0A51</color>
+    <color name="funding_campaign">#32A401</color>
     <color name="success">#5cb85c</color>
     <color name="failed">#FF0000</color>
 
