@@ -160,7 +160,7 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
                     } else if (!pwd.equals(cpwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match...");
                     } else if (ckbox.isChecked()) {
-                        verification(fname, lname, email, mob, dob1);
+                        verification(fname, lname, email, mob, dob1, cpwd);
                     } else {
                         showSnackbar(findViewById(android.R.id.content), "Please accept the Terms & Conditions...");
                     }
@@ -288,33 +288,22 @@ public class Signin_Screen extends AppCompatActivity implements DatePickerDialog
     }
 
 
-    private void verification(String fname, String lname, String email, String mob, String dob1) {
+    private void verification(String fname, String lname, String email, String mob, String dob1, String cpwd) {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("fname", fname);
-        map.put("lname", lname);
-        map.put("email", email);
-        map.put("birth_of_date", dob1);
-        map.put("mobile", mob);
+        String ch = "register";
 
-        FirebaseDatabase.getInstance().getReference().child("user").push()
-                .setValue(map)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        showSnackbar(findViewById(android.R.id.content), "Data Inserted Successfully.\nSuccessfully Registered.");
-                        Intent i = new Intent(Signin_Screen.this, Otp_Screen.class);
-                        i.putExtra("source", "signin");
-                        i.putExtra("mobile", "+91" + mob);
-                        startActivity(i);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showSnackbar(findViewById(android.R.id.content), "Error: While Inserting Data.");
-                    }
-                });
+        Intent i = new Intent(Signin_Screen.this, Otp_Screen.class);
+        i.putExtra("source", "signin");
+        i.putExtra("mobile", "+91" + mob);
+        i.putExtra("fname",fname);
+        i.putExtra("lname",lname);
+        i.putExtra("email",email);
+        i.putExtra("birth_of_date",dob1);
+        i.putExtra("password",cpwd);
+        i.putExtra("mob",mob);
+        i.putExtra("check",ch);
+        startActivity(i);
+
     }
 
     // Helper method to check if the internet connection is available

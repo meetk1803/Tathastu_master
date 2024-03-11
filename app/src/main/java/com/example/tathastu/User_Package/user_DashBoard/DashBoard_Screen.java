@@ -17,6 +17,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -35,8 +36,17 @@ import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
 import com.example.tathastu.User_Package.user_History.History_Screen;
 import com.example.tathastu.User_Package.user_Quotes.AllQuotes_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +75,7 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
     private final int QUOTE_UPDATE_INTERVAL = 8 * 1000; // 20 seconds in milliseconds
 
     private ConnectivityReceiver connectivityReceiver;
+    ShapeableImageView img_profile_photo;
 
 
 
@@ -100,8 +111,29 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         card_dash_campaign = findViewById(R.id.card_dash_compaign);
         card_dash_event = findViewById(R.id.card_dash_event);
 
+        img_profile_photo = findViewById(R.id.profile_icon);
+
         dash_quote = findViewById(R.id.dash_quote);
         dash_quote.setText("");
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+
+        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
+
+        referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                profile_getset userpro = snapshot.getValue(profile_getset.class);
+                if (userpro != null) {
+                    Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
 
 // Initialize the ConnectivityReceiver

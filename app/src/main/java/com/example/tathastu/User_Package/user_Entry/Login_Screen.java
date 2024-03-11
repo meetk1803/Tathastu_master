@@ -14,16 +14,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.Common_Screens.Selection_Screen;
 import com.example.tathastu.R;
+import com.example.tathastu.User_Package.user_DashBoard.profile_getset;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     public ExtendedFloatingActionButton BTN_login ;
@@ -34,6 +41,7 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
     public TextInputEditText edtmno,edtpwd;
     TextInputLayout txtlayout_login_mno;
     private ConnectivityReceiver connectivityReceiver;
+    public  static String PREFS_NAME = "myprefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,19 +102,56 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                     } else if (!isValidNumber(mob)) {
                         showSnackbar(findViewById(android.R.id.content),"Please enter a valid mobile number...");
 
-                    }
+                    } else {
 
-                    //WHEN DATABASE FETCH THE PASSWORD AND CHECK EITHER EQUAL OR NOT
-//                else if (!pwd.equals(cpwd)) {
-//                    showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match");
-//                }
-                    else {
-                        // Clear the error message
-                        Intent i = new Intent(Login_Screen.this, Otp_Screen.class);
-                        Toast.makeText(Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                        i.putExtra("source", "login");
-                        i.putExtra("mobile", "+91" + mob);
-                        startActivity(i);
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user");
+
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                if (snapshot.exists()){
+
+                                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+
+                                        profile_getset getset = snapshot1.getValue(profile_getset.class);
+                                        String mno = getset.getMobile();
+                                        String pass = getset.getPassword();
+                                        String emailv = getset.getEmail();
+                                        String fname = getset.getFname();
+                                        String lname = getset.getLname();
+
+                                        if (mob.equals(mno) && pwd.equals(pass)) {
+
+                                            // Clear the error message
+                                            Intent i = new Intent(Login_Screen.this, Otp_Screen.class);
+                                            Toast.makeText(Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                                            i.putExtra("source", "login");
+                                            i.putExtra("mobile", "+91" + mob);
+                                            i.putExtra("fsmail",emailv);
+                                            i.putExtra("fnamel",fname);
+                                            i.putExtra("lnamel",lname);
+                                            i.putExtra("check","login");
+                                            startActivity(i);
+
+                                        } else {
+
+                                            Toast.makeText(Login_Screen.this, "First Register After Try To Log In.", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                     }
                 }
             }

@@ -30,6 +30,11 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    packagingOptions{
+        exclude 'META-INF/NOTICE.md'
+        exclude 'META-INF/LICENSE.md'
+    }
 }
 
 dependencies {
@@ -59,5 +64,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.3.0'
     implementation 'com.google.android.gms:play-services-fido:20.1.0'
     implementation 'com.android.volley:volley:1.2.1'
+    //Profile Image
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //Mail Service
+    implementation 'com.sun.mail:android-mail:1.6.6'
+    implementation 'com.sun.mail:android-activation:1.6.7'
 
 }

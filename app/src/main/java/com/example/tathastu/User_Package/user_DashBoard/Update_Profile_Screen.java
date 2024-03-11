@@ -23,24 +23,41 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class Update_Profile_Screen extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, ConnectivityReceiver.ConnectivityReceiverListener {
     //ALL
@@ -67,6 +84,7 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
     //DATE OF BIRTH
     private int minYear, maxYear;
     private SimpleDateFormat dateFormatter;
+    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +105,35 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         txt_updatep_change = findViewById(R.id.txt_updatep_change);
 
         update_parentLayout = findViewById(R.id.update_parentLayout);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+
+        // Extracting all the Registered User Data from Firebase Realtime Database
+        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
+
+        referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                profile_getset updateModel = snapshot.getValue(profile_getset.class);
+                if (updateModel != null) {
+                    Picasso.get().load(updateModel.getProfile_image()).into(img_profile_photo);
+                    txt_Profile_Fname.setText(updateModel.getFname());
+                    txt_Profile_Lname.setText(updateModel.getLname());
+                    txt_Profile_email.setText(updateModel.getEmail());
+                    txt_Profile_mno.setText(updateModel.getMobile());
+                    txt_Profile_dob.setText(updateModel.getBirth_of_date());
+                    txt_Profile_pwd.setText(updateModel.getPassword());
+                    txt_Profile_cpwd.setText(updateModel.getPassword());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // Set up touch listener for the parent layout
         update_parentLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -164,8 +211,95 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
                     } else if (!pwd.equals(cpwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match...");
                     } else {
-                        showSnackbar(findViewById(android.R.id.content), "Please accept the Terms & Conditions...");
-                    }
+                        if (imageUri != null) {
+
+                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                            StorageReference imageRef = storage.getReference().child("images/" +  System.currentTimeMillis() + ".jpg");
+                            imageRef.putFile(imageUri)
+                                    .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                // Image upload successful
+                                                // You can get the download URL from task.getResult().getDownloadUrl()
+                                                // and use it to display or further process the uploaded image
+                                                // For Firebase SDK version 16.0.0 and later, use task.getResult().getMetadata().getReference().getDownloadUrl()
+                                                // For example: Uri downloadUrl = task.getResult().getMetadata().getReference().getDownloadUrl();
+
+                                                Toast.makeText(Update_Profile_Screen.this, "Images Upload Successfully.", Toast.LENGTH_SHORT).show();
+
+                                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+
+
+
+                                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//                                                        Objects.requireNonNull(user).updatePhoneNumber(txt_Profile_mno.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                                            @Override
+//                                                            public void onComplete(@NonNull Task<Void> task) {
+//                                                                if (task.isSuccessful()) {
+//                                                                    Toast.makeText(Update_Profile_Screen.this, "Updated Successfully", Toast.LENGTH_LONG).show();
+
+                                                        DatabaseReference userdata = FirebaseDatabase.getInstance().getReference("user");
+
+                                                        String upuid = user.getUid();
+
+                                                        Map<String, Object> map = new HashMap<>();
+                                                        map.put("profile_image",uri.toString());
+                                                        map.put("fname", fname);
+                                                        map.put("lname", lname);
+                                                        map.put("email", email);
+                                                        map.put("birth_of_date", dob1);
+                                                        map.put("mobile", mob);
+                                                        map.put("password", cpwd);
+
+                                                        userdata.child(upuid).addValueEventListener(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                                                if (snapshot.exists()) {
+
+                                                                    userdata.child(upuid).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                        @Override
+                                                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                                                            Toast.makeText(Update_Profile_Screen.this, "Updated Successfully.", Toast.LENGTH_SHORT).show();
+
+                                                                        }
+                                                                    });
+
+                                                                } else {
+
+                                                                    Toast.makeText(Update_Profile_Screen.this, "Data is Not Updated.", Toast.LENGTH_SHORT).show();
+
+                                                                }
+
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
+//                                                                }
+//                                                            }
+//                                                        });
+
+                                                    }
+                                                });
+
+                                            } else {
+                                                // Image upload failed
+                                                Toast.makeText(Update_Profile_Screen.this, "Image upload failed", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                        } else {
+
+
+
+                        }                    }
                 }
             }
         });
@@ -186,7 +320,7 @@ protected void onActivityResult(int requestCode, int resultCode, @Nullable Inten
         if (requestCode == SELECT_PICTURE || requestCode == REQUEST_IMAGE_CAPTURE) {
             if (data != null) {
                 // Start cropping activity with the selected image
-                Uri imageUri = data.getData();
+                imageUri = data.getData();
                 startCropActivity(imageUri);
             } else {
                 Toast.makeText(this, "No Image Selected.", Toast.LENGTH_SHORT).show();
