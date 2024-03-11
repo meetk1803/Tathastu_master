@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -113,7 +114,10 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         check = getIntent().getStringExtra("check");
         mailv = getIntent().getStringExtra("fsmail");
         fnamel = getIntent().getStringExtra("fnamel");
-        lnamel = getIntent().getStringExtra("lnamel");        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
+        lnamel = getIntent().getStringExtra("lnamel");
+
+
+        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
         txt_otp_mno.setText("+91 XXXXXX"+last_four_digits);
 
         Toast.makeText(this, phonenumber, Toast.LENGTH_SHORT).show();
@@ -145,7 +149,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
                 }*/
                     else {
-                        startOtpTimer();
+//                        startOtpTimer();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
                         signInWithPhoneAuthCredential(credential);
                     }
@@ -564,31 +568,31 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
     }
 
-    private void startOtpTimer() {
-        timeLeftInMillis = OTP_TIMER_DURATION;
-
-        countDownTimer = new CountDownTimer(timeLeftInMillis, INTERVAL) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                updateTimerText();
-            }
-
-            @Override
-            public void onFinish() {
-                // The timer has finished, handle accordingly
-                tvOtpTime.setText("00:00"); // Update the UI or trigger OTP resend, etc.
-            }
-        }.start();
-    }
-
-    private void updateTimerText() {
-        int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        int seconds = (int) (timeLeftInMillis / 1000) % 60;
-
-        String timeFormatted = String.format("%02d:%02d", minutes, seconds);
-        tvOtpTime.setText(timeFormatted);
-    }
+//    private void startOtpTimer() {
+//        timeLeftInMillis = OTP_TIMER_DURATION;
+//
+//        countDownTimer = new CountDownTimer(timeLeftInMillis, INTERVAL) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                timeLeftInMillis = millisUntilFinished;
+//                updateTimerText();
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                // The timer has finished, handle accordingly
+//                tvOtpTime.setText("00:00"); // Update the UI or trigger OTP resend, etc.
+//            }
+//        }.start();
+//    }
+//
+//    private void updateTimerText() {
+//        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+//        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+//
+//        String timeFormatted = String.format("%02d:%02d", minutes, seconds);
+//        tvOtpTime.setText(timeFormatted);
+//    }
 
     @Override
     protected void onDestroy() {
