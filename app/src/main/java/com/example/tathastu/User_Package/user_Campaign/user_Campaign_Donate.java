@@ -78,10 +78,10 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
 
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
         int imageid = intent.getIntExtra("cimage",R.drawable.bg);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -151,7 +151,7 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
 
                     // adding the user donation to the total received donation
 
-                    reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname).child("Donations");
+                    reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key).child("Donations");
                     reference1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {

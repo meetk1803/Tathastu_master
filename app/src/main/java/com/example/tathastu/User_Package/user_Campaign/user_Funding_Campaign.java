@@ -135,7 +135,7 @@ public class user_Funding_Campaign extends AppCompatActivity implements Connecti
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent i = new Intent(user_Funding_Campaign.this,user_Funding_indetails_Campaign.class);
-                i.putExtra("cname",campaignsList.get(position).getName());
+                i.putExtra("key",campaignsList.get(position).getKey());
                 startActivity(i);
 
             }

@@ -61,9 +61,9 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -78,6 +78,7 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
                     String iocontact = campaign.getOrganizer_contact();
                     String icdonated = campaign.getDonation_received();
                     String imageUrl = campaign.getImageUrl();
+                    String icname = campaign.getName();
 
                     cdescription.setText(description);
                     cname.setText(icname);
@@ -108,7 +109,7 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
             public void onClick(View view) {
 
                 Intent i = new Intent(user_Funding_indetails_Campaign.this,user_Campaign_Donate.class);
-                i.putExtra("cname",cname.getText().toString());
+                i.putExtra("key",key);
                 startActivity(i);
             }
         });
