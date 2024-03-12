@@ -93,8 +93,6 @@
                             android:id="@+id/donation_list"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/_15sdp"
-                            android:layout_marginRight="@dimen/_15sdp"
                             android:dividerHeight="@dimen/_2sdp"
                             android:footerDividersEnabled="true"
                             app:layout_constraintHorizontal_bias="0.5"

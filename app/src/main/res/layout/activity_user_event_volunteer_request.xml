@@ -108,6 +108,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
                         android:inputType="phone"
+                        android:maxLength="10"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold"/>

@@ -5,24 +5,37 @@ package com.example.tathastu.NGO_Package.NGO_History;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
-import com.example.tathastu.User_Package.user_History.UserAdapter_History_payment;
-import com.example.tathastu.User_Package.user_History.UserModel_History_payment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NGO_History_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
@@ -34,18 +47,18 @@ public class NGO_History_Screen extends AppCompatActivity implements Connectivit
         setContentView(R.layout.activity_ngo_history_screen);
 
         // Assuming you have a RecyclerView with the id "userdata" in your layout
-        RecyclerView recycle_history_transaction_Usermodel = findViewById(R.id.recycle_history_transaction_Usermodel);
+        RecyclerView recycle_history_transaction_Ngomodel = findViewById(R.id.recycle_history_transaction_NGOmodel);
 
         // Create a LinearLayoutManager for the RecyclerView
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recycle_history_transaction_Usermodel.setLayoutManager(layoutManager);
+        recycle_history_transaction_Ngomodel.setLayoutManager(layoutManager);
 
         // Create a list of UserModel_Event_Notify objects (replace these with your actual data)
-        List<UserModel_History_payment> paymentList = generateDummyData();
+        List<NGOModel_History_payment> paymentList=fetchPaymentHistory();
 
         // Create an instance of UserAdapter_Event_Notify and set it to the RecyclerView
-        UserAdapter_History_payment adapter = new UserAdapter_History_payment(paymentList);
-        recycle_history_transaction_Usermodel.setAdapter(adapter);
+        NGOAdapter_History_payment adapter = new NGOAdapter_History_payment(paymentList);
+        recycle_history_transaction_Ngomodel.setAdapter(adapter);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -72,12 +85,14 @@ public class NGO_History_Screen extends AppCompatActivity implements Connectivit
         txt_history_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toggleRecyclerViewVisibility(recycle_history_transaction_Usermodel);
+                toggleRecyclerViewVisibility(recycle_history_transaction_Ngomodel);
             }
         });
 
 
     }
+
+
 //--------------------------------------------------------------------------------------------------
 
     // Function to toggle visibility of RecyclerView
@@ -91,24 +106,82 @@ public class NGO_History_Screen extends AppCompatActivity implements Connectivit
         }
     }
 
-    //dummy data
-    private List<UserModel_History_payment> generateDummyData() {
-        // Replace this method with your actual data retrieval logic
-        List<UserModel_History_payment> dummyData = new ArrayList<>();
+    private List<NGOModel_History_payment> fetchPaymentHistory() {
+        List<NGOModel_History_payment> dataList = new ArrayList<>();
 
-        // Add dummy data with alternating banner images
-        for (int i = 0; i < 10; i++) { // Change 5 to the number of items you want
-            String moneyPayment = "₹ 12,000";
-            String moneyDate = "Wednesday, 12 Feb 2023";
 
-            UserModel_History_payment userModel = new UserModel_History_payment(moneyPayment, moneyDate);
-            dummyData.add(userModel);
-        }
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://api.razorpay.com/v1/payments?count=100";
 
-        // Add more dummy data as needed
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Handle the response
 
-        return dummyData;
+                        if(!response.isEmpty())
+                        {
+                            try{
+                                JSONObject jsonObject = new JSONObject(response.toString());
+                                JSONArray paymentsArray = jsonObject.getJSONArray("items");
+
+                                for (int i = 0; i < paymentsArray.length(); i++) {
+                                    JSONObject payment = paymentsArray.getJSONObject(i);
+
+                                    String amount = payment.getString("amount");
+                                    String dateTime = payment.getString("created_at");
+                                    String email = payment.getString("email");
+                                    String contact = payment.getString("contact");
+
+                                    String receivedFrom = "";
+                                    String mobile="";
+                                    if (payment.has("notes")) {
+                                        JSONObject notesObject = payment.optJSONObject("notes");
+                                        if (notesObject != null && notesObject.has("note1")) {
+                                            receivedFrom = notesObject.getString("note1");
+                                        }
+                                        if (notesObject != null && notesObject.has("note2")) {
+                                            mobile = notesObject.getString("note2");
+                                        }
+                                    }
+
+                                    if(contact.equals("+919726666335")) {
+                                        NGOModel_History_payment data = new NGOModel_History_payment(receivedFrom, amount, dateTime, email,mobile);
+                                        dataList.add(data);
+                                    }
+
+                                }
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+                Toast.makeText(NGO_History_Screen.this, "Failed To Fetch Payment History.", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Add Basic Authentication header
+                String credentials = "rzp_test_iiWet5Chi79qWI" + ":" + "JbRNCuo2zjYJLCXdgbl7o8MZ";
+                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                headers.put("Authorization", auth);
+                return headers;
+            }
+        };
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+        return dataList;
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

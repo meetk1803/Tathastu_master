@@ -20,8 +20,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,9 +40,10 @@ public class user_Event_inDetails extends AppCompatActivity implements Connectiv
     FirebaseStorage storage;
     StorageReference storageReference;
     ProgressBar eprogress;
-    TextView ename, oname, edesc, edate, eaddress, ecity, eparticipated, etotal;
-    ImageView eventimage, share;
-    Button btn_volunteer;
+    MaterialTextView ename, oname, edesc, edate, eaddress, ecity, eparticipated, etotal;
+    ShapeableImageView eventimage;
+    FloatingActionButton share;
+    ExtendedFloatingActionButton btn_volunteer;
 
     String iename, iedes, ieparticipated, ietotal, ieaddress, iecity, iedate, ioname, imageUrl;
 

@@ -1,5 +1,6 @@
 package com.example.tathastu.User_Package.user_History;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tathastu.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class UserAdapter_History_payment extends RecyclerView.Adapter<UserAdapter_History_payment.EventViewHolder> {
 
@@ -39,19 +43,37 @@ public class UserAdapter_History_payment extends RecyclerView.Adapter<UserAdapte
     }
 
     static class EventViewHolder extends RecyclerView.ViewHolder {
-        private AppCompatTextView text_history_money;
-        private AppCompatTextView text_history_date;
+        private AppCompatTextView sentTo,method,amount,dateTime,status,transactionId;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            text_history_money = itemView.findViewById(R.id.text_history_money);
-            text_history_date = itemView.findViewById(R.id.text_history_date);
+            sentTo = itemView.findViewById(R.id.sentTo);
+            method = itemView.findViewById(R.id.method);
+            amount = itemView.findViewById(R.id.amount);
+            dateTime = itemView.findViewById(R.id.dateTime);
+            status = itemView.findViewById(R.id.status);
+            transactionId = itemView.findViewById(R.id.transactionId);
         }
 
         public void bind(UserModel_History_payment event) {
-            text_history_money.setText(event.getMoneyPayment());
-            text_history_date.setText(event.getMoneyDate());
+
+            Date date = new Date(Long.parseLong(event.getDateTime()) * 1000L);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+
+            if(event.getStatus().equals("authorized"))
+            {
+                status.setText("Success");
+            }else{
+                status.setText(event.getStatus());
+                status.setTextColor(Color.RED);
+            }
+
+            sentTo.setText(event.getSentTo());
+            method.setText("Method : "+event.getMethod());
+            amount.setText("₹ "+ String.format("%.2f",Float.parseFloat(event.getAmount()) / 100));
+            dateTime.setText(sdf.format(date).toString());
+            transactionId.setText("Transaction Id : "+event.getTransactionId());
         }
     }
 }

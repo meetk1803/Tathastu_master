@@ -24,8 +24,10 @@ import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,10 +42,9 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
     FirebaseStorage storage;
     StorageReference storageReference;
 
-
-    Button btn_addimage,btn_add_campaign;
-    EditText txt_campaignname,txt_description,txt_organizer,txt_organizermno;
-    ImageButton btn_back;
+    ExtendedFloatingActionButton btn_addimage;
+    Button btn_add_campaign;
+    TextInputEditText txt_campaignname,txt_description,txt_organizer,txt_organizermno;
     ImageView cimage;
     int Select_Picture = 200;
     Uri selectedImageUri;
@@ -76,11 +77,11 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
 
         btn_addimage =  findViewById(R.id.btn_addimage);
         btn_add_campaign =  findViewById(R.id.btn_add_campaign);
-        cimage = (ImageView) findViewById(R.id.cimage);
-        txt_campaignname = (EditText) findViewById(R.id.txt_campaignname);
-        txt_description = (EditText) findViewById(R.id.txt_description);
-        txt_organizer = (EditText) findViewById(R.id.txt_organizer);
-        txt_organizermno = (EditText) findViewById(R.id.txt_organizermno);
+        cimage =  findViewById(R.id.cimage);
+        txt_campaignname = findViewById(R.id.txt_campaignname);
+        txt_description = findViewById(R.id.txt_description);
+        txt_organizer =  findViewById(R.id.txt_organizer);
+        txt_organizermno = findViewById(R.id.txt_organizermno);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -119,6 +120,7 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
 
                                 // coding to store data in database
 
+                                String key= String.valueOf(System.currentTimeMillis());
 
                                 String cname = txt_campaignname.getText().toString();
                                 String cdesc = txt_description.getText().toString();
@@ -135,17 +137,18 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
                                 p.show();
 
 
-                                reference.child(cname).child("name").setValue(cname);
+                                reference.child(key).child("name").setValue(cname);
                                 //reference.child("running").child(cname).child("cid").setValue(cid);
-                                reference.child(cname).child("description").setValue(cdesc);
-                                reference.child(cname).child("organizer_name").setValue(coname);
-                                reference.child(cname).child("organizer_contact").setValue(cocontact);
-                                reference.child(cname).child("donation_received").setValue(cdonated);
+                                reference.child(key).child("description").setValue(cdesc);
+                                reference.child(key).child("organizer_name").setValue(coname);
+                                reference.child(key).child("organizer_contact").setValue(cocontact);
+                                reference.child(key).child("donation_received").setValue(cdonated);
+                                reference.child(key).child("key").setValue(key);
 
                                 //storing Image in Firebase Storage
 
                                 if(selectedImageUri != null){
-                                    StorageReference reference1 = storageReference.child("campaign/" + cname);
+                                    StorageReference reference1 = storageReference.child("campaign/" + key);
                                     reference1.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -156,7 +159,7 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
                                             reference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
-                                                    reference.child(cname).child("imageUrl").setValue(uri.toString());
+                                                    reference.child(key).child("imageUrl").setValue(uri.toString());
                                                 }
                                             });
 

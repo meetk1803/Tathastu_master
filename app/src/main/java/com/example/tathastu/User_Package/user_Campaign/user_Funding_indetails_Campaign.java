@@ -16,8 +16,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,22 +36,22 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageReference;
-    TextView cname,cdonated,cdescription,oname,ocontact;
-    ImageView campaignimage;
-    Button btn_donate;
+    MaterialTextView cname,cdonated,cdescription,oname,ocontact;
+    ShapeableImageView campaignimage;
+    ExtendedFloatingActionButton btn_donate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_funding_indetails_campaign);
 
-        cname = (TextView) findViewById(R.id.cname);
-        cdonated = (TextView) findViewById(R.id.cdonated);
-        cdescription = (TextView) findViewById(R.id.cdescription);
-        oname = (TextView) findViewById(R.id.oname);
-        ocontact = (TextView) findViewById(R.id.ocontact);
-        campaignimage = (ImageView) findViewById(R.id.campaignimage);
-        btn_donate = (Button) findViewById(R.id.btn_donate);
+        cname =  findViewById(R.id.cname);
+        cdonated =  findViewById(R.id.cdonated);
+        cdescription =  findViewById(R.id.cdescription);
+        oname =  findViewById(R.id.oname);
+        ocontact =  findViewById(R.id.ocontact);
+        campaignimage =  findViewById(R.id.campaignimage);
+        btn_donate = findViewById(R.id.btn_donate);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -58,9 +61,9 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -75,6 +78,7 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
                     String iocontact = campaign.getOrganizer_contact();
                     String icdonated = campaign.getDonation_received();
                     String imageUrl = campaign.getImageUrl();
+                    String icname = campaign.getName();
 
                     cdescription.setText(description);
                     cname.setText(icname);
@@ -105,7 +109,7 @@ public class user_Funding_indetails_Campaign extends AppCompatActivity implement
             public void onClick(View view) {
 
                 Intent i = new Intent(user_Funding_indetails_Campaign.this,user_Campaign_Donate.class);
-                i.putExtra("cname",cname.getText().toString());
+                i.putExtra("key",key);
                 startActivity(i);
             }
         });

@@ -181,7 +181,7 @@
                                         tools:ignore="TextSizeCheck" />
 
                                     <androidx.recyclerview.widget.RecyclerView
-                                        android:id="@+id/recycle_history_transaction_Usermodel"
+                                        android:id="@+id/recycle_history_transaction_NGOmodel"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:clipToPadding="false"

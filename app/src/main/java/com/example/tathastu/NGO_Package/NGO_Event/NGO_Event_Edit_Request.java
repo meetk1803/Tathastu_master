@@ -1,9 +1,5 @@
 package com.example.tathastu.NGO_Package.NGO_Event;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -16,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
@@ -28,8 +26,10 @@ import com.example.tathastu.User_Package.user_Event.events;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,39 +41,39 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 
-public class NGO_Event_Edit_Request extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class NGO_Event_Edit_Request extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
 
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageReference;
-    EditText txt_eventdate,txt_eventname,txt_description,txt_organizer,txt_organizermno,txt_eventaddress,txt_eventcity,txt_vtotal;
-    ImageButton btn_back;
-    Button btn_addimage,btn_confirm;
+    TextInputEditText txt_eventdate, txt_eventname, txt_description, txt_organizer, txt_organizermno, txt_eventaddress, txt_eventcity, txt_vtotal;
+    ExtendedFloatingActionButton btn_addimage;
+    Button btn_confirm;
     ImageView eimage;
     int Select_Picture = 200;
     boolean validate;
-    Boolean checkImage = true,checkAlert = true;
+    Boolean checkImage = true, checkAlert = true;
     Uri selectImageUri;
 
-    public String iename,iedes,ioname,ieaddress,iecity,iedate,ietotal,imageUrl,ieparticipated;
+    public String iename, iedes, ioname, ieaddress, iecity, iedate, ietotal, imageUrl, ieparticipated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_event_edit_request);
 
-        txt_eventdate = (EditText) findViewById(R.id.txt_eventdate);
-        txt_eventname = (EditText) findViewById(R.id.txt_eventname);
-        txt_description = (EditText) findViewById(R.id.txt_description);
-        txt_organizer = (EditText) findViewById(R.id.txt_organizer);
-        txt_eventaddress = (EditText) findViewById(R.id.txt_eventaddress);
-        txt_eventcity = (EditText) findViewById(R.id.txt_eventcity);
-        txt_vtotal = (EditText) findViewById(R.id.txt_vtotal);
-        eimage = (ImageView) findViewById(R.id.eimage);
-        btn_confirm = (Button) findViewById(R.id.btn_confirm);
-        btn_addimage = (Button) findViewById(R.id.btn_addimage);
-        //txt_organizermno = (EditText) findViewById(R.id.txt_organizermno);
+        txt_eventdate = findViewById(R.id.txt_eventdate);
+        txt_eventname = findViewById(R.id.txt_eventname);
+        txt_description = findViewById(R.id.txt_description);
+        txt_organizer = findViewById(R.id.txt_organizer);
+        txt_eventaddress = findViewById(R.id.txt_eventaddress);
+        txt_eventcity = findViewById(R.id.txt_eventcity);
+        txt_vtotal = findViewById(R.id.txt_vtotal);
+        eimage = findViewById(R.id.eimage);
+        btn_confirm = findViewById(R.id.btn_confirm);
+        btn_addimage = findViewById(R.id.btn_addimage);
+        //txt_organizermno = findViewById(R.id.txt_organizermno);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -133,22 +133,29 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
         });
 
 
-
         txt_eventdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar eventc = Calendar.getInstance();
+                final Calendar eventCalendar = Calendar.getInstance();
 
-                int year = eventc.get(Calendar.YEAR);
-                int month = eventc.get(Calendar.MONTH);
-                int day = eventc.get(Calendar.DAY_OF_MONTH);
+                int year = eventCalendar.get(Calendar.YEAR);
+                int month = eventCalendar.get(Calendar.MONTH);
+                int day = eventCalendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NGO_Event_Edit_Request.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        txt_eventdate.setText(day + "-" + (month + 1) + "-" + year);
-                    }
-                },year,month,day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        NGO_Event_Edit_Request.this,
+                        R.style.CustomDatePickerStyle, // Apply the custom style here
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+                                txt_eventdate.setText(selectedDay + "-" + (selectedMonth + 1) + "-" + selectedYear);
+                            }
+                        },
+                        year,
+                        month,
+                        day
+                );
+
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
@@ -162,8 +169,7 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
                 if (validate) {
                     if (eimage.getDrawable() == null) {
                         Toast.makeText(NGO_Event_Edit_Request.this, " Select Campaign Image ", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (txt_eventname.getText().toString().equals(iename)
+                    } else if (txt_eventname.getText().toString().equals(iename)
                             && txt_description.getText().toString().equals(iedes)
                             && txt_organizer.getText().toString().equals(ioname)
                             && txt_eventaddress.getText().toString().equals(ieaddress)
@@ -172,8 +178,7 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
                             && txt_vtotal.getText().toString().equals(ietotal)
                             && checkImage) {
                         Toast.makeText(NGO_Event_Edit_Request.this, " No Changes Made ", Toast.LENGTH_SHORT).show();
-                    }
-                    else if (Integer.parseInt(txt_vtotal.getText().toString()) < Integer.parseInt(ieparticipated)){
+                    } else if (Integer.parseInt(txt_vtotal.getText().toString()) < Integer.parseInt(ieparticipated)) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(NGO_Event_Edit_Request.this);
                         builder.setMessage("Total number of volunteer is less than the number of volunteer we already get.");
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -185,8 +190,7 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
                         txt_vtotal.setError("provide value greater than " + ieparticipated);
-                    }
-                    else{
+                    } else {
                         String name = txt_eventname.getText().toString();
                         String message = "Are you sure, you want to change " + name + "\'s details.";
 
@@ -214,8 +218,8 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
                                 reference.child("total_volunteer").setValue(etotalVolunteer);
 
                                 // change image in firebase storage
-                                if(!checkImage){
-                                    if(selectImageUri != null){
+                                if (!checkImage) {
+                                    if (selectImageUri != null) {
                                         final ProgressDialog p = new ProgressDialog(NGO_Event_Edit_Request.this);
                                         p.setTitle("Uploading.....");
                                         p.show();
@@ -253,13 +257,12 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(NGO_Event_Edit_Request.this,"Image uploading fail",Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(NGO_Event_Edit_Request.this, "Image uploading fail", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
 
-                                }
-                                else {
+                                } else {
                                     AlertDialog.Builder br = new AlertDialog.Builder(NGO_Event_Edit_Request.this);
                                     br.setMessage(iename + "\'s details is successfully changed.");
                                     br.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -298,65 +301,68 @@ public class NGO_Event_Edit_Request extends AppCompatActivity implements Connect
 
 //--------------------------------------------------------------------------------------------------------
 
-    private boolean CheckValidation(){
+    private boolean CheckValidation() {
         //txt_campaignname,txt_description,txt_organizer,txt_organizermno,txt_targetamount;
 
-        if(txt_eventname.length() < 3){
+        if (txt_eventname.length() < 3) {
             txt_eventname.setError("Atleast add 3 characters");
             return false;
         }
 
-        if(txt_description.length() < 10){
+        if (txt_description.length() < 10) {
             txt_description.setError("Atleast add 10 characters");
             return false;
         }
 
-        if(txt_organizer.length() < 3){
+        if (txt_organizer.length() < 3) {
             txt_organizer.setError("Atleast add 3 characters");
             return false;
         }
 
-        if(txt_eventaddress.length() < 3){
+        if (txt_eventaddress.length() < 3) {
             txt_eventaddress.setError("Atleast add 3 characters");
             return false;
         }
 
-        if(txt_eventcity.length() < 3){
+        if (txt_eventcity.length() < 3) {
             txt_eventcity.setError("Atleast add 3 characters");
             return false;
         }
 
-        if(txt_vtotal.length() == 0){
+        if (txt_vtotal.length() == 0) {
             txt_vtotal.setError("Field Required");
             return false;
         }
 
-        if(txt_eventdate.length() == 0){
+        if (txt_eventdate.length() == 0) {
             txt_eventdate.setError("Field Required");
             return false;
         }
         return true;
     }
-    void imageChooser(){
+
+    void imageChooser() {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i,"Select Picture"),Select_Picture);
+        startActivityForResult(Intent.createChooser(i, "Select Picture"), Select_Picture);
     }
-    public void onActivityResult(int requestCode,int resultCode,Intent data) {
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            if(requestCode == Select_Picture){
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Select_Picture) {
                 checkImage = false;
                 checkAlert = false;
                 selectImageUri = data.getData();
-                if(null != selectImageUri){
+                if (null != selectImageUri) {
                     eimage.setImageURI(selectImageUri);
                 }
             }
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -11,10 +11,12 @@ public class campaigns {
     private String organizer_contact;
     private String organizer_name;
 
+    private  String key;
+
     public campaigns(){
     }
 
-    public campaigns(String description, String donation_received,String imageUrl, String name, String organizer_contact, String organizer_name) {
+    public campaigns(String description, String donation_received,String imageUrl, String name, String organizer_contact, String organizer_name,String key) {
         //this.cid = cid;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -22,8 +24,16 @@ public class campaigns {
         this.organizer_name = organizer_name;
         this.organizer_contact = organizer_contact;
         this.donation_received = donation_received;
+        this.key=key;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 //    public Integer getCid() {
 //        return cid;
 //    }

@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_15sdp"
+    app:cardUseCompatPadding="true"
     app:cardCornerRadius="@dimen/_10sdp"
     android:outlineSpotShadowColor="@color/black"
     app:cardElevation="@dimen/_2sdp"

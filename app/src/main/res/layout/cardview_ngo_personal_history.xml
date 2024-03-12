@@ -22,19 +22,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            android:fontFamily="@font/inter_semibold"
-            android:gravity="start"
-            android:text="Money Donation"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp"
-            android:textStyle="bold"
-            tools:ignore="TextSizeCheck,TextContrastCheck" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +29,7 @@
             android:weightSum="3">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/admin_txt_history_campName"
+                android:id="@+id/receivedFrom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -57,7 +44,7 @@
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/admin_txt_history_money"
+                android:id="@+id/amount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,9 +59,24 @@
                 tools:ignore="TextSizeCheck,TextContrastCheck" />
         </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="start"
+            android:text="+91 9685742314"
+            android:textColor="@color/toolbar_BG_D"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
+
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/admin_txt_history_date"
+            android:id="@+id/dateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -86,6 +88,20 @@
             android:textSize="@dimen/_10sdp"
             android:textStyle="bold"
             tools:ignore="TextSizeCheck,TextContrastCheck" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="start"
+            android:text="meetkajk@gmail.com"
+            android:textColor="@color/toolbar_BG_D"
+            android:textSize="@dimen/_10sdp"
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck,TextContrastCheck" />
+
 
     </LinearLayout>
 

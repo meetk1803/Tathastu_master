@@ -33,8 +33,8 @@ public class NGO_Campaign extends AppCompatActivity implements ConnectivityRecei
     private ConnectivityReceiver connectivityReceiver;
     List<campaigns> campaignsList;
     DatabaseReference reference;
-    Button btn_addcampaign;
-    ImageButton btn_search,btn_back;
+    FloatingActionButton btn_addcampaign;
+    FloatingActionButton btn_back;
     ListView admin_clist;
 
     String[] cname ={
@@ -79,7 +79,7 @@ public class NGO_Campaign extends AppCompatActivity implements ConnectivityRecei
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_campaign);
 
-        btn_addcampaign = (Button) findViewById(R.id.btn_addcampaign);
+        btn_addcampaign = findViewById(R.id.btn_addcampaign);
         admin_clist = (ListView) findViewById(R.id.admin_clist);
 
         // Initialize the ConnectivityReceiver
@@ -138,7 +138,7 @@ public class NGO_Campaign extends AppCompatActivity implements ConnectivityRecei
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Intent i = new Intent(NGO_Campaign.this,NGO_Campaign_indetails.class);
-                i.putExtra("cname",campaignsList.get(position).getName());
+                i.putExtra("key",campaignsList.get(position).getKey());
                 startActivity(i);
 
             }

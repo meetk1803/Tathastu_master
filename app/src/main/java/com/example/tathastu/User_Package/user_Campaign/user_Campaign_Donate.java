@@ -20,9 +20,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,12 +43,12 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
     DatabaseReference reference,reference1;
     FirebaseStorage storage;
     StorageReference storageReference;
-    ImageView campaignimage;
-    EditText txt_amount;
+    ShapeableImageView campaignimage;
+    TextInputEditText txt_amount;
     SwitchCompat hidename;
 
     CardView card_pay_100, card_pay_200, card_pay_500, card_pay_1000, card_pay_1500, card_pay_2000;
-    Button btn_donate;
+    ExtendedFloatingActionButton btn_donate;
     String username,email,contactNo;
 
     @Override
@@ -55,9 +57,9 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
         setContentView(R.layout.activity_user_campaign_donate);
 
 
-        txt_amount = (EditText) findViewById(R.id.editText_amount);
-        campaignimage = (ShapeableImageView) findViewById(R.id.eventimage);
-        btn_donate = (Button) findViewById(R.id.btn_donate);
+        txt_amount =  findViewById(R.id.editText_amount);
+        campaignimage = findViewById(R.id.eventimage);
+        btn_donate =  findViewById(R.id.btn_donate);
         card_pay_100 = findViewById(R.id.card_pay_100);
         card_pay_200 = findViewById(R.id.card_pay_200);
         card_pay_500 = findViewById(R.id.card_pay_500);
@@ -76,10 +78,10 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
 
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
         int imageid = intent.getIntExtra("cimage",R.drawable.bg);
 
-        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -149,7 +151,7 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
 
                     // adding the user donation to the total received donation
 
-                    reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname).child("Donations");
+                    reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key).child("Donations");
                     reference1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -183,7 +185,7 @@ public class user_Campaign_Donate extends AppCompatActivity implements Connectiv
             }
         });
 
-        txt_amount = (EditText) findViewById(R.id.editText_amount);
+        txt_amount = findViewById(R.id.editText_amount);
 
 // Assuming card_pay_100, card_pay_200, ..., card_pay_2000 are your card views
         int[] cardIds = {R.id.card_pay_100, R.id.card_pay_200, R.id.card_pay_500, R.id.card_pay_1000, R.id.card_pay_1500, R.id.card_pay_2000};

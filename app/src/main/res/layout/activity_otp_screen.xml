@@ -74,7 +74,7 @@
                             android:layout_gravity="top|center"
                             android:fontFamily="@font/kanit_regular"
                             android:gravity="center"
-                            android:text="We sent an OTP on your registered mobile number"
+                            android:text="We sent an OTP on your registered \nEmail Address"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_15sdp" />
 
@@ -88,7 +88,7 @@
                             android:lineSpacingExtra="@dimen/_5sdp"
                             android:text="+91 XXXXXX2123"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_16sdp" />
+                            android:textSize="@dimen/_12sdp" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:layout_width="@dimen/_270sdp"

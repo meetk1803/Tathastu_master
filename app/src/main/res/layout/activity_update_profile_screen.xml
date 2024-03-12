@@ -219,8 +219,6 @@
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
-                            app:prefixText="+91"
-                            app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
 
                             <com.google.android.material.textfield.TextInputEditText

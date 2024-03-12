@@ -63,8 +63,6 @@
                     app:boxCornerRadiusBottomStart="@dimen/_15sdp"
                     app:boxCornerRadiusTopEnd="@dimen/_15sdp"
                     app:boxCornerRadiusTopStart="@dimen/_15sdp"
-                    app:helperTextTextColor="@color/err_color"
-                    app:helperText="*Event name can't be changed"
                     app:boxStrokeColor="@color/event_notify"
                     app:boxStrokeErrorColor="@color/err_color"
                     app:cursorColor="@color/event_notify"
@@ -281,7 +279,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:inputType="textAutoComplete"
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13sdp"
                         android:textStyle="bold" />

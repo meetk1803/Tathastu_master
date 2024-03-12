@@ -26,8 +26,10 @@ import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -43,9 +45,9 @@ public class NGO_Event_Add_Request extends AppCompatActivity implements Connecti
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageReference;
-    EditText txt_eventdate,txt_eventname,txt_description,txt_organizer,txt_organizermno,txt_eventaddress,txt_eventcity,txt_vtotal;
-    ImageButton btn_back;
-    Button btn_addimage,btn_add_event;
+    TextInputEditText txt_eventdate,txt_eventname,txt_description,txt_organizer,txt_organizermno,txt_eventaddress,txt_eventcity,txt_vtotal;
+    ExtendedFloatingActionButton btn_addimage;
+    Button btn_add_event;
     ImageView eimage;
     Uri selectedImageUri;
     int Select_Picture = 200;
@@ -56,17 +58,17 @@ public class NGO_Event_Add_Request extends AppCompatActivity implements Connecti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_event_add_request);
 
-        txt_eventdate = (EditText) findViewById(R.id.txt_eventdate);
-        txt_eventname = (EditText) findViewById(R.id.txt_eventname);
-        txt_description = (EditText) findViewById(R.id.txt_description);
-        txt_organizer = (EditText) findViewById(R.id.txt_organizer);
-        txt_eventaddress = (EditText) findViewById(R.id.txt_eventaddress);
-        txt_eventcity = (EditText) findViewById(R.id.txt_eventcity);
-        txt_vtotal = (EditText) findViewById(R.id.txt_vtotal);
-        eimage = (ImageView) findViewById(R.id.eimage);
-        // txt_organizermno = (EditText) findViewById(R.id.txt_organizermno);
-        btn_addimage = (Button) findViewById(R.id.btn_addimage);
-        btn_add_event = (Button) findViewById(R.id.btn_add_event);
+        txt_eventdate =  findViewById(R.id.txt_eventdate);
+        txt_eventname =  findViewById(R.id.txt_eventname);
+        txt_description =  findViewById(R.id.txt_description);
+        txt_organizer =  findViewById(R.id.txt_organizer);
+        txt_eventaddress =  findViewById(R.id.txt_eventaddress);
+        txt_eventcity =  findViewById(R.id.txt_eventcity);
+        txt_vtotal =findViewById(R.id.txt_vtotal);
+        eimage = findViewById(R.id.eimage);
+        // txt_organizermno =  findViewById(R.id.txt_organizermno);
+        btn_addimage =  findViewById(R.id.btn_addimage);
+        btn_add_event = findViewById(R.id.btn_add_event);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -206,18 +208,26 @@ public class NGO_Event_Add_Request extends AppCompatActivity implements Connecti
         txt_eventdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar eventc = Calendar.getInstance();
+                final Calendar eventCalendar = Calendar.getInstance();
 
-                int year = eventc.get(Calendar.YEAR);
-                int month = eventc.get(Calendar.MONTH);
-                int day = eventc.get(Calendar.DAY_OF_MONTH);
+                int year = eventCalendar.get(Calendar.YEAR);
+                int month = eventCalendar.get(Calendar.MONTH);
+                int day = eventCalendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NGO_Event_Add_Request.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        txt_eventdate.setText(day + "-" + (month + 1) + "-" + year);
-                    }
-                },year,month,day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        NGO_Event_Add_Request.this,
+                        R.style.CustomDatePickerStyle, // Apply the custom style here
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+                                txt_eventdate.setText(selectedDay + "-" + (selectedMonth + 1) + "-" + selectedYear);
+                            }
+                        },
+                        year,
+                        month,
+                        day
+                );
+
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }

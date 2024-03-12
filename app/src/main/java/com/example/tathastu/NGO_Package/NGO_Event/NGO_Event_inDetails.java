@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Event.events;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
@@ -40,8 +41,9 @@ public class NGO_Event_inDetails extends AppCompatActivity implements Connectivi
     ProgressBar eprogress;
     MaterialTextView ename, oname, edesc, edate, eaddress, ecity, eparticipated, etotal;
     ShapeableImageView eventimage;
-    Button btn_volunteer,btn_editevent;
+    FloatingActionButton btn_editevent;
 
+    ExtendedFloatingActionButton btn_volunteer;
     String iename,iedes,ieparticipated,ietotal,ieaddress,iecity,iedate,ioname,imageUrl;
 
     @Override
@@ -49,18 +51,18 @@ public class NGO_Event_inDetails extends AppCompatActivity implements Connectivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_event_in_details);
 
-        eprogress = (ProgressBar) findViewById(R.id.eprogress);
-        ename = (MaterialTextView) findViewById(R.id.ename);
-        edesc = (MaterialTextView) findViewById(R.id.edesc);
-        edate = (MaterialTextView) findViewById(R.id.edate);
-        oname = (MaterialTextView) findViewById(R.id.oname);
-        eaddress = (MaterialTextView) findViewById(R.id.eaddress);
-        ecity = (MaterialTextView) findViewById(R.id.ecity);
-        eparticipated = (MaterialTextView) findViewById(R.id.eparticipated);
-        etotal = (MaterialTextView) findViewById(R.id.etotal);
-        eventimage = (ShapeableImageView) findViewById(R.id.eventimage);
-        btn_volunteer = (Button) findViewById(R.id.btn_volunteer);
-        btn_editevent = (Button) findViewById(R.id.btn_editevent);
+        eprogress =  findViewById(R.id.eprogress);
+        ename =  findViewById(R.id.ename);
+        edesc =  findViewById(R.id.edesc);
+        edate =  findViewById(R.id.edate);
+        oname =  findViewById(R.id.oname);
+        eaddress =  findViewById(R.id.eaddress);
+        ecity =  findViewById(R.id.ecity);
+        eparticipated =  findViewById(R.id.eparticipated);
+        etotal =  findViewById(R.id.etotal);
+        eventimage = findViewById(R.id.eventimage);
+        btn_volunteer = findViewById(R.id.btn_volunteer);
+        btn_editevent = findViewById(R.id.btn_editevent);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();

@@ -1,5 +1,8 @@
 package com.example.tathastu.NGO_Package.NGO_Profile;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -7,8 +10,10 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,7 +86,54 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
                 facebook=txt_social_fb.getText().toString();
                 twitter=txt_social_twitter.getText().toString();
                 youtube=txt_social_youtube.getText().toString();
+                if (website.isEmpty() && insta.isEmpty() && linkedin.isEmpty()
+                        && facebook.isEmpty() && twitter.isEmpty() && youtube.isEmpty()) {
+                    // No changes to update
+                    Toast.makeText(NGO_Social_Media.this, "No changes to update.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // Validate URLs
+                if (!isValidNonEmptyUrl(website)) {
+                    txt_social_website.setError("Invalid URL");
+                    return;
+                } else {
+                    txt_social_website.setError(null);  // Clear the error if the URL is valid
+                }
 
+                if (!isValidNonEmptyUrl(insta)) {
+                    txt_social_insta.setError("Invalid URL");
+                    return;
+                } else {
+                    txt_social_insta.setError(null);
+                }
+
+                if (!isValidNonEmptyUrl(linkedin)) {
+                    txt_social_linkedin.setError("Invalid URL");
+                    return;
+                } else {
+                    txt_social_linkedin.setError(null);
+                }
+
+                if (!isValidNonEmptyUrl(facebook)) {
+                    txt_social_fb.setError("Invalid URL");
+                    return;
+                } else {
+                    txt_social_fb.setError(null);
+                }
+
+                if (!isValidNonEmptyUrl(twitter)) {
+                    txt_social_twitter.setError("Invalid URL");
+                    return;
+                } else {
+                    txt_social_twitter.setError(null);
+                }
+
+                if (!isValidNonEmptyUrl(youtube)) {
+                    txt_social_youtube.setError("Invalid URL");
+                    return;
+                } else {
+                    txt_social_youtube.setError(null);
+                }
                 SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
                 String userId = sharedPreferences1.getString("userId","");
 
@@ -158,7 +210,13 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
             }
         });
     }
-
+    // Validate a URL only if it's not empty
+    private boolean isValidNonEmptyUrl(String url) {
+        if (url.isEmpty()) {
+            return true;  // Empty URL is considered valid
+        }
+        return Patterns.WEB_URL.matcher(url).matches();
+    }
 
     @Override
     public void onBackPressed() {

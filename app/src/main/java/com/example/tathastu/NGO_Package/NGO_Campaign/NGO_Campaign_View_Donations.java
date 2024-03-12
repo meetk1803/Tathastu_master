@@ -34,13 +34,12 @@ public class NGO_Campaign_View_Donations extends AppCompatActivity implements Co
     List<donation> donationList;
     DatabaseReference reference,reference1;
     ListView donation_list;
-    ImageButton btn_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_campaign_view_donations);
 
-        donation_list = (ListView) findViewById(R.id.donation_list);
+        donation_list = findViewById(R.id.donation_list);
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
         ConnectivityReceiver.connectivityReceiverListener = this;
@@ -66,11 +65,11 @@ public class NGO_Campaign_View_Donations extends AppCompatActivity implements Co
         donation_list.setAdapter(dadapter);
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
 
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
 
         // Checking if Donation data is available
         reference1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -80,7 +79,7 @@ public class NGO_Campaign_View_Donations extends AppCompatActivity implements Co
 
                     // Fetching Donation Data
 
-                    reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname).child("Donations");
+                    reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key).child("Donations");
 
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
