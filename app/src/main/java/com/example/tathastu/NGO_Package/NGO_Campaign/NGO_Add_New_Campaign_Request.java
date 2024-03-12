@@ -24,8 +24,10 @@ import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,10 +42,9 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
     FirebaseStorage storage;
     StorageReference storageReference;
 
-
-    Button btn_addimage,btn_add_campaign;
-    EditText txt_campaignname,txt_description,txt_organizer,txt_organizermno;
-    ImageButton btn_back;
+    ExtendedFloatingActionButton btn_addimage;
+    Button btn_add_campaign;
+    TextInputEditText txt_campaignname,txt_description,txt_organizer,txt_organizermno;
     ImageView cimage;
     int Select_Picture = 200;
     Uri selectedImageUri;
@@ -76,11 +77,11 @@ public class NGO_Add_New_Campaign_Request extends AppCompatActivity implements C
 
         btn_addimage =  findViewById(R.id.btn_addimage);
         btn_add_campaign =  findViewById(R.id.btn_add_campaign);
-        cimage = (ImageView) findViewById(R.id.cimage);
-        txt_campaignname = (EditText) findViewById(R.id.txt_campaignname);
-        txt_description = (EditText) findViewById(R.id.txt_description);
-        txt_organizer = (EditText) findViewById(R.id.txt_organizer);
-        txt_organizermno = (EditText) findViewById(R.id.txt_organizermno);
+        cimage =  findViewById(R.id.cimage);
+        txt_campaignname = findViewById(R.id.txt_campaignname);
+        txt_description = findViewById(R.id.txt_description);
+        txt_organizer =  findViewById(R.id.txt_organizer);
+        txt_organizermno = findViewById(R.id.txt_organizermno);
 
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();

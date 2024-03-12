@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/inter_semibold"
-            android:layout_gravity="center"
             android:text="Upcoming Events"
+            android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />

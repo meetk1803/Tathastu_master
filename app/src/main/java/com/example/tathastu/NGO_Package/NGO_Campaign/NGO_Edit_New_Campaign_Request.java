@@ -25,8 +25,10 @@ import com.example.tathastu.User_Package.user_Campaign.campaigns;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,9 +44,11 @@ public class NGO_Edit_New_Campaign_Request extends AppCompatActivity implements 
     DatabaseReference reference;
     FirebaseStorage storage;
     StorageReference storageReference;
-    Button btn_changeimage,btn_complete;
-    ImageView cimage,btn_back;
-    EditText txt_campaignname,txt_description,txt_organizer,txt_organizermno;
+
+    ExtendedFloatingActionButton btn_changeimage;
+    Button btn_complete;
+    ImageView cimage;
+    TextInputEditText txt_campaignname,txt_description,txt_organizer,txt_organizermno;
     int Select_Picture = 200;
     Boolean checkImage = true,checkAlert = true;
     Boolean validate;
@@ -56,12 +60,12 @@ public class NGO_Edit_New_Campaign_Request extends AppCompatActivity implements 
         setContentView(R.layout.activity_ngo_edit_new_campaign_request);
 
         btn_changeimage =  findViewById(R.id.btn_changeimage);
-        cimage = (ImageView) findViewById(R.id.cimage);
-        txt_campaignname = (EditText) findViewById(R.id.txt_campaignname);
-        txt_description = (EditText) findViewById(R.id.txt_description);
-        txt_organizer = (EditText) findViewById(R.id.txt_organizer);
-        txt_organizermno = (EditText) findViewById(R.id.txt_organizermno);
-        btn_complete = (Button) findViewById(R.id.btn_complete);
+        cimage =  findViewById(R.id.cimage);
+        txt_campaignname = findViewById(R.id.txt_campaignname);
+        txt_description =  findViewById(R.id.txt_description);
+        txt_organizer = findViewById(R.id.txt_organizer);
+        txt_organizermno =  findViewById(R.id.txt_organizermno);
+        btn_complete = findViewById(R.id.btn_complete);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();

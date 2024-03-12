@@ -44,7 +44,6 @@ public class NGO_Event_Add_Request extends AppCompatActivity implements Connecti
     FirebaseStorage storage;
     StorageReference storageReference;
     EditText txt_eventdate,txt_eventname,txt_description,txt_organizer,txt_organizermno,txt_eventaddress,txt_eventcity,txt_vtotal;
-    ImageButton btn_back;
     Button btn_addimage,btn_add_event;
     ImageView eimage;
     Uri selectedImageUri;

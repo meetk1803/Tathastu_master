@@ -17,8 +17,11 @@ import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Campaign.campaigns;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,23 +36,23 @@ public class NGO_Campaign_indetails extends AppCompatActivity implements Connect
     FirebaseStorage storage;
     StorageReference storageReference;
 
-    TextView cname,cdonated,cdescription,oname,ocontact;
-    ImageView campaignimage;
-    Button btn_editdetails,btn_view_donation;
+    MaterialTextView cname,cdonated,cdescription,oname,ocontact;
+    ShapeableImageView campaignimage;
+    ExtendedFloatingActionButton btn_editdetails,btn_view_donation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_campaign_indetails);
 
 
-        cname = (TextView) findViewById(R.id.cname);
-        cdonated = (TextView) findViewById(R.id.cdonated);
-        cdescription = (TextView) findViewById(R.id.cdescription);
-        oname = (TextView) findViewById(R.id.oname);
-        ocontact = (TextView) findViewById(R.id.ocontact);
-        campaignimage = (ImageView) findViewById(R.id.campaignimage);
-        btn_editdetails = (Button) findViewById(R.id.btn_editdetails);
-        btn_view_donation = (Button) findViewById(R.id.btn_view_donation);
+        cname =  findViewById(R.id.cname);
+        cdonated =  findViewById(R.id.cdonated);
+        cdescription =  findViewById(R.id.cdescription);
+        oname =  findViewById(R.id.oname);
+        ocontact =  findViewById(R.id.ocontact);
+        campaignimage = findViewById(R.id.campaignimage);
+        btn_editdetails = findViewById(R.id.btn_editdetails);
+        btn_view_donation = findViewById(R.id.btn_view_donation);
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();

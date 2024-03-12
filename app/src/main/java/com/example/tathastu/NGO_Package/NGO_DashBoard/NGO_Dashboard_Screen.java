@@ -23,8 +23,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.tathastu.NGO_Package.NGO_Blood_Camp.NGO_BloodCamp_Selection;
+import com.example.tathastu.NGO_Package.NGO_Campaign.NGO_Campaign;
 import com.example.tathastu.NGO_Package.NGO_Education_Camp.NGO_Educamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
+import com.example.tathastu.NGO_Package.NGO_Event.NGO_event_notify;
 import com.example.tathastu.NGO_Package.NGO_Food_Camp.NGO_FoodCamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_History.NGO_History_Screen;
 import com.example.tathastu.NGO_Package.NGO_Profile.NGO_Profile_Screen;
@@ -57,7 +59,7 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
 
     ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_cloth, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
     MaterialTextView txt_dash_seeallquotes;
-    CardView card_dash_directContact;
+    CardView card_dash_directContact,card_dash_compaign,card_dash_event;
     private AppCompatTextView dash_quote;
     private int currentQuoteId = 1; // Initial quote ID
     private boolean isToastDisplayed = false; // Variable to track whether the toast has been displayed
@@ -81,7 +83,8 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
         BTN_dash_contactus = findViewById(R.id.BTN_dash_contactus);
         BTN_dash_history = findViewById(R.id.BTN_dash_history);
         BTN_dash_helpline = findViewById(R.id.BTN_dash_helpline);
-
+        card_dash_compaign=findViewById(R.id.card_dash_compaign);
+        card_dash_event=findViewById(R.id.card_dash_event);
         ExtendedFloatingActionButton BTN_dash_logout = findViewById(R.id.BTN_dash_logout);
         ImageButton BTN_dash_food = findViewById(R.id.BTN_dash_food);
         txt_dash_seeallquotes = findViewById(R.id.txt_dash_seeallquotes);
@@ -172,7 +175,24 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
             }
         });
 
-
+        //CARDVIEW ----- FUNDING CAMPAIGN
+        card_dash_compaign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NGO_Dashboard_Screen.this, NGO_Campaign.class);
+                i.putExtra("source", "ngoDashboard");
+                startActivity(i);
+            }
+        });
+//CARDVIEW ----- EVENt
+        card_dash_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(NGO_Dashboard_Screen.this, NGO_event_notify.class);
+                i.putExtra("source", "ngoDashboard");
+                startActivity(i);
+            }
+        });
 
         //SEE ALL QUOTES
         txt_dash_seeallquotes.setOnClickListener(new View.OnClickListener() {
