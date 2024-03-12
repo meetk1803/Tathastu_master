@@ -10,15 +10,15 @@
     android:layout_marginTop="@dimen/_15sdp"
     app:cardCornerRadius="@dimen/_10sdp"
     android:outlineSpotShadowColor="@color/black"
-    app:cardElevation="@dimen/_2sdp"
-    app:cardMaxElevation="@dimen/_2sdp"
+    app:cardElevation="@dimen/_4sdp"
+    app:cardMaxElevation="@dimen/_4sdp"
     app:cardPreventCornerOverlap="false">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_Event_bg"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
-            android:background="@drawable/dash_banner_1"
+            android:background="@drawable/dash_banner_2"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
@@ -33,6 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_60sdp"
                 android:elevation="@dimen/_3sdp"
+                android:padding="@dimen/_3sdp"
                 android:outlineSpotShadowColor="@color/white"
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/RoundedSquare"
