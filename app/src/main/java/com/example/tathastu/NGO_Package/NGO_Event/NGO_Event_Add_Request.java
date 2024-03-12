@@ -208,18 +208,26 @@ public class NGO_Event_Add_Request extends AppCompatActivity implements Connecti
         txt_eventdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar eventc = Calendar.getInstance();
+                final Calendar eventCalendar = Calendar.getInstance();
 
-                int year = eventc.get(Calendar.YEAR);
-                int month = eventc.get(Calendar.MONTH);
-                int day = eventc.get(Calendar.DAY_OF_MONTH);
+                int year = eventCalendar.get(Calendar.YEAR);
+                int month = eventCalendar.get(Calendar.MONTH);
+                int day = eventCalendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(NGO_Event_Add_Request.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        txt_eventdate.setText(day + "-" + (month + 1) + "-" + year);
-                    }
-                },year,month,day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        NGO_Event_Add_Request.this,
+                        R.style.CustomDatePickerStyle, // Apply the custom style here
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+                                txt_eventdate.setText(selectedDay + "-" + (selectedMonth + 1) + "-" + selectedYear);
+                            }
+                        },
+                        year,
+                        month,
+                        day
+                );
+
                 datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }

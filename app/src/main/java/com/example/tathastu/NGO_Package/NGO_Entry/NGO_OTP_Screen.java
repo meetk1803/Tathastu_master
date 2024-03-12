@@ -88,12 +88,9 @@ public class NGO_OTP_Screen extends AppCompatActivity implements ConnectivityRec
             }
         });
 
-        phonenumber_ngo = getIntent().getStringExtra("mobile").toString();
-        String last_four_digits=phonenumber_ngo.substring(phonenumber_ngo.length()-4);
-        txt_otp_mno_ngo.setText("+91 XXXXXX"+last_four_digits);
 
-        Toast.makeText(this, phonenumber_ngo, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, last_four_digits, Toast.LENGTH_SHORT).show();
+        txt_otp_mno_ngo.setText("email");
+
 
 
         // Initialize the ConnectivityReceiver

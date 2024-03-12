@@ -184,7 +184,6 @@
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
-                            app:prefixText="+91"
                             android:textColorHint="@color/status_color"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">

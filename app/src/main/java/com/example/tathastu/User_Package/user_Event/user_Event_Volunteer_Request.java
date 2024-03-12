@@ -1,9 +1,5 @@
 package com.example.tathastu.User_Package.user_Event;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,10 +8,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
@@ -30,29 +28,30 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
-public class user_Event_Volunteer_Request extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
+public class user_Event_Volunteer_Request extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
 
-    DatabaseReference reference,reference1;
+    DatabaseReference reference, reference1;
     //    FirebaseStorage storage;
 //    StorageReference storageReference;
-    String iename,ieparticipated,ietotal;
+    String iename, ieparticipated, ietotal;
 
-    TextInputEditText txt_vname,txt_vemail,txt_vcno,txt_vaddress,txt_vage;
+    TextInputEditText txt_vname, txt_vemail, txt_vcno, txt_vaddress, txt_vage;
     Button btn_volunteer;
 
 
     boolean validate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_event_volunteer_request);
 
-        txt_vname =  findViewById(R.id.txt_vname);
-        txt_vemail =  findViewById(R.id.txt_vemail);
-        txt_vcno =  findViewById(R.id.txt_vcno);
-        txt_vaddress =  findViewById(R.id.txt_vaddress);
-        txt_vage =  findViewById(R.id.txt_vage);
+        txt_vname = findViewById(R.id.txt_vname);
+        txt_vemail = findViewById(R.id.txt_vemail);
+        txt_vcno = findViewById(R.id.txt_vcno);
+        txt_vaddress = findViewById(R.id.txt_vaddress);
+        txt_vage = findViewById(R.id.txt_vage);
         btn_volunteer = (Button) findViewById(R.id.btn_volunteer);
 
 
@@ -63,7 +62,7 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
-        FloatingActionButton BTN_back=findViewById(R.id.BTN_back);
+        FloatingActionButton BTN_back = findViewById(R.id.BTN_back);
         //BACK
         BTN_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +97,7 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
                     ietotal = events.getTotal_volunteer();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -112,23 +112,22 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
 
                 validate = CheckValidation();
 
-                if(validate){
+                if (validate) {
 
                     // checking if event is full
 
-                    if (Integer.parseInt(ietotal) <= Integer.parseInt(ieparticipated)){
+                    if (Integer.parseInt(ietotal) <= Integer.parseInt(ieparticipated)) {
 
-                        Toast.makeText(user_Event_Volunteer_Request.this,"Sorry, the event is full",Toast.LENGTH_SHORT).show();
-                    }else {
+                        Toast.makeText(user_Event_Volunteer_Request.this, "Sorry, the event is full", Toast.LENGTH_SHORT).show();
+                    } else {
                         String message;
-                        if(Integer.parseInt(txt_vage.getText().toString()) < 18){
-                            message = "Volunteers under age of 18 are assign and overlooked by guide \n\nAre you sure, you want to participate in " + iename +  " event.";
-                        }
-                        else{
-                            message = "Are you sure, you want to participate in " + iename +  " event.";
+                        if (Integer.parseInt(txt_vage.getText().toString()) < 18) {
+                            message = "Volunteers under age of 18 are assign and overlooked by guide \n\nAre you sure, you want to participate in " + iename + " event.";
+                        } else {
+                            message = "Are you sure, you want to participate in " + iename + " event.";
                         }
 
-                        AlertDialog.Builder builder= new AlertDialog.Builder(user_Event_Volunteer_Request.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(user_Event_Volunteer_Request.this);
                         builder.setMessage(message);
                         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
@@ -175,7 +174,7 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
                                 reference1.addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dsnapshot) {
-                                        Integer v =(int) dsnapshot.getChildrenCount();
+                                        Integer v = (int) dsnapshot.getChildrenCount();
 
                                         reference.child("volunteer_get").setValue(Integer.toString(v));
                                     }
@@ -186,12 +185,14 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
                                     }
                                 });
 
-                                Toast.makeText(user_Event_Volunteer_Request.this,"Participation is successfull",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(user_Event_Volunteer_Request.this, "Participation is successfull", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         });
                         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
 
                             }
                         });
@@ -221,45 +222,57 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
     }
 //--------------------------------------------------------------------------------------
 
-    private boolean CheckValidation(){
 
-        if(txt_vname.length() < 3){
-            txt_vname.setError("Atleast add 3 characters");
+    // Helper method to validate Gmail, Yahoo, and Outlook addresses
+    private boolean isValidEmail(String email) {
+        String emailPattern = "^[a-z0-9._%+-]+@(gmail\\.com|yahoo\\.com|outlook\\.com)$";
+        return email.matches(emailPattern);
+    }
+
+    private boolean CheckValidation() {
+        if (txt_vname.length() < 3) {
+            txt_vname.setError("At least add 3 characters");
             return false;
         }
 
-        if(txt_vemail.length() < 10){
-            txt_vemail.setError("Atleast add 10 characters");
+        if (!isValidEmail(txt_vemail.getText().toString())) {
+            txt_vemail.setError("Please enter a valid email address (Gmail, Yahoo, or Outlook)");
             return false;
         }
 
-        if(txt_vcno.length() == 0){
+        if (txt_vemail.length() < 10) {
+            txt_vemail.setError("At least add 10 characters");
+            return false;
+        }
+
+        if (txt_vcno.length() == 0) {
             txt_vcno.setError("Field Required");
             return false;
         }
 
-        if(txt_vcno.length() != 10){
-            txt_vcno.setError("Enter valid contact number");
+        if (txt_vcno.length() != 10) {
+            txt_vcno.setError("Enter a valid contact number");
             return false;
         }
 
-        if(txt_vaddress.length() < 10 ){
-            txt_vaddress.setError("Atleast add 10 characters");
+        if (txt_vaddress.length() < 10) {
+            txt_vaddress.setError("At least add 10 characters");
             return false;
         }
 
-        if(txt_vage.length() == 0){
+        if (txt_vage.length() == 0) {
             txt_vage.setError("Field Required");
             return false;
         }
 
-        if(txt_vage.length() < 2){
+        if (txt_vage.length() < 2) {
             txt_vage.setError("Not Qualified");
             return false;
         }
 
         return true;
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

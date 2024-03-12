@@ -10,16 +10,13 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.tathastu.NGO_Package.NGO_Profile.NGO_Profile_Model;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_NGO_list.NGOData;
@@ -27,11 +24,12 @@ import com.example.tathastu.User_Package.user_NGO_list.NGODataAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.razorpay.PaymentResultListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,12 +64,12 @@ public class direct_contact_to_new_NGO extends AppCompatActivity implements Conn
 
         dropcat=findViewById(R.id.dropcat);
         catList = new ArrayList<>();
-        catList.add("All");
+        catList.add("Blood");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(direct_contact_to_new_NGO.this, android.R.layout.simple_list_item_1,catList);
         dropcat.setAdapter(arrayAdapter);
-        dropcat.setText("All",false);
+        dropcat.setText("Blood",false);
 
-        fetchJsonData("All");
+        fetchNGOData("Blood");
 
 
         // Check if it's triggered from the NGO dashboard
@@ -86,7 +84,7 @@ public class direct_contact_to_new_NGO extends AppCompatActivity implements Conn
         dropcat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                fetchJsonData(catList.get(position));
+                fetchNGOData(catList.get(position));
             }
         });
 
@@ -127,72 +125,56 @@ public class direct_contact_to_new_NGO extends AppCompatActivity implements Conn
     }
 
 
-    void fetchJsonData(String cat){
+    void fetchNGOData(String cat){
 
         dataList.clear();
 
-        requestQueue = Volley.newRequestQueue(this);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ngo");
 
-        // URL of the JSON file on the server
-        String url = "https://meetk1803.github.io/tathastu_quotes_api/ngo_list.json";
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        // Make a request to fetch JSON data
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        // Handle the JSON array response
-                        try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonObject = response.getJSONObject(i);
+                if (snapshot.exists()){
 
-                                // Extract data from JSON object
-                                String Name=jsonObject.getString("ngo_name");
-                                String Number=jsonObject.getString("mob");
-                                String Category=jsonObject.getString("category");
-                                String Address=jsonObject.getString("address");
-                                String Website=jsonObject.getString("website");
-                                String Email=jsonObject.getString("email");
-                                String Instagram=jsonObject.getString("instagram");
-                                String LinkedIn=jsonObject.getString("linkedin");
-                                String Facebook=jsonObject.getString("facebook");
-                                String Twitter=jsonObject.getString("twitter");
-                                String Youtube=jsonObject.getString("youtube");
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
 
+                        NGO_Profile_Model data = snapshot1.getValue(NGO_Profile_Model.class);
+                        String fname = data.getFname();
+                        String address = data.getAddress();
+                        String category=data.getType();
+                        String mno=data.getMobile();
+                        String email=data.getEmail();
+                        String website=data.getWebsite();
+                        String insta=data.getInstagram();
+                        String linkedin=data.getLinkedin();
+                        String facebook=data.getFacebook();
+                        String twitter=data.getTwitter();
+                        String youtube=data.getYoutube();
 
-                                if(cat.equals("All")) {
-                                    NGOData ngoData = new NGOData(Name, Address, Category, Number, Website, Email, Instagram, LinkedIn, Facebook, Twitter, Youtube);
-                                    dataList.add(ngoData);
-                                }else if(Category.equals(cat)){
-                                    NGOData ngoData = new NGOData(Name, Address, Category, Number, Website, Email, Instagram, LinkedIn, Facebook, Twitter, Youtube);
-                                    dataList.add(ngoData);
-                                }
-
-                                if(!catList.contains(Category))
-                                {
-                                    catList.add(Category);
-                                }
-                            }
-                            adapter.notifyDataSetChanged();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        if(cat.equals(category))
+                        {
+                            NGOData data1 = new NGOData(fname,address,category,mno,email,website,insta,linkedin,facebook,twitter,youtube);
+                            dataList.add(data1);
                         }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle errors
-                        Toast.makeText(direct_contact_to_new_NGO.this, "Error to Fetch Data!!", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
-        // Add the request to the request queue
-        requestQueue.add(jsonArrayRequest);
+                        if(!catList.contains(category))
+                        {
+                            catList.add(category);
+                        }
+
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 

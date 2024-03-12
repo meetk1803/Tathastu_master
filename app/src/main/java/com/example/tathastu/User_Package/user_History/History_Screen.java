@@ -5,25 +5,42 @@ package com.example.tathastu.User_Package.user_History;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 public class History_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
+
 
     MaterialTextView txt_history_transaction;
     @Override
@@ -39,7 +56,7 @@ public class History_Screen extends AppCompatActivity implements ConnectivityRec
         recycle_history_transaction_Usermodel.setLayoutManager(layoutManager);
 
         // Create a list of UserModel_Event_Notify objects (replace these with your actual data)
-        List<UserModel_History_payment> paymentList = generateDummyData();
+        List<UserModel_History_payment> paymentList = fetchPaymentHistory();
 
         // Create an instance of UserAdapter_Event_Notify and set it to the RecyclerView
         UserAdapter_History_payment adapter = new UserAdapter_History_payment(paymentList);
@@ -89,28 +106,80 @@ public class History_Screen extends AppCompatActivity implements ConnectivityRec
         }
     }
 
-    //dummy data
-    private List<UserModel_History_payment> generateDummyData() {
-        // Replace this method with your actual data retrieval logic
-        List<UserModel_History_payment> dummyData = new ArrayList<>();
+    private List<UserModel_History_payment> fetchPaymentHistory() {
+        List<UserModel_History_payment> dataList = new ArrayList<>();
 
-        // Add dummy data with alternating banner images
-        for (int i = 0; i < 10; i++) { // Change 5 to the number of items you want
-            String moneyPayment = "₹ 12,000";
-            String moneyDate = "Wednesday, 12 Feb 2023";
 
-            UserModel_History_payment userModel = new UserModel_History_payment(moneyPayment, moneyDate);
-            dummyData.add(userModel);
-        }
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://api.razorpay.com/v1/payments?count=100";
 
-        // Add more dummy data as needed
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Handle the response
 
-        return dummyData;
+                        if(!response.isEmpty())
+                        {
+                            try{
+
+                                dataList.clear();
+
+                                JSONObject jsonObject = new JSONObject(response.toString());
+                                JSONArray paymentsArray = jsonObject.getJSONArray("items");
+
+                                for (int i = 0; i < paymentsArray.length(); i++) {
+                                    JSONObject payment = paymentsArray.getJSONObject(i);
+
+                                    String transactionId = payment.getString("id");
+                                    String amount = payment.getString("amount");
+                                    String status = payment.getString("status");
+                                    String method = payment.getString("method");
+                                    String sentTo = payment.getString("description");
+                                    String dateTime = payment.getString("created_at");
+                                    String email = payment.getString("email");
+
+                                    if(email.equals("meetkakadiya111@gmail.com"))
+                                    {
+                                        UserModel_History_payment data = new UserModel_History_payment(sentTo,method,amount,dateTime,status,transactionId,email);
+                                        dataList.add(data);
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle error
+                Toast.makeText(History_Screen.this, "Failed To Fetch Payment History.", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                // Add Basic Authentication header
+                String credentials = "rzp_test_iiWet5Chi79qWI" + ":" + "JbRNCuo2zjYJLCXdgbl7o8MZ";
+                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+                headers.put("Authorization", auth);
+                return headers;
+            }
+        };
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+        return dataList;
     }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         // Unregister the receiver to avoid memory leaks
         unregisterReceiver(connectivityReceiver);
     }

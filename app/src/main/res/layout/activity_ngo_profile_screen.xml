@@ -139,7 +139,6 @@
                                 android:textStyle="bold"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textAutoComplete"
-                                android:text="Meet Kakadiya"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -167,7 +166,6 @@
                                 android:enabled="false"
                                 android:textStyle="bold"
                                 android:fontFamily="sans-serif"
-                                android:text="Meetkakadiya@gmail.com"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -183,7 +181,6 @@
                             app:cursorColor="@color/black"
                             app:cursorErrorColor="@color/err_color"
                             app:hintTextColor="@color/toolbar_BG"
-                            app:prefixText="+91"
                             android:textColorHint="@color/status_color"
                             app:prefixTextColor="@color/black"
                             tools:ignore="HardcodedText">
@@ -195,7 +192,6 @@
                                 android:enabled="false"
                                 android:fontFamily="sans-serif"
                                 android:textStyle="bold"
-                                android:text="1234567890"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -222,7 +218,6 @@
                                 android:enabled="false"
                                 android:textStyle="bold"
                                 android:fontFamily="sans-serif"
-                                android:text="1234 Elm Street,Citytown, State 56789,"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -248,7 +243,6 @@
                                 android:enabled="false"
                                 android:textStyle="bold"
                                 android:fontFamily="sans-serif"
-                                android:text="Food"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>

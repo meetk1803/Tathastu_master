@@ -115,11 +115,8 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         fnamel = getIntent().getStringExtra("fnamel");
         lnamel = getIntent().getStringExtra("lnamel");
 
-        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
-        txt_otp_mno.setText("+91 XXXXXX"+last_four_digits);
+        txt_otp_mno.setText(mailv);
 
-        Toast.makeText(this, phonenumber, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, last_four_digits, Toast.LENGTH_SHORT).show();
 
 
         // Initialize the ConnectivityReceiver
