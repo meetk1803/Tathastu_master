@@ -113,7 +113,9 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         check = getIntent().getStringExtra("check");
         mailv = getIntent().getStringExtra("fsmail");
         fnamel = getIntent().getStringExtra("fnamel");
-        lnamel = getIntent().getStringExtra("lnamel");        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
+        lnamel = getIntent().getStringExtra("lnamel");
+
+        String last_four_digits=phonenumber.substring(phonenumber.length()-4);
         txt_otp_mno.setText("+91 XXXXXX"+last_four_digits);
 
         Toast.makeText(this, phonenumber, Toast.LENGTH_SHORT).show();
@@ -145,7 +147,7 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                     showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
                 }*/
                     else {
-                        startOtpTimer();
+//                        startOtpTimer();
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
                         signInWithPhoneAuthCredential(credential);
                     }
@@ -266,10 +268,9 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
                             } else {
 
-                                SharedPreferences sharedPreferences = getSharedPreferences(Login_Screen.PREFS_NAME,0);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("hasLoggedIn",true);
-                                editor.commit();
+                                SharedPreferences.Editor editor = getSharedPreferences(Login_Screen.PREFS_NAME, Context.MODE_PRIVATE).edit();
+                                editor.putBoolean(Login_Screen.KEY_FIRST_TIME_LOGIN,false);
+                                editor.apply();
 
                                 Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
                                 startActivity(i);
@@ -564,42 +565,42 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
     }
 
-    private void startOtpTimer() {
-        timeLeftInMillis = OTP_TIMER_DURATION;
-
-        countDownTimer = new CountDownTimer(timeLeftInMillis, INTERVAL) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timeLeftInMillis = millisUntilFinished;
-                updateTimerText();
-            }
-
-            @Override
-            public void onFinish() {
-                // The timer has finished, handle accordingly
-                tvOtpTime.setText("00:00"); // Update the UI or trigger OTP resend, etc.
-            }
-        }.start();
-    }
-
-    private void updateTimerText() {
-        int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        int seconds = (int) (timeLeftInMillis / 1000) % 60;
-
-        String timeFormatted = String.format("%02d:%02d", minutes, seconds);
-        tvOtpTime.setText(timeFormatted);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Ensure to cancel the timer to avoid memory leaks
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-        }
-        // Unregister the receiver to avoid memory leaks
-        unregisterReceiver(connectivityReceiver);
-    }
+//    private void startOtpTimer() {
+//        timeLeftInMillis = OTP_TIMER_DURATION;
+//
+//        countDownTimer = new CountDownTimer(timeLeftInMillis, INTERVAL) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                timeLeftInMillis = millisUntilFinished;
+//                updateTimerText();
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                // The timer has finished, handle accordingly
+//                tvOtpTime.setText("00:00"); // Update the UI or trigger OTP resend, etc.
+//            }
+//        }.start();
+//    }
+//
+//    private void updateTimerText() {
+//        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+//        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+//
+//        String timeFormatted = String.format("%02d:%02d", minutes, seconds);
+//        tvOtpTime.setText(timeFormatted);
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        // Ensure to cancel the timer to avoid memory leaks
+//        if (countDownTimer != null) {
+//            countDownTimer.cancel();
+//        }
+//        // Unregister the receiver to avoid memory leaks
+//        unregisterReceiver(connectivityReceiver);
+//    }
 
     // Helper method to check if the internet connection is available
     private boolean isInternetAvailable() {

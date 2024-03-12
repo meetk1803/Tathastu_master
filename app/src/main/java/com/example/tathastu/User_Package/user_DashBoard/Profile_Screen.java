@@ -1,6 +1,5 @@
 package com.example.tathastu.User_Package.user_DashBoard;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -9,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,22 +61,28 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
 
         DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
 
-        referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                profile_getset userpro = snapshot.getValue(profile_getset.class);
-                if (userpro != null) {
-                    Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
-                    txt_Profile_Fname.setText(userpro.getFname()+" "+userpro.getLname());
-                    txt_Profile_email.setText(userpro.getEmail());
-                    txt_Profile_mno.setText(userpro.getMobile());
-                    txt_Profile_dob.setText(userpro.getBirth_of_date());
+        if (user != null) {
+            referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    profile_getset userpro = snapshot.getValue(profile_getset.class);
+                    if (userpro != null) {
+                        Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
+                        txt_Profile_Fname.setText(userpro.getFname()+" "+userpro.getLname());
+                        txt_Profile_email.setText(userpro.getEmail());
+                        txt_Profile_mno.setText(userpro.getMobile());
+                        txt_Profile_dob.setText(userpro.getBirth_of_date());
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        } else {
+
+            Toast.makeText(this, "FailedP.", Toast.LENGTH_SHORT).show();
+
+        }
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
