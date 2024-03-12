@@ -87,36 +87,53 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
                 twitter=txt_social_twitter.getText().toString();
                 youtube=txt_social_youtube.getText().toString();
 
-
-                // Check if URLs are valid before updating
-                if (!isValidUrl(website)) {
+                if (website.isEmpty() && insta.isEmpty() && linkedin.isEmpty()
+                        && facebook.isEmpty() && twitter.isEmpty() && youtube.isEmpty()) {
+                    // No changes to update
+                    Toast.makeText(NGO_Social_Media.this, "No changes to update.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // Validate URLs
+                if (!isValidNonEmptyUrl(website)) {
                     txt_social_website.setError("Invalid URL");
                     return;
+                } else {
+                    txt_social_website.setError(null);  // Clear the error if the URL is valid
                 }
 
-                if (!isValidUrl(insta)) {
+                if (!isValidNonEmptyUrl(insta)) {
                     txt_social_insta.setError("Invalid URL");
                     return;
+                } else {
+                    txt_social_insta.setError(null);
                 }
 
-                if (!isValidUrl(linkedin)) {
+                if (!isValidNonEmptyUrl(linkedin)) {
                     txt_social_linkedin.setError("Invalid URL");
                     return;
+                } else {
+                    txt_social_linkedin.setError(null);
                 }
 
-                if (!isValidUrl(facebook)) {
+                if (!isValidNonEmptyUrl(facebook)) {
                     txt_social_fb.setError("Invalid URL");
                     return;
+                } else {
+                    txt_social_fb.setError(null);
                 }
 
-                if (!isValidUrl(twitter)) {
+                if (!isValidNonEmptyUrl(twitter)) {
                     txt_social_twitter.setError("Invalid URL");
                     return;
+                } else {
+                    txt_social_twitter.setError(null);
                 }
 
-                if (!isValidUrl(youtube)) {
+                if (!isValidNonEmptyUrl(youtube)) {
                     txt_social_youtube.setError("Invalid URL");
                     return;
+                } else {
+                    txt_social_youtube.setError(null);
                 }
 
                 SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
@@ -196,11 +213,13 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
         });
     }
 
-private boolean isValidUrl(String url) {
-    // Using Android's built-in Patterns class
-    return Patterns.WEB_URL.matcher(url).matches();
-}
-
+    // Validate a URL only if it's not empty
+    private boolean isValidNonEmptyUrl(String url) {
+        if (url.isEmpty()) {
+            return true;  // Empty URL is considered valid
+        }
+        return Patterns.WEB_URL.matcher(url).matches();
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
