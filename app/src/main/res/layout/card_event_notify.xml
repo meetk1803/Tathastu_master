@@ -6,9 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_10sdp"
     android:layout_marginHorizontal="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_15sdp"
     app:cardCornerRadius="@dimen/_10sdp"
+    app:cardUseCompatPadding="true"
     android:outlineSpotShadowColor="@color/black"
     app:cardElevation="@dimen/_4sdp"
     app:cardMaxElevation="@dimen/_4sdp"
@@ -17,7 +19,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/img_Event_bg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_180sdp"
             android:background="@drawable/dash_banner_2"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -31,9 +33,9 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/eventimage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:elevation="@dimen/_3sdp"
-                android:padding="@dimen/_3sdp"
+                android:padding="@dimen/_4sdp"
                 android:outlineSpotShadowColor="@color/white"
                 android:scaleType="centerCrop"
                 app:shapeAppearanceOverlay="@style/RoundedSquare"
