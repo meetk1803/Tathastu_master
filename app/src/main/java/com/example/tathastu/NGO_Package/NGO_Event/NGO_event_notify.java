@@ -34,8 +34,7 @@ public class NGO_event_notify extends AppCompatActivity implements ConnectivityR
     private ConnectivityReceiver connectivityReceiver;
     List<events> eventsList;
     DatabaseReference reference;
-    Button btn_addevent;
-    ImageButton btn_search,btn_back;
+    FloatingActionButton btn_addevent;
     ListView admin_eventlist;
 
     String[] ename ={
@@ -95,7 +94,7 @@ public class NGO_event_notify extends AppCompatActivity implements ConnectivityR
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_event_notify);
 
-        btn_addevent = (Button) findViewById(R.id.btn_addevent);
+        btn_addevent = findViewById(R.id.btn_addevent);
         admin_eventlist = (ListView) findViewById(R.id.admin_eventlist);
 
         // Initialize the ConnectivityReceiver

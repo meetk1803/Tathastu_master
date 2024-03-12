@@ -21,6 +21,7 @@ import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +38,7 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
 //    StorageReference storageReference;
     String iename,ieparticipated,ietotal;
 
-    EditText txt_vname,txt_vemail,txt_vcno,txt_vaddress,txt_vage;
+    TextInputEditText txt_vname,txt_vemail,txt_vcno,txt_vaddress,txt_vage;
     Button btn_volunteer;
 
 
@@ -47,11 +48,11 @@ public class user_Event_Volunteer_Request extends AppCompatActivity implements C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_event_volunteer_request);
 
-        txt_vname = (EditText) findViewById(R.id.txt_vname);
-        txt_vemail = (EditText) findViewById(R.id.txt_vemail);
-        txt_vcno = (EditText) findViewById(R.id.txt_vcno);
-        txt_vaddress = (EditText) findViewById(R.id.txt_vaddress);
-        txt_vage = (EditText) findViewById(R.id.txt_vage);
+        txt_vname =  findViewById(R.id.txt_vname);
+        txt_vemail =  findViewById(R.id.txt_vemail);
+        txt_vcno =  findViewById(R.id.txt_vcno);
+        txt_vaddress =  findViewById(R.id.txt_vaddress);
+        txt_vage =  findViewById(R.id.txt_vage);
         btn_volunteer = (Button) findViewById(R.id.btn_volunteer);
 
 

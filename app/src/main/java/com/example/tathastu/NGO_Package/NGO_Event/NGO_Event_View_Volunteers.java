@@ -34,7 +34,6 @@ public class NGO_Event_View_Volunteers extends AppCompatActivity implements Conn
     List<volunteer> volunteerList;
     DatabaseReference reference,reference1;
     ListView volunteer_list;
-    ImageButton btn_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
