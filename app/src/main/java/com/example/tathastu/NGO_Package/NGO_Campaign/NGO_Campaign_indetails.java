@@ -74,9 +74,9 @@ public class NGO_Campaign_indetails extends AppCompatActivity implements Connect
 
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -90,6 +90,7 @@ public class NGO_Campaign_indetails extends AppCompatActivity implements Connect
                     String ioname = campaign.getOrganizer_name();
                     String iocontact = campaign.getOrganizer_contact();
                     String icdonated = campaign.getDonation_received();
+                    String icname = campaign.getName();
 
                     String imageUrl = campaign.getImageUrl();
 
@@ -115,7 +116,7 @@ public class NGO_Campaign_indetails extends AppCompatActivity implements Connect
             public void onClick(View view) {
 
                 Intent i = new Intent(NGO_Campaign_indetails.this, NGO_Edit_New_Campaign_Request.class);
-                i.putExtra("cname",icname);
+                i.putExtra("key",key);
                 startActivity(i);
             }
         });
@@ -125,7 +126,7 @@ public class NGO_Campaign_indetails extends AppCompatActivity implements Connect
             public void onClick(View view) {
 
                 Intent i = new Intent(NGO_Campaign_indetails.this, NGO_Campaign_View_Donations.class);
-                i.putExtra("cname",icname);
+                i.putExtra("key",key);
                 startActivity(i);
             }
         });

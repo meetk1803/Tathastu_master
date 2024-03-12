@@ -12,6 +12,7 @@
     android:outlineSpotShadowColor="@color/black"
     app:cardCornerRadius="@dimen/_10sdp"
     app:cardElevation="@dimen/_2sdp"
+    app:cardUseCompatPadding="true"
     app:cardMaxElevation="@dimen/_2sdp"
     app:cardPreventCornerOverlap="false">
 

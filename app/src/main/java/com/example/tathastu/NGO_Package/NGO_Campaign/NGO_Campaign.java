@@ -138,7 +138,7 @@ public class NGO_Campaign extends AppCompatActivity implements ConnectivityRecei
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Intent i = new Intent(NGO_Campaign.this,NGO_Campaign_indetails.class);
-                i.putExtra("cname",campaignsList.get(position).getName());
+                i.putExtra("key",campaignsList.get(position).getKey());
                 startActivity(i);
 
             }

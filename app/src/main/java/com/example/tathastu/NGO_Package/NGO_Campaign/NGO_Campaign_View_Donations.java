@@ -65,11 +65,11 @@ public class NGO_Campaign_View_Donations extends AppCompatActivity implements Co
         donation_list.setAdapter(dadapter);
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
 
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference1 = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
 
         // Checking if Donation data is available
         reference1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -79,7 +79,7 @@ public class NGO_Campaign_View_Donations extends AppCompatActivity implements Co
 
                     // Fetching Donation Data
 
-                    reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname).child("Donations");
+                    reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key).child("Donations");
 
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override

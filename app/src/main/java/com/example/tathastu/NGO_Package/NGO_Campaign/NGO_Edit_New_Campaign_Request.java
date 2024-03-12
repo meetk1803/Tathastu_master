@@ -53,7 +53,7 @@ public class NGO_Edit_New_Campaign_Request extends AppCompatActivity implements 
     Boolean checkImage = true,checkAlert = true;
     Boolean validate;
     Uri selectImageUri;
-    public String description,ioname,iocontact,icdonated,imageUrl;
+    public String description,ioname,iocontact,icdonated,imageUrl,icname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +86,9 @@ public class NGO_Edit_New_Campaign_Request extends AppCompatActivity implements 
         });
 
         Intent intent = this.getIntent();
-        String icname = intent.getStringExtra("cname");
+        String key = intent.getStringExtra("key");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(icname);
+        reference = FirebaseDatabase.getInstance().getReference().child("campaigns").child(key);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -103,6 +103,7 @@ public class NGO_Edit_New_Campaign_Request extends AppCompatActivity implements 
                     iocontact = campaign.getOrganizer_contact();
                     icdonated = campaign.getDonation_received();
                     imageUrl = campaign.getImageUrl();
+                    icname=campaign.getName();
 
                     txt_description.setText(description);
                     txt_campaignname.setText(icname);
@@ -160,7 +161,7 @@ public class NGO_Edit_New_Campaign_Request extends AppCompatActivity implements 
                                 String cocontact = txt_organizermno.getText().toString();
 
 
-                                //reference.child(icname).child("name").setValue(cname);
+                                reference.child("name").setValue(cname);
                                 reference.child("description").setValue(cdesc);
                                 reference.child("organizer_name").setValue(coname);
                                 reference.child("organizer_contact").setValue(cocontact);
