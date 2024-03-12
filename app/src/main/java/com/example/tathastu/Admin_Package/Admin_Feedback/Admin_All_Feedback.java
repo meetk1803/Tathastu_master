@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,12 +16,19 @@ import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Admin_All_Feedback extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     private ConnectivityReceiver connectivityReceiver;
+
+    Admin_All_Feedback_DataAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +45,10 @@ public class Admin_All_Feedback extends AppCompatActivity implements Connectivit
         recycleFeedback.setLayoutManager(layoutManager);
 
         // Create a list of Admin_All_Feedback_DataModel objects (replace these with your actual data)
-        List<Admin_All_Feedback_DataModel> feedbackDataModelList = generateDummyData();
+        List<Admin_All_Feedback_DataModel> feedbackDataModelList = fetchFeedbackData();
 
         // Create an instance of Admin_All_Feedback_DataAdapter and set it to the RecyclerView
-        Admin_All_Feedback_DataAdapter adapter = new Admin_All_Feedback_DataAdapter(this, feedbackDataModelList);
+        adapter = new Admin_All_Feedback_DataAdapter(this, feedbackDataModelList);
         recycleFeedback.setAdapter(adapter);
 
         // Initialize the ConnectivityReceiver
@@ -63,23 +71,35 @@ public class Admin_All_Feedback extends AppCompatActivity implements Connectivit
 
     //------------------------------------------------------------------------------------------------------------------
     // Dummy data for personal info
-    private List<Admin_All_Feedback_DataModel> generateDummyData() {
-        // Replace this method with your actual data retrieval logic
-        List<Admin_All_Feedback_DataModel> dummyData = new ArrayList<>();
+    private List<Admin_All_Feedback_DataModel> fetchFeedbackData() {
+        List<Admin_All_Feedback_DataModel> dataModelList = new ArrayList<>();
 
-        // Add dummy data with alternating banner images
-        for (int i = 0; i < 10; i++) {
-            String userName = "Fname Lname";
-            String userEmail = "tathastu052threesofficial@gmail.com";
-            String msg = "Embrace growth, conquer challenges, and radiate positivity. In the journey of life, resilience is your greatest ally. Cherish every moment, learn from setbacks, and evolve into the best version of yourself. Illuminate the path with kindness and determination. #LifeJourney";
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("feedback");
 
-            Admin_All_Feedback_DataModel userModel = new Admin_All_Feedback_DataModel(userName, userEmail, msg);
-            dummyData.add(userModel);
-        }
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-        // Add more dummy data as needed
+                if (snapshot.exists()){
 
-        return dummyData;
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+
+                        Admin_All_Feedback_DataModel data = snapshot1.getValue(Admin_All_Feedback_DataModel.class);
+                        dataModelList.add(data);
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return  dataModelList;
     }
 
     @Override

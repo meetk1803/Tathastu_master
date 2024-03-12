@@ -1,6 +1,5 @@
 package com.example.tathastu.Common_Screens;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,9 +11,9 @@ import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.example.tathastu.Common_Screens.Intro.Intro_Starting_Screen;
+import com.example.tathastu.NGO_Package.NGO_DashBoard.NGO_Dashboard_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
-import com.example.tathastu.User_Package.user_Entry.Login_Screen;
 import com.google.android.material.imageview.ShapeableImageView;
 
 public class Splash_Screen extends AppCompatActivity {
@@ -36,28 +35,41 @@ public class Splash_Screen extends AppCompatActivity {
             public void run() {
                 Animatoo.INSTANCE.animateZoom(Splash_Screen.this);
 
+                if (isFirstTimeLogin().equals("intro") ) {
 
-
-                if (isFirstTimeLogin()) {
-
-                    Intent i=new Intent(Splash_Screen.this, Intro_Starting_Screen.class);
-                    startActivity(i);
-                    finish();
-
-                } else {
-
-                    Intent intent1 = new Intent(Splash_Screen.this, DashBoard_Screen.class);
+                    Intent intent1 = new Intent(Splash_Screen.this, Intro_Starting_Screen.class);
                     startActivity(intent1);
                     finish();
 
+                } else if(isFirstTimeLogin().equals("user")) {
+
+                    Intent i=new Intent(Splash_Screen.this, DashBoard_Screen.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Intent i=new Intent(Splash_Screen.this, NGO_Dashboard_Screen.class);
+                    startActivity(i);
+                    finish();
                 }
+
+//
             }
         },3000);
     }
 
-    private boolean isFirstTimeLogin(){
-        SharedPreferences preferences = getSharedPreferences(Login_Screen.PREFS_NAME, Context.MODE_PRIVATE);
-        return preferences.getBoolean(Login_Screen.KEY_FIRST_TIME_LOGIN, true);
+    private String isFirstTimeLogin(){
+        SharedPreferences sharedPreferences = getSharedPreferences("UserLogin",MODE_PRIVATE);
+        SharedPreferences sharedPreferences1 = getSharedPreferences("NGOLogin",MODE_PRIVATE);
+        if(sharedPreferences.getBoolean("hasLoggedIn",false))
+        {
+            return "user";
+        }else if(sharedPreferences1.getBoolean("hasLoggedIn",false)){
+            return "ngo";
+        }else{
+            return "intro";
+        }
+
     }
+
 
 }

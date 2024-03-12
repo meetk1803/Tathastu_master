@@ -6,6 +6,9 @@ public class Admin_All_Feedback_DataModel {
     private String feedback_msg;
 
 
+    public Admin_All_Feedback_DataModel() {
+    }
+
     public Admin_All_Feedback_DataModel(String name, String email, String feedback_msg) {
         this.name = name;
         this.email = email;

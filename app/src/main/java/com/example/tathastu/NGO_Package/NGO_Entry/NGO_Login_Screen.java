@@ -3,10 +3,9 @@ package com.example.tathastu.NGO_Package.NGO_Entry;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,8 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.Common_Screens.Selection_Screen;
+import com.example.tathastu.NGO_Package.NGO_Profile.NGO_Profile_Model;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -24,6 +27,11 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class NGO_Login_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     public ExtendedFloatingActionButton BTN_login_ngo ;
@@ -34,6 +42,8 @@ public class NGO_Login_Screen extends AppCompatActivity implements ConnectivityR
     public TextInputEditText edtmno_ngo,edtpwd_ngo;
     TextInputLayout txtlayout_login_mno_ngo;
     private ConnectivityReceiver connectivityReceiver;
+    public  static final String PREFS_NAME_NGO = "myprefs_ngo";
+    public  static final String KEY_FIRST_TIME_LOGIN_NGO = "FirstTimeLogin_ngo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,12 +111,61 @@ public class NGO_Login_Screen extends AppCompatActivity implements ConnectivityR
 //                    showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match");
 //                }
                     else {
-                        // Clear the error message
-                        Intent i = new Intent(NGO_Login_Screen.this, NGO_OTP_Screen.class);
-                        Toast.makeText(NGO_Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                        i.putExtra("source", "login");
-                        i.putExtra("mobile", "+91" + mob);
-                        startActivity(i);
+
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ngo");
+
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                if (snapshot.exists()){
+
+                                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+
+                                        NGO_Profile_Model data = snapshot1.getValue(NGO_Profile_Model.class);
+                                        String mno = data.getMobile();
+                                        String pass = data.getPassword();
+                                        String email=data.getEmail();
+                                        String fname=data.getFname();
+                                        String userId=data.getUserId();
+
+                                        Toast.makeText(NGO_Login_Screen.this, mno+"\n"+pass, Toast.LENGTH_SHORT).show();
+
+                                        if (("+91"+mob).equals(mno) && pwd.equals(pass)) {
+
+                                            //Intent i = new Intent(NGO_Login_Screen.this, NGO_Dashboard_Screen.class);
+//                                            SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
+//                                            sharedPreferences1.edit().putString("userId",userId).apply();
+
+                                            // Clear the error message
+                                            Intent i = new Intent(NGO_Login_Screen.this, NGO_OTP_Screen.class);
+
+
+                                            i.putExtra("source", "login");
+                                            i.putExtra("fname",fname);
+                                            i.putExtra("email",email);
+                                            i.putExtra("mno",mno);
+                                            i.putExtra("check","login");
+                                            i.putExtra("userId",userId);
+                                            startActivity(i);
+
+                                        } else {
+
+//                                            Toast.makeText(NGO_Login_Screen.this, "First Register After Try To Log In.", Toast.LENGTH_SHORT).show();
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                         Animatoo.INSTANCE.animateSlideLeft(NGO_Login_Screen.this);
                     }
                 }

@@ -140,7 +140,6 @@
                                 android:enabled="false"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textAutoComplete"
-                                android:text="Meet Kakadiya"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -168,7 +167,6 @@
                                 android:enabled="false"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textEmailAddress"
-                                android:text="Meetkakadiya@gmail.com"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -197,7 +195,6 @@
                                 android:fontFamily="sans-serif"
                                 android:inputType="phone"
                                 android:maxLength="10"
-                                android:text="1234567890"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -224,7 +221,6 @@
                                 android:enabled="false"
                                 android:fontFamily="sans-serif"
                                 android:inputType="text|date"
-                                android:text="12/12/2004"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>

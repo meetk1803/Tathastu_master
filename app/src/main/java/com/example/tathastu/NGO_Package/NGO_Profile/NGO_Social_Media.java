@@ -1,30 +1,67 @@
 package com.example.tathastu.NGO_Package.NGO_Profile;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.tathastu.Common_Screens.Selection_Screen;
-import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NGO_Social_Media extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     private ConnectivityReceiver connectivityReceiver;
+
+    ExtendedFloatingActionButton  BTN_social_add;
+
+    TextInputEditText txt_social_website,txt_social_insta,txt_social_linkedin,txt_social_fb,txt_social_twitter,txt_social_youtube;
+
+    String website = "";
+    String insta ="";
+    String linkedin = "";
+    String facebook = "";
+    String twitter = "";
+    String youtube = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_social_media);
+
+        fetchProfileData();
+
+
+        txt_social_website = findViewById(R.id.txt_social_website);
+        txt_social_insta = findViewById(R.id.txt_social_insta);
+        txt_social_linkedin = findViewById(R.id.txt_social_linkedin);
+        txt_social_fb = findViewById(R.id.txt_social_fb);
+        txt_social_twitter = findViewById(R.id.txt_social_twitter);
+        txt_social_youtube = findViewById(R.id.txt_social_youtube);
+        BTN_social_add = findViewById(R.id.BTN_social_add);
+
 
         FloatingActionButton BTN_back=findViewById(R.id.BTN_social_back);
 
@@ -35,14 +72,93 @@ public class NGO_Social_Media extends AppCompatActivity implements ConnectivityR
             }
         });
 
+        BTN_social_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                website=txt_social_website.getText().toString();
+                insta=txt_social_insta.getText().toString();
+                linkedin=txt_social_linkedin.getText().toString();
+                facebook=txt_social_fb.getText().toString();
+                twitter=txt_social_twitter.getText().toString();
+                youtube=txt_social_youtube.getText().toString();
+
+                SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
+                String userId = sharedPreferences1.getString("userId","");
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("website", website);
+                map.put("instagram", insta);
+                map.put("linkedin", linkedin);
+                map.put("facebook", facebook);
+                map.put("twitter", twitter);
+                map.put("youtube", youtube);
+
+                FirebaseDatabase.getInstance().getReference().child("ngo").child(userId)
+                        .updateChildren(map)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful())
+                                {
+                                    Toast.makeText(NGO_Social_Media.this, "Social Media Updated Successfully !!", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(NGO_Social_Media.this, "Failed To Social Media !!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                startActivity(new Intent(NGO_Social_Media.this, NGO_Profile_Screen.class));
+                                finish();
+                            }
+                        });
+            }
+        });
+
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
         ConnectivityReceiver.connectivityReceiverListener = this;
 
         // Register the receiver to listen for connectivity changes
         registerReceiver(connectivityReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+
     }
     //--------------------------------------------------------------------------------------
+
+
+    private void fetchProfileData() {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId","");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ngo").child(userId);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    NGO_Profile_Model data = snapshot.getValue(NGO_Profile_Model.class);
+                    String website = data.getWebsite();
+                    String insta = data.getInstagram();
+                    String linkedin=data.getLinkedin();
+                    String facebook=data.getFacebook();
+                    String twitter=data.getTwitter();
+                    String youtube=data.getYoutube();
+
+
+                    txt_social_website.setText(website);
+                    txt_social_insta.setText(insta);
+                    txt_social_linkedin.setText(linkedin);
+                    txt_social_fb.setText(facebook);
+                    txt_social_twitter.setText(twitter);
+                    txt_social_youtube.setText(youtube);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     @Override
     public void onBackPressed() {

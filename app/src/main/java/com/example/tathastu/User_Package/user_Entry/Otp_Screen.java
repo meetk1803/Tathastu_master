@@ -21,28 +21,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_DashBoard.DashBoard_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -63,17 +56,24 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
     private long timeLeftInMillis;
     private static final long OTP_TIMER_DURATION = 120 * 1000; // 5 minutes in milliseconds
     private static final long INTERVAL = 1000; // 1 second in milliseconds
-    public String phonenumber,fname,lname,email,birth_of_date,password,mob,check,mailv,fnamel,lnamel;
+    public String phonenumber,fname,lname,email,birth_of_date,password,mob,check,fnamel,lnamel;
     FirebaseAuth mAuth;
     String otpid;
     public EditText edtotp;
     private ConnectivityReceiver connectivityReceiver;
+
+    String otp="";
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_screen);
+
+        while(otp.length()!=6)
+        {
+            otp= String.valueOf(new Random().nextInt(999999));
+        }
 
 //        tvOtpTime = findViewById(R.id.tv_OTPtime);
         BTN_otp = findViewById(R.id.BTN_otp);
@@ -111,9 +111,9 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         password = getIntent().getStringExtra("password");
         mob = getIntent().getStringExtra("mob");
         check = getIntent().getStringExtra("check");
-        mailv = getIntent().getStringExtra("fsmail");
         fnamel = getIntent().getStringExtra("fnamel");
         lnamel = getIntent().getStringExtra("lnamel");
+
 
         String last_four_digits=phonenumber.substring(phonenumber.length()-4);
         txt_otp_mno.setText("+91 XXXXXX"+last_four_digits);
@@ -142,14 +142,14 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
                         showSnackbar(findViewById(android.R.id.content), "Please enter an OTP...");
                     } else if (enteredotp.length() < 6) {
                         showSnackbar(findViewById(android.R.id.content), "Please enter 6 digits long OTP...");
-                    }
-               /* else if (enteredotp == authenticated otp(VARIABLE)) {
-                    showSnackbar(findViewById(android.R.id.content),"Invalid OTP - Please enter correct OTP...");
-                }*/
-                    else {
+                    }else if(enteredotp.matches(otp)){
+//                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
+//                        signInWithPhoneAuthCredential(credential);
 //                        startOtpTimer();
-                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(otpid, enteredotp);
-                        signInWithPhoneAuthCredential(credential);
+
+                        signInWithEmailAuth();
+                    }else{
+                        showSnackbar(findViewById(android.R.id.content), "Please enter a Valid OTP...");
                     }
                 }
             }
@@ -157,8 +157,72 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
 
 
 
-        initiateotp();
+//        initiateotp();
+
+        initiateMailOtp(fnamel);
     }
+
+    private void signInWithEmailAuth() {
+        if (check.equals("register")){
+
+            SharedPreferences sharedPreferences = getSharedPreferences("UserLogin",MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean("hasLoggedIn",true).apply();
+
+
+            String userId = UUID.randomUUID().toString();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("fname", fname);
+            map.put("lname", lname);
+            map.put("email", email);
+            map.put("birth_of_date", birth_of_date);
+            map.put("mobile", mob);
+            map.put("password", password);
+            map.put("userId",userId);
+
+            FirebaseDatabase.getInstance().getReference().child("user").child(userId)
+                    .setValue(map)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+
+                            SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
+                            sharedPreferences1.edit().putString("userId",userId).apply();
+
+                            showSnackbar(findViewById(android.R.id.content), "Successfully Registered.");
+                            Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
+                            startActivity(i);
+
+                            sendregistermail(fname,lname,email,mob,password);
+                            sendloggedinmail(fname,lname,email);
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            showSnackbar(findViewById(android.R.id.content), "Error: While Inserting Data.");
+
+                        }
+                    });
+
+        } else {
+
+            SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
+            sharedPreferences1.edit().putString("userId",getIntent().getStringExtra("userId")).apply();
+
+            SharedPreferences sharedPreferences = getSharedPreferences("UserLogin",MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean("hasLoggedIn",true).apply();
+
+            Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
+            startActivity(i);
+
+            sendloggedinmail(fnamel,lnamel,email);
+
+        }
+    }
+
 //---------------------------------------------------------------------------------------------------
 
 
@@ -182,112 +246,100 @@ public class Otp_Screen extends AppCompatActivity implements ConnectivityReceive
         }
     }
 
-    private void initiateotp() {
+    private void initiateMailOtp(String fname1) {
+        try {
+            String senderEmail = "tathastu052threesofficial@gmail.com";
+            String password = "jwhqpkbuqwmkirwy";
 
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phonenumber)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // (optional) Activity for callback binding
-                        // If no activity is passed, reCAPTCHA verification can not be used.
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            String loginMessage = "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\n" +
+                    "<tr>\n" +
+                    "    <td align=\"center\">\n" +
+                    "        <table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse;\">\n" +
+                    "            <tr>\n" +
+                    "                <td bgcolor=\"#3871c1\" style=\"padding: 5px; text-align: center;\">\n" +
+                    "                    <h2 style=\"color: #ffffff;\">Email Verification</h2>\n" +
+                    "                </td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td bgcolor=\"#ffffff\" style=\"padding: 10px; color: black;\">\n" +
+                    "                    <p>Hello " + fname1 + ",</p>\n" +
+                    "                    <p>Your Email Verification Request is Accepted By Us.</p>\n" +
+                    "                    <p>OTP For Verifying Your Email Id :</p>\n" +
+                    "                    <center>\n" +
+                    "                        <h1 style=\"color:Green\">"+otp+"</h1>\n" +
+                    "                    </center>\n" +
+                    "                    <p>For Security Reasons, Please Don't Share This OTP With Anyone.\n" +
+                    "                    </p>\n" +
+                    "                    <p>If You Don't Register For Your Account Then You Can Safely Ignore This Email.</p>\n" +
+                    "                </td>\n" +
+                    "            </tr>\n" +
+                    "            <tr>\n" +
+                    "                <td bgcolor=\"#3871c1\" style=\"padding: 5px; text-align: center;\">\n" +
+                    "                    <p style=\"color: #ffffff;\">Thank You For Using Our Service !</p>\n" +
+                    "                </td>\n" +
+                    "            </tr>\n" +
+                    "        </table>\n" +
+                    "    </td>\n" +
+                    "</tr>\n" +
+                    "</table>";
+
+
+            Properties properties = System.getProperties();
+            properties.put("mail.smtp.host", "smtp.gmail.com");
+            properties.put("mail.smtp.port", "465");
+            properties.put("mail.smtp.ssl.enable", "true");
+            properties.put("mail.smtp.auth", "true");
+
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(senderEmail, password);
+                }
+            });
+
+            // Creating a MimeMessage
+            MimeMessage mimeMessage = new MimeMessage(session);
+
+            // Setting the sender's name and email address
+            InternetAddress senderAddress = new InternetAddress(senderEmail, "Tathastu - The Donation App");
+            mimeMessage.setFrom(senderAddress);
+
+            // Adding the recipient's email address
+            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+            // Setting the subject and message content as HTML
+            mimeMessage.setSubject("Verify Your Email !!");
+            mimeMessage.setContent(loginMessage, "text/html");
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Transport.send(mimeMessage);
+                    } catch (MessagingException e) {
+                        // Handling messaging exception
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-
-                                otpid = s; // When the sim card is in to the other device these method call
-
+                            public void run() {
+                                Toast.makeText(Otp_Screen.this, "Error Occurred : ", Toast.LENGTH_SHORT).show();
                             }
-
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
-                                signInWithPhoneAuthCredential(phoneAuthCredential); // when the sim card in current device thse method is call
-
-                            }
-
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-
-                                // OTP Generate Time Show the Error These Method is called
-                                Toast.makeText(Otp_Screen.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        })          // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-
-    }
-
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            if (check.equals("register")){
-
-                                SharedPreferences sharedPreferences = getSharedPreferences(Login_Screen.PREFS_NAME,0);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putBoolean("hasLoggedIn",true);
-                                editor.commit();
-
-                                Map<String, Object> map = new HashMap<>();
-                                map.put("fname", fname);
-                                map.put("lname", lname);
-                                map.put("email", email);
-                                map.put("birth_of_date", birth_of_date);
-                                map.put("mobile", mob);
-                                map.put("password", password);
-
-                                FirebaseUser user = mAuth.getCurrentUser();
-
-                                FirebaseDatabase.getInstance().getReference().child("user").child(user.getUid())
-                                        .setValue(map)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void unused) {
-
-                                                showSnackbar(findViewById(android.R.id.content), "Successfully Registered.");
-                                                Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
-                                                startActivity(i);
-
-                                                sendregistermail(fname,lname,email,mob,password);
-                                                sendloggedinmail(fname,lname,email);
-
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-
-                                                showSnackbar(findViewById(android.R.id.content), "Error: While Inserting Data.");
-
-                                            }
-                                        });
-
-                            } else {
-
-                                SharedPreferences.Editor editor = getSharedPreferences(Login_Screen.PREFS_NAME, Context.MODE_PRIVATE).edit();
-                                editor.putBoolean(Login_Screen.KEY_FIRST_TIME_LOGIN,false);
-                                editor.apply();
-
-                                Intent i = new Intent(Otp_Screen.this, DashBoard_Screen.class);
-                                startActivity(i);
-
-                                sendloggedinmail(fnamel,lnamel,mailv);
-
-                            }
-
-                        } else {
-
-                            Toast.makeText(Otp_Screen.this, "Sign In Code Error", Toast.LENGTH_SHORT).show();
-
-                        }
+                        });
+                        e.printStackTrace();
                     }
-                });
-    }
+                }
+            });
+            t.start();
 
+        } catch (AddressException e) {
+            throw new RuntimeException(e);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+        Toast.makeText(Otp_Screen.this, "Otp Mail Sent Successfully.", Toast.LENGTH_SHORT).show();
+
+    }
     public void sendregistermail(String finame,String laname,String email,String contact,String pass){
 
         try {

@@ -1,16 +1,10 @@
 package com.example.tathastu.NGO_Package.NGO_Profile;
 
-import static com.example.tathastu.R.style.CustomDatePickerStyle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -23,14 +17,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
-import com.example.tathastu.User_Package.user_DashBoard.Update_Profile_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -38,10 +39,19 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NGO_Update_Profile extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     //ALL
@@ -63,6 +73,10 @@ public class NGO_Update_Profile extends AppCompatActivity implements Connectivit
     int SELECT_PICTURE = 100;
     ShapeableImageView img_profile_photo;
 
+    String photo="";
+
+    Uri imageUri;
+
     MaterialTextView txt_updatep_change;
 
     //EDIT PROFILE
@@ -71,6 +85,8 @@ public class NGO_Update_Profile extends AppCompatActivity implements Connectivit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_update_profile);
+
+        fetchProfileData();
 
         img_profile_photo = findViewById(R.id.img_updatep_photo);
         txt_updatep_Fname_ngo = findViewById(R.id.txt_updatep_Fname_ngo);
@@ -177,13 +193,133 @@ public class NGO_Update_Profile extends AppCompatActivity implements Connectivit
                     } else if (!pwd.equals(cpwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match...");
                     } else {
-                        showSnackbar(findViewById(android.R.id.content), "Please accept the Terms & Conditions...");
-                    }
+
+
+                        if (imageUri != null) {
+
+                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                            StorageReference imageRef = storage.getReference().child("images/" + System.currentTimeMillis() + ".jpg");
+                            imageRef.putFile(imageUri)
+                                    .addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(NGO_Update_Profile.this, "Images Upload Successfully.", Toast.LENGTH_SHORT).show();
+
+                                                imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                    @Override
+                                                    public void onSuccess(Uri uri) {
+
+
+                                                        SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+                                                        String userId = sharedPreferences1.getString("userId", "");
+
+                                                        Map<String, Object> map = new HashMap<>();
+                                                        map.put("fname", fname);
+                                                        map.put("email", email);
+                                                        map.put("mobile", mno);
+                                                        map.put("type", type);
+                                                        map.put("address", address);
+                                                        map.put("password", cpwd);
+                                                        map.put("photo", uri.toString());
+
+                                                        FirebaseDatabase.getInstance().getReference().child("ngo").child(userId)
+                                                                .updateChildren(map)
+                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    @Override
+                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                        if (task.isSuccessful()) {
+                                                                            Toast.makeText(NGO_Update_Profile.this, "Profile Updated Successfully !!", Toast.LENGTH_SHORT).show();
+                                                                        } else {
+                                                                            Toast.makeText(NGO_Update_Profile.this, "Failed To Update Profile !!", Toast.LENGTH_SHORT).show();
+                                                                        }
+
+                                                                        startActivity(new Intent(NGO_Update_Profile.this, NGO_Profile_Screen.class));
+                                                                        finish();
+                                                                    }
+                                                                });
+                                                    }
+
+                                                });
+                                            }
+                                        }
+                                    });
+                        }else{
+                            SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+                            String userId = sharedPreferences1.getString("userId", "");
+
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("fname", fname);
+                            map.put("email", email);
+                            map.put("mobile", mno);
+                            map.put("type", type);
+                            map.put("address", address);
+                            map.put("password", cpwd);
+
+                            FirebaseDatabase.getInstance().getReference().child("ngo").child(userId)
+                                    .updateChildren(map)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(NGO_Update_Profile.this, "Profile Updated Successfully !!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(NGO_Update_Profile.this, "Failed To Update Profile !!", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                            startActivity(new Intent(NGO_Update_Profile.this, NGO_Profile_Screen.class));
+                                            finish();
+                                        }
+                                    });
+                        }                    }
                 }
             }
         });
     }
     //------------------------------------------------------------------------------------------------------------
+
+
+    private void fetchProfileData() {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId", "");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("ngo").child(userId);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    NGO_Profile_Model data = snapshot.getValue(NGO_Profile_Model.class);
+                    String fname = data.getFname();
+                    String email = data.getEmail();
+                    String mno = data.getMobile();
+                    String address = data.getAddress();
+                    String type = data.getType();
+                    String pwd = data.getPassword();
+                    photo = data.getPhoto();
+
+                    txt_updatep_Fname_ngo.setText(fname);
+                    txt_updatep_email_ngo.setText(email);
+                    txt_updatep_mno_ngo.setText(mno);
+                    txt_updatep_address_ngo.setText(address);
+                    txt_type_ngo.setText(type, false);
+                    txt_updatep_pwd_ngo.setText(pwd);
+                    txt_updatep_cpwd_ngo.setText(pwd);
+
+                    Glide.with(NGO_Update_Profile.this)
+                            .load(photo)
+                            .centerCrop()
+                            .into(img_profile_photo);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     //FOR IMAGE PICKER
     @Override
@@ -194,7 +330,7 @@ public class NGO_Update_Profile extends AppCompatActivity implements Connectivit
             if (requestCode == SELECT_PICTURE || requestCode == REQUEST_IMAGE_CAPTURE) {
                 if (data != null) {
                     // Start cropping activity with the selected image
-                    Uri imageUri = data.getData();
+                    imageUri = data.getData();
                     startCropActivity(imageUri);
                 } else {
                     Toast.makeText(this, "No Image Selected.", Toast.LENGTH_SHORT).show();

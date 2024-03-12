@@ -37,6 +37,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_gravity="end"
             android:padding="@dimen/_2sdp"
+            android:scaleType="centerCrop"
             android:layout_marginEnd="@dimen/_12sdp"
             android:clickable="true"
             android:contentDescription="@string/profile"

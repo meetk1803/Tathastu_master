@@ -1,8 +1,5 @@
 package com.example.tathastu.NGO_Package.NGO_Entry;
 
-import static com.example.tathastu.R.style.CustomDatePickerStyle;
-
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,32 +11,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.Terms_C_activity;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class NGO_Signin_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
@@ -47,7 +34,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
     private LinearLayout signin_LinearLayout_ngo;
     public ExtendedFloatingActionButton BTN_sigin_ngo;
     public TextView BTN_signin_login_ngo, BTN_signin_TC_ngo;
-    public TextInputEditText txt_Signin_Fname_ngo, txt_Signinemail_ngo, txt_Signinmno_ngo, txt_Signinaddress_ngo, txt_Signinpwd_ngo, txt_Signincpwd_ngo;
+    public TextInputEditText txt_Signin_Fname_ngo, txt_Signinemail_ngo, txt_Signinmno_ngo,txt_Signinmno_optional_ngo, txt_Signinaddress_ngo, txt_Signinpwd_ngo, txt_Signincpwd_ngo;
     public TextInputLayout txtlayout_Signin_fname_ngo, txtlayout_Signin_email_ngo, txtlayout_Signin_mno_ngo, txtlayout_Signin_address_ngo, txt_Signincat_ngo, txtlayout_Signin_pwd_ngo, txtlayout_Signin_cpwd_ngo;
     MaterialAutoCompleteTextView txt_type_ngo;
     public CheckBox ckbox_ngo;
@@ -63,6 +50,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
         txt_Signin_Fname_ngo = findViewById(R.id.txt_Signin_Fname_ngo);
         txt_Signinemail_ngo = findViewById(R.id.txt_Signinemail_ngo);
         txt_Signinmno_ngo = findViewById(R.id.txt_Signinmno_ngo);
+        txt_Signinmno_optional_ngo=findViewById(R.id.txt_Signinmno_optional_ngo);
         txt_Signinaddress_ngo = findViewById(R.id.txt_Signinaddress_ngo);
         txt_Signinpwd_ngo = findViewById(R.id.txt_Signinpwd_ngo);
         txt_Signincpwd_ngo = findViewById(R.id.txt_Signincpwd_ngo);
@@ -102,6 +90,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                 txt_Signin_Fname_ngo.clearFocus();
                 txt_Signinemail_ngo.clearFocus();
                 txt_Signinmno_ngo.clearFocus();
+                txt_Signinmno_optional_ngo.clearFocus();
                 txt_Signinaddress_ngo.clearFocus();
                 txt_Signinpwd_ngo.clearFocus();
                 txt_Signincpwd_ngo.clearFocus();
@@ -155,6 +144,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                 txt_Signin_Fname_ngo.clearFocus();
                 txt_Signinemail_ngo.clearFocus();
                 txt_Signinmno_ngo.clearFocus();
+                txt_Signinmno_optional_ngo.clearFocus();
                 txt_Signinaddress_ngo.clearFocus();
                 txt_Signinpwd_ngo.clearFocus();
                 txt_Signincpwd_ngo.clearFocus();
@@ -163,6 +153,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                 String fname = txt_Signin_Fname_ngo.getText().toString();
                 String email = txt_Signinemail_ngo.getText().toString();
                 String mno = txt_Signinmno_ngo.getText().toString();
+                String omno=txt_Signinmno_optional_ngo.getText().toString();
                 String address = txt_Signinaddress_ngo.getText().toString();
                 String pwd = txt_Signinpwd_ngo.getText().toString();
                 String cpwd = txt_Signincpwd_ngo.getText().toString();
@@ -185,7 +176,7 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
                     } else if (!pwd.equals(cpwd)) {
                         showSnackbar(findViewById(android.R.id.content), "Confirm password doesn't match...");
                     } else if (ckbox_ngo.isChecked()) {
-                       // verification(fname,email, mno,address, pwd,cpwd,type);
+                        verification(fname,email, mno,omno,address,type,cpwd);
                     } else {
                         showSnackbar(findViewById(android.R.id.content), "Please accept the Terms & Conditions...");
                     }
@@ -263,34 +254,27 @@ public class NGO_Signin_Screen extends AppCompatActivity implements Connectivity
     }
 
 
-    private void verification(String fname, String lname, String email, String mob, String dob1) {
+    private void verification(String fname, String email,String mno,String omno,String address,String type,String cpwd) {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("fname", fname);
-        map.put("lname", lname);
-        map.put("email", email);
-        map.put("birth_of_date", dob1);
-        map.put("mobile", mob);
+        String ch = "register";
 
-        FirebaseDatabase.getInstance().getReference().child("user").push()
-                .setValue(map)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        showSnackbar(findViewById(android.R.id.content), "Data Inserted Successfully.\nSuccessfully Registered.");
-                        Intent i = new Intent(NGO_Signin_Screen.this, NGO_OTP_Screen.class);
-                        i.putExtra("source", "signin");
-                        i.putExtra("mobile", "+91" + mob);
-                        startActivity(i);
-                        Animatoo.INSTANCE.animateSlideLeft(NGO_Signin_Screen.this);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        showSnackbar(findViewById(android.R.id.content), "Error: While Inserting Data.");
-                    }
-                });
+        Intent i = new Intent(NGO_Signin_Screen.this, NGO_OTP_Screen.class);
+        i.putExtra("source", "signin");
+        i.putExtra("fname",fname);
+        i.putExtra("email",email);
+        i.putExtra("mno", "+91" + mno);
+        if(omno.equals(""))
+        {
+            i.putExtra("omno","");
+        }else{
+            i.putExtra("omno", "+91" + omno);
+        }
+        i.putExtra("address",address);
+        i.putExtra("type",type);
+        i.putExtra("cpwd",cpwd);
+        i.putExtra("check",ch);
+        startActivity(i);
+
     }
 
     // Helper method to check if the internet connection is available

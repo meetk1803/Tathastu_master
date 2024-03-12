@@ -2,17 +2,18 @@ package com.example.tathastu.User_Package.user_DashBoard;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -20,14 +21,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 public class Profile_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     //ALL
@@ -49,6 +47,8 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_screen);
 
+        fetchProfileData();
+
         img_profile_photo = findViewById(R.id.img_profile_photo);
         txt_Profile_Fname = findViewById(R.id.txt_Profile_Fname);
         txt_Profile_email = findViewById(R.id.txt_Profile_email);
@@ -56,33 +56,33 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
         txt_Profile_dob = findViewById(R.id.txt_Profile_dob);
         BTN_Profile_edit = findViewById(R.id.BTN_Profile_edit);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
-
-        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
-
-        if (user != null) {
-            referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    profile_getset userpro = snapshot.getValue(profile_getset.class);
-                    if (userpro != null) {
-                        Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
-                        txt_Profile_Fname.setText(userpro.getFname()+" "+userpro.getLname());
-                        txt_Profile_email.setText(userpro.getEmail());
-                        txt_Profile_mno.setText(userpro.getMobile());
-                        txt_Profile_dob.setText(userpro.getBirth_of_date());
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
-            });
-        } else {
-
-            Toast.makeText(this, "FailedP.", Toast.LENGTH_SHORT).show();
-
-        }
+//        FirebaseAuth auth = FirebaseAuth.getInstance();
+//        FirebaseUser user = auth.getCurrentUser();
+//
+//        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
+//
+//        if (user != null) {
+//            referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    profile_getset userpro = snapshot.getValue(profile_getset.class);
+//                    if (userpro != null) {
+//                        Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
+//                        txt_Profile_Fname.setText(userpro.getFname()+" "+userpro.getLname());
+//                        txt_Profile_email.setText(userpro.getEmail());
+//                        txt_Profile_mno.setText(userpro.getMobile());
+//                        txt_Profile_dob.setText(userpro.getBirth_of_date());
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
+//        } else {
+//
+//            Toast.makeText(this, "FailedP.", Toast.LENGTH_SHORT).show();
+//
+//        }
 
         // Initialize the ConnectivityReceiver
         connectivityReceiver = new ConnectivityReceiver();
@@ -109,6 +109,44 @@ public class Profile_Screen extends AppCompatActivity implements ConnectivityRec
             }
         });
     }
+
+    private void fetchProfileData() {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("USER",MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId","");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user").child(userId);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    profile_getset data = snapshot.getValue(profile_getset.class);
+                    String fname = data.getFname();
+                    String email = data.getEmail();
+                    String mno=data.getMobile();
+                    String dob=data.getBirth_of_date();
+                    String photo = data.getProfile_image();
+
+
+                    txt_Profile_Fname.setText(fname);
+                    txt_Profile_email.setText(email);
+                    txt_Profile_mno.setText(mno);
+                    txt_Profile_dob.setText(dob);
+
+                    Glide.with(Profile_Screen.this)
+                            .load(photo)
+                            .centerCrop()
+                            .into(img_profile_photo);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
 //------------------------------------------------------------------
 

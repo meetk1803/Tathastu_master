@@ -2,13 +2,13 @@ package com.example.tathastu.User_Package.user_DashBoard;
 
 public class profile_getset {
 
-    String fname,lname,mobile,birth_of_date,email,password,profile_image;
+    String fname,lname,mobile,birth_of_date,email,password,profile_image,userId;
 
     public profile_getset() {
 
     }
 
-    public profile_getset(String fname, String lname, String mobile, String birth_of_date, String email, String password, String profile_image) {
+    public profile_getset(String fname, String lname, String mobile, String birth_of_date, String email, String password, String profile_image, String userId) {
         this.fname = fname;
         this.lname = lname;
         this.mobile = mobile;
@@ -16,6 +16,7 @@ public class profile_getset {
         this.email = email;
         this.password = password;
         this.profile_image = profile_image;
+        this.userId = userId;
     }
 
     public String getFname() {
@@ -74,4 +75,11 @@ public class profile_getset {
         this.profile_image = profile_image;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

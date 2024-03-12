@@ -41,8 +41,6 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -116,13 +114,13 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         dash_quote = findViewById(R.id.dash_quote);
         dash_quote.setText("");
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+        SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId", "");
 
         DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
 
-        if (user != null) {
-            referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        if (userId != null) {
+            referenceprofile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @SuppressLint("SetTextI18n")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -285,10 +283,8 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
             @Override
             public void onClick(View v) {
                 // This is use when user Log Out the SharedPreference value is clear
-                SharedPreferences preferences = getSharedPreferences(Login_Screen.PREFS_NAME,Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.clear();
-                editor.apply();
+                SharedPreferences sharedPreferences = getSharedPreferences("UserLogin",MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean("hasLoggedIn",false).apply();
                 finish();
                 Intent logout = new Intent(DashBoard_Screen.this, Login_Screen.class);
                 startActivity(logout);

@@ -122,6 +122,7 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                                         String emailv = getset.getEmail();
                                         String fname = getset.getFname();
                                         String lname = getset.getLname();
+                                        String userID = getset.getUserId();
 
                                         if (mob.equals(mno) && pwd.equals(pass)) {
 
@@ -130,10 +131,12 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
                                             Toast.makeText(Login_Screen.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                                             i.putExtra("source", "login");
                                             i.putExtra("mobile", "+91" + mob);
-                                            i.putExtra("fsmail",emailv);
+                                            i.putExtra("email",emailv);
                                             i.putExtra("fnamel",fname);
                                             i.putExtra("lnamel",lname);
+                                            i.putExtra("userId",userID);
                                             i.putExtra("check","login");
+
                                             startActivity(i);
                                             Animatoo.INSTANCE.animateSlideLeft(Login_Screen.this);
 

@@ -1,14 +1,10 @@
 package com.example.tathastu.NGO_Package.NGO_DashBoard;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.cardview.widget.CardView;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -21,25 +17,38 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 
 import com.example.tathastu.NGO_Package.NGO_Blood_Camp.NGO_BloodCamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_Education_Camp.NGO_Educamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_Entry.NGO_Login_Screen;
 import com.example.tathastu.NGO_Package.NGO_Food_Camp.NGO_FoodCamp_Selection;
 import com.example.tathastu.NGO_Package.NGO_History.NGO_History_Screen;
+import com.example.tathastu.NGO_Package.NGO_Profile.NGO_Profile_Model;
 import com.example.tathastu.NGO_Package.NGO_Profile.NGO_Profile_Screen;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Common_Screens.About_us_Screen;
 import com.example.tathastu.User_Package.user_Common_Screens.Contact_us_Screen;
-import com.example.tathastu.User_Package.user_DashBoard.Blood_Selection_Screen;
 import com.example.tathastu.User_Package.user_DashBoard.User_ngo_Selection_Screen;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.example.tathastu.User_Package.user_HelpLine.Helpline_numbers_Screen;
-import com.example.tathastu.User_Package.user_NGO_list.direct_contact_to_NGO;
 import com.example.tathastu.User_Package.user_Quotes.AllQuotes_Screen;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textview.MaterialTextView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,6 +77,9 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
     private final int QUOTE_UPDATE_INTERVAL = 8 * 1000; // 20 seconds in milliseconds
 
     private ConnectivityReceiver connectivityReceiver;
+
+    ShapeableImageView img_profile_photo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,8 +99,36 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
         txt_dash_seeallquotes = findViewById(R.id.txt_dash_seeallquotes);
         card_dash_directContact = findViewById(R.id.card_dash_directcontact);
 
+        img_profile_photo = findViewById(R.id.profile_icon);
+
         dash_quote = findViewById(R.id.dash_quote);
         dash_quote.setText("");
+
+        SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId", "");
+
+        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("ngo");
+
+        if (userId != null) {
+            referenceprofile.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    NGO_Profile_Model userpro = snapshot.getValue(NGO_Profile_Model.class);
+                    if (userpro != null) {
+                        Picasso.get().load(userpro.getPhoto()).into(img_profile_photo);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        } else {
+
+            Toast.makeText(this, "Failed.", Toast.LENGTH_SHORT).show();
+
+        }
 
 
 // Initialize the ConnectivityReceiver
@@ -189,6 +229,8 @@ public class NGO_Dashboard_Screen extends AppCompatActivity implements Connectiv
         BTN_dash_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("NGOLogin",MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean("hasLoggedIn",false).apply();
                 finish();
                 Intent logout = new Intent(NGO_Dashboard_Screen.this, NGO_Login_Screen.class);
                 startActivity(logout);

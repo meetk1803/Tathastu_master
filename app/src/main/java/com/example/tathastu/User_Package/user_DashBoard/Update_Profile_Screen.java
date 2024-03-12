@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -28,6 +29,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.tathastu.R;
 import com.example.tathastu.User_Package.user_Global_Class.ConnectivityReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,8 +41,6 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +49,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -84,12 +83,16 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
     //DATE OF BIRTH
     private int minYear, maxYear;
     private SimpleDateFormat dateFormatter;
+
+    String photo="";
     Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile_screen);
+
+        fetchProfileData();
 
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
         img_profile_photo = findViewById(R.id.img_updatep_photo);
@@ -105,35 +108,6 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
         txt_updatep_change = findViewById(R.id.txt_updatep_change);
 
         update_parentLayout = findViewById(R.id.update_parentLayout);
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
-
-        // Extracting all the Registered User Data from Firebase Realtime Database
-        DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
-
-        referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                profile_getset updateModel = snapshot.getValue(profile_getset.class);
-                if (updateModel != null) {
-                    Picasso.get().load(updateModel.getProfile_image()).into(img_profile_photo);
-                    txt_Profile_Fname.setText(updateModel.getFname());
-                    txt_Profile_Lname.setText(updateModel.getLname());
-                    txt_Profile_email.setText(updateModel.getEmail());
-                    txt_Profile_mno.setText(updateModel.getMobile());
-                    txt_Profile_dob.setText(updateModel.getBirth_of_date());
-                    txt_Profile_pwd.setText(updateModel.getPassword());
-                    txt_Profile_cpwd.setText(updateModel.getPassword());
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         // Set up touch listener for the parent layout
         update_parentLayout.setOnTouchListener(new View.OnTouchListener() {
@@ -233,17 +207,10 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
                                                     public void onSuccess(Uri uri) {
 
 
-
-                                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//                                                        Objects.requireNonNull(user).updatePhoneNumber(txt_Profile_mno.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                            @Override
-//                                                            public void onComplete(@NonNull Task<Void> task) {
-//                                                                if (task.isSuccessful()) {
-//                                                                    Toast.makeText(Update_Profile_Screen.this, "Updated Successfully", Toast.LENGTH_LONG).show();
+                                                        SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+                                                        String userId = sharedPreferences1.getString("userId", "");
 
                                                         DatabaseReference userdata = FirebaseDatabase.getInstance().getReference("user");
-
-                                                        String upuid = user.getUid();
 
                                                         Map<String, Object> map = new HashMap<>();
                                                         map.put("profile_image",uri.toString());
@@ -253,13 +220,13 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
                                                         map.put("birth_of_date", dob1);
                                                         map.put("password", cpwd);
 
-                                                        userdata.child(upuid).addValueEventListener(new ValueEventListener() {
+                                                        userdata.child(userId).addValueEventListener(new ValueEventListener() {
                                                             @Override
                                                             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                                                                 if (snapshot.exists()) {
 
-                                                                    userdata.child(upuid).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                    userdata.child(userId).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                         @Override
                                                                         public void onComplete(@NonNull Task<Void> task) {
 
@@ -296,14 +263,96 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
                                     });
                         } else {
 
+                            SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+                            String userId = sharedPreferences1.getString("userId", "");
 
+                            DatabaseReference userdata = FirebaseDatabase.getInstance().getReference("user");
 
-                        }                    }
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("fname", fname);
+                            map.put("lname", lname);
+                            map.put("email", email);
+                            map.put("birth_of_date", dob1);
+                            map.put("password", cpwd);
+
+                            userdata.child(userId).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                    if (snapshot.exists()) {
+
+                                        userdata.child(userId).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                Toast.makeText(Update_Profile_Screen.this, "Updated Successfully.", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        });
+
+                                    } else {
+
+                                        Toast.makeText(Update_Profile_Screen.this, "Data is Not Updated.", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                        }
+                    }
                 }
             }
         });
 
 
+    }
+
+    private void fetchProfileData() {
+        SharedPreferences sharedPreferences1 = getSharedPreferences("USER", MODE_PRIVATE);
+        String userId = sharedPreferences1.getString("userId", "");
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("user").child(userId);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    profile_getset data = snapshot.getValue(profile_getset.class);
+                    String fname = data.getFname();
+                    String lname = data.getLname();
+                    String email = data.getEmail();
+                    String mno=data.getMobile();
+                    String dob=data.getBirth_of_date();
+                    String pwd = data.getPassword();
+                    photo = data.getProfile_image();
+
+
+                    txt_Profile_Fname.setText(fname);
+                    txt_Profile_Lname.setText(lname);
+                    txt_Profile_email.setText(email);
+                    txt_Profile_mno.setText(mno);
+                    txt_Profile_dob.setText(dob);
+                    txt_Profile_pwd.setText(pwd);
+                    txt_Profile_cpwd.setText(pwd);
+
+                    Glide.with(Update_Profile_Screen.this)
+                            .load(photo)
+                            .centerCrop()
+                            .into(img_profile_photo);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 //-------------------------------------------------------------------------------------------------------------
