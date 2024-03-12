@@ -251,7 +251,6 @@ public class Update_Profile_Screen extends AppCompatActivity implements DatePick
                                                         map.put("lname", lname);
                                                         map.put("email", email);
                                                         map.put("birth_of_date", dob1);
-                                                        map.put("mobile", mob);
                                                         map.put("password", cpwd);
 
                                                         userdata.child(upuid).addValueEventListener(new ValueEventListener() {

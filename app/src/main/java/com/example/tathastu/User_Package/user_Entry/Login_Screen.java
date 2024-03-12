@@ -42,7 +42,8 @@ public class Login_Screen extends AppCompatActivity implements ConnectivityRecei
     public TextInputEditText edtmno,edtpwd;
     TextInputLayout txtlayout_login_mno;
     private ConnectivityReceiver connectivityReceiver;
-    public  static String PREFS_NAME = "myprefs";
+    public  static final String PREFS_NAME = "myprefs";
+    public  static final String KEY_FIRST_TIME_LOGIN = "FirstTimeLogin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -155,7 +155,6 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textAutoComplete"
-                                android:text="Meet"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -181,7 +180,6 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textAutoComplete"
-                                android:text="kakadiya"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -206,7 +204,6 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:inputType="textEmailAddress"
-                                android:text="Meetkakadiya@gmail.com"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -232,8 +229,8 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif"
                                 android:inputType="phone"
+                                android:enabled="false"
                                 android:maxLength="10"
-                                android:text="1234567890"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>
@@ -262,7 +259,6 @@
                                 android:focusableInTouchMode="true"
                                 android:cursorVisible="false"
                                 android:focusable="false"
-                                android:text="12/12/2004"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_13sdp" />
                         </com.google.android.material.textfield.TextInputLayout>

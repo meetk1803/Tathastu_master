@@ -45,6 +45,7 @@
              app:shapeAppearanceOverlay="@style/Circular"
              app:strokeColor="@color/white"
              app:strokeWidth="1dp"
+             android:scaleType="centerCrop"
             android:src="@drawable/round_account_circle_24"
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.appbar.MaterialToolbar>

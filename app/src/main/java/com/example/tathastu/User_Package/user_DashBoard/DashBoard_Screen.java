@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -58,8 +60,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DashBoard_Screen extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
     ImageButton BTN_dash_food, BTN_dash_blood, BTN_dash_edu, BTN_dash_aboutus, BTN_dash_contactus, BTN_dash_history, BTN_dash_helpline;
@@ -121,20 +121,26 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
 
         DatabaseReference referenceprofile = FirebaseDatabase.getInstance().getReference("user");
 
-        referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                profile_getset userpro = snapshot.getValue(profile_getset.class);
-                if (userpro != null) {
-                    Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
+        if (user != null) {
+            referenceprofile.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    profile_getset userpro = snapshot.getValue(profile_getset.class);
+                    if (userpro != null) {
+                        Picasso.get().load(userpro.getProfile_image()).into(img_profile_photo);
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        } else {
+
+            Toast.makeText(this, "Failed.", Toast.LENGTH_SHORT).show();
+
+        }
 
 
 // Initialize the ConnectivityReceiver
@@ -278,6 +284,11 @@ public class DashBoard_Screen extends AppCompatActivity implements ConnectivityR
         BTN_dash_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // This is use when user Log Out the SharedPreference value is clear
+                SharedPreferences preferences = getSharedPreferences(Login_Screen.PREFS_NAME,Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
                 finish();
                 Intent logout = new Intent(DashBoard_Screen.this, Login_Screen.class);
                 startActivity(logout);
